@@ -33,5 +33,3 @@ if debugmode==True :
 """
 
 """
-
-raw_input()#pause programme
