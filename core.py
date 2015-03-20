@@ -23,11 +23,6 @@ from prop import *
 Création de la grille avec les cases + propriétés par défault
 """
 cases(xgrille,ygrille)#on applique la fonction
-if debugmode==True :
-    print("[Affichage de la grille]")
-    raw_input()
-    print(grille)
-    raw_input()
 
 #suite
 """
