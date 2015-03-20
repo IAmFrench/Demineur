@@ -1,1 +1,0 @@
-debugmode=False #affiche les tests (attention très envahissant)
