@@ -18,6 +18,7 @@ dans ce cas ci, la case
 pas de ? et n'est pas dévoilé.
 """
 def cases(xgrille,ygrille):
+    """ Fonction qui crée de la grille """
     for x in range(1,xgrille+1) :
         for y in range(1,ygrille+1) :
             ncase=str(x)+'x'+str(y) #entièrement inutile, juste pour ahérer le code
@@ -33,6 +34,36 @@ grille={'1x1' = [1,3,5,7],
          ...
         }
 """
+
+def gr(xygrille,prop,statut):
+    """
+    liste des diff. prop :
+        -all
+        -bombe
+        -drapeau
+        -interrogation
+        -visible    
+    """
+    cle=xygrille
+    for cle in grille.keys():
     
     
     
+"""
+Usage de la fonction gr()
+
+exemple 1 :
+        gr(1x1,drapeau,true)
+    résultat :
+        la case de coordonnée 1par1 a un drapeau, donc 3 passe à 2
+
+exemple2:
+        (on admet que la case 1x1 a une bombe)
+        gr(1x1,bombe,statut)
+    résultat :
+        retourne la valeur True
+
+exemple3:
+        gr(1x1,)
+        
+"""
