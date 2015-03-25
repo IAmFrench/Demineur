@@ -24,7 +24,6 @@ Création de la grille avec les cases + propriétés par défault
 """
 cases(xgrille,ygrille)#on applique la fonction
 
-#suite
-"""
-
-"""
+print(grille['1x1'])
+gr('1x1','bombe',True)
+print(grille['1x1'])

@@ -57,85 +57,83 @@ def gr(xygrille,prop,statut):
         nvisible=7
     """
         
-    for cle, definition in grille.keys(): #parcours a la fois les clef et leur definition
-        if xygrille==cle: #lorsque la clé correspond
-            
-            """
-            Renvoi un oui/non selon la propriété
-            """
-            if statut=='statut':
-                if prop=='bombe':
-                    if 0 in definition:
-                         rbombe=True
-                         return(rbombe)
-                    else :
-                        rbombe=False
-                        return(rbombe)
-                        
-                elif prop=='drapeau':
-                    if 2 in definition:
-                        rdrapeau=True
-                        return(rdrapeau)
-                    else :
-                        rdrapeau=False
-                        return(rdrapeau)
-                        
-                elif prop=='interrogation':
-                    if 4 in definition:
-                        rinterro=True
-                        return(rinterro)
-                    else:
-                        rinterro=False
-                        return(rinterro)
-                        
-                elif prop=='visible':
-                    if 6 in definition:
-                        rvisible=True
-                        return(rvisible)
-                    else:
-                        rvisible=False
-                        return(rvisible)
+    definition=grille[xygrille]            
+    """
+    Renvoi un oui/non selon la propriété
+    """
+    if statut=='statut':
+        if prop=='bombe':
+            if 0 in definition:
+                 rbombe=True
+                 return(rbombe)
+            else :
+                rbombe=False
+                return(rbombe)
+                
+        elif prop=='drapeau':
+            if 2 in definition:
+                rdrapeau=True
+                return(rdrapeau)
+            else :
+                rdrapeau=False
+                return(rdrapeau)
+                
+        elif prop=='interrogation':
+            if 4 in definition:
+                rinterro=True
+                return(rinterro)
+            else:
+                rinterro=False
+                return(rinterro)
+                
+        elif prop=='visible':
+            if 6 in definition:
+                rvisible=True
+                return(rvisible)
+            else:
+                rvisible=False
+                return(rvisible)
 
+    """
+    Modifie les propriété
+    """
+    if statut==True or statut==False:
+        for a in definition :
             """
-            Modifie les propriété
+            Passe de non vers oui
             """
-            if statut==True or statut==False:
-                for a in definition :
-                    """
-                    Passe de non vers oui
-                    """
-                    if statut==True:
-                        propriete=definition
-                        if prop=='bombe':
-                            if a==1:
-                                propriete[0]=0
-                        elif prop=='drapeau':
-                            if a==3:
-                                propriete[1]=2
-                        elif prop=='interrogation':
-                            if a==5:
-                                propriete[2]=4
-                        elif prop=='visible':
-                            if a==7:
-                                propriete[3]=6
-                    """
-                    Passe de oui vers non
-                    """
-                    if statut==False:
-                        propriete=definition
-                        if prop=='bombe':
-                            if a==0:
-                                propriete[0]=1
-                        elif prop=='drapeau':
-                            if a==2:
-                                propriete[1]=3
-                        elif prop=='interrogation':
-                            if a==4:
-                                propriete[2]=5
-                        elif prop=='visible':
-                            if a==6:
-                                propriete[3]=7
-                grille[xygrille]=propriete#met à jours la définition de la clef
+            if statut==True:
+                propriete=definition
+                if prop=='bombe':
+                    if a==1:
+                        propriete[0]=0
+                elif prop=='drapeau':
+                    if a==3:
+                        propriete[1]=2
+                elif prop=='interrogation':
+                    if a==5:
+                        propriete[2]=4
+                elif prop=='visible':
+                    if a==7:
+                        propriete[3]=6
+            """
+            Passe de oui vers non
+            """
+            if statut==False:
+                propriete=definition
+                if prop=='bombe':
+                    if a==0:
+                        propriete[0]=1
+                elif prop=='drapeau':
+                    if a==2:
+                        propriete[1]=3
+                elif prop=='interrogation':
+                    if a==4:
+                        propriete[2]=5
+                elif prop=='visible':
+                    if a==6:
+                        propriete[3]=7
+        grille[xygrille]=propriete#met à jours la définition de la clef
         
 """
 Usage de la fonction gr()
