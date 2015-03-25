@@ -57,7 +57,8 @@ def gr(xygrille,prop,statut):
         nvisible=7
     """
         
-    definition=grille[xygrille]            
+    definition=grille[xygrille] #charge les propriété de la clé demandé
+      
     """
     Renvoi un oui/non selon la propriété
     """
