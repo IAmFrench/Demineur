@@ -109,13 +109,13 @@ def gr(xygrille,prop,statut):
                             if prop=='bombe':
                                 if a==1:
                                     propriete[0]=0
-                            if prop=='drapeau':
+                            elif prop=='drapeau':
                                 if a==3:
                                     propriete[1]=2
-                            if prop=='interrogation':
+                            elif prop=='interrogation':
                                 if a==5:
                                     propriete[2]=4
-                            if prop='visible':
+                            elif prop='visible':
                                 if a==7:
                                     propriete[3]=6
                         """
@@ -126,13 +126,13 @@ def gr(xygrille,prop,statut):
                             if prop=='bombe':
                                 if a==0:
                                     propriete[0]=1
-                            if prop=='drapeau':
+                            elif prop=='drapeau':
                                 if a==2:
                                     propriete[1]=3
-                            if prop=='interrogation':
+                            elif prop=='interrogation':
                                 if a==4:
                                     propriete[2]=5
-                            if prop='visible':
+                            elif prop='visible':
                                 if a==6:
                                     propriete[3]=7
                     grille[xygrille]=propriete#met à jours la définition de la clef
