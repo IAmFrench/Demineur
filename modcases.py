@@ -3,6 +3,9 @@ Module Cases
 Objectif : créer les différentes
 cases en fonction des propriétés
 de la grille (taille)
+Usage dictionnaire :
+http://openclassrooms.com/courses/apprenez-a-programmer-en-python/les-dictionnaires-2
+
 """
 from modgrille import * #besoin du dico grille+tailles
 from prop import *
@@ -44,26 +47,111 @@ def gr(xygrille,prop,statut):
         -interrogation
         -visible    
     """
-    cle=xygrille
-    for cle in grille.keys():
-    
-    
-    
+    obombe=0
+    nbombe=1
+    odrapeau=2
+    ndrapeau=3
+    ointerro=4
+    ninterro=5
+    ovisible=6
+    nvisible=7
+        
+    for cle, definition in grille.keys(): #parcours a la fois les clef et leur definition
+        if xygrille==cle:
+            
+            """
+            Renvoi un oui/non selon la propriété
+            """
+            if statut=='statut':
+                if prop=='bombe':
+                    if 0 in definition:
+                         rbombe=True
+                         return(rbombe)
+                    else :
+                        rbombe=False
+                        return(rbombe)
+                        
+                elif prop=='drapeau':
+                    if 2 in definition:
+                        rdrapeau=True
+                        return(rdrapeau)
+                    else :
+                        rdrapeau=False
+                        return(rdrapeau)
+                        
+                elif prop=='interrogation':
+                    if 4 in definition:
+                        rinterro=True
+                        return(rinterro)
+                    else:
+                        rinterro=False
+                        return(rinterro)
+                        
+                elif prop=='visible':
+                    if 6 in definition:
+                        rvisible=True
+                        return(rvisible)
+                    else:
+                        rvisible=False
+                        return(rvisible)
+
+            """
+            Modifie les propriété
+            """
+            else:
+                for a in definition :
+                    if statut==True or statut==False:
+                        """
+                        Passe de non vers oui
+                        """
+                        if statut==True:
+                            propriete=definition
+                            if prop=='bombe':
+                                if a==1:
+                                    propriete[0]=0
+                            if prop=='drapeau':
+                                if a==3:
+                                    propriete[1]=2
+                            if prop=='interrogation':
+                                if a==5:
+                                    propriete[2]=4
+                            if prop='visible':
+                                if a==7:
+                                    propriete[3]=6
+                        """
+                        Passe de oui vers non
+                        """
+                        if statut==False:
+                            propriete=definition
+                            if prop=='bombe':
+                                if a==0:
+                                    propriete[0]=1
+                            if prop=='drapeau':
+                                if a==2:
+                                    propriete[1]=3
+                            if prop=='interrogation':
+                                if a==4:
+                                    propriete[2]=5
+                            if prop='visible':
+                                if a==6:
+                                    propriete[3]=7
+                    grille[xygrille]=propriete#met à jours la définition de la clef
+        
 """
 Usage de la fonction gr()
 
 exemple 1 :
-        gr(1x1,drapeau,true)
+        gr('1x1','drapeau',True)
     résultat :
         la case de coordonnée 1par1 a un drapeau, donc 3 passe à 2
 
 exemple2:
         (on admet que la case 1x1 a une bombe)
-        gr(1x1,bombe,statut)
+        gr('1x1','bombe','statut')
     résultat :
         retourne la valeur True
 
 exemple3:
-        gr(1x1,)
+        gr('1x1')
         
 """
