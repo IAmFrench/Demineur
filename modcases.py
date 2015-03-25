@@ -45,19 +45,20 @@ def gr(xygrille,prop,statut):
         -bombe
         -drapeau
         -interrogation
-        -visible    
+        -visible
+    Rappel (o=oui/n=non):
+        obombe=0
+        nbombe=1
+        odrapeau=2
+        ndrapeau=3
+        ointerro=4
+        ninterro=5
+        ovisible=6
+        nvisible=7
     """
-    obombe=0
-    nbombe=1
-    odrapeau=2
-    ndrapeau=3
-    ointerro=4
-    ninterro=5
-    ovisible=6
-    nvisible=7
         
     for cle, definition in grille.keys(): #parcours a la fois les clef et leur definition
-        if xygrille==cle:
+        if xygrille==cle: #lorsque la clé correspond
             
             """
             Renvoi un oui/non selon la propriété
@@ -98,44 +99,43 @@ def gr(xygrille,prop,statut):
             """
             Modifie les propriété
             """
-            else:
+            if statut==True or statut==False:
                 for a in definition :
-                    if statut==True or statut==False:
-                        """
-                        Passe de non vers oui
-                        """
-                        if statut==True:
-                            propriete=definition
-                            if prop=='bombe':
-                                if a==1:
-                                    propriete[0]=0
-                            elif prop=='drapeau':
-                                if a==3:
-                                    propriete[1]=2
-                            elif prop=='interrogation':
-                                if a==5:
-                                    propriete[2]=4
-                            elif prop='visible':
-                                if a==7:
-                                    propriete[3]=6
-                        """
-                        Passe de oui vers non
-                        """
-                        if statut==False:
-                            propriete=definition
-                            if prop=='bombe':
-                                if a==0:
-                                    propriete[0]=1
-                            elif prop=='drapeau':
-                                if a==2:
-                                    propriete[1]=3
-                            elif prop=='interrogation':
-                                if a==4:
-                                    propriete[2]=5
-                            elif prop='visible':
-                                if a==6:
-                                    propriete[3]=7
-                    grille[xygrille]=propriete#met à jours la définition de la clef
+                    """
+                    Passe de non vers oui
+                    """
+                    if statut==True:
+                        propriete=definition
+                        if prop=='bombe':
+                            if a==1:
+                                propriete[0]=0
+                        elif prop=='drapeau':
+                            if a==3:
+                                propriete[1]=2
+                        elif prop=='interrogation':
+                            if a==5:
+                                propriete[2]=4
+                        elif prop=='visible':
+                            if a==7:
+                                propriete[3]=6
+                    """
+                    Passe de oui vers non
+                    """
+                    if statut==False:
+                        propriete=definition
+                        if prop=='bombe':
+                            if a==0:
+                                propriete[0]=1
+                        elif prop=='drapeau':
+                            if a==2:
+                                propriete[1]=3
+                        elif prop=='interrogation':
+                            if a==4:
+                                propriete[2]=5
+                        elif prop=='visible':
+                            if a==6:
+                                propriete[3]=7
+                grille[xygrille]=propriete#met à jours la définition de la clef
         
 """
 Usage de la fonction gr()
