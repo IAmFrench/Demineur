@@ -22,4 +22,3 @@ from prop import *
 Création de la grille avec les cases + propriétés par défault
 """
 cases(xgrille,ygrille)#on applique la fonction
-
