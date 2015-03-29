@@ -1,7 +1,7 @@
-# Demineur
+# Demineur [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/IAmFrench/Demineur?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 Project BAC ISN
-Documentation :
+##Documentation :
 https://github.com/IAmFrench/Demineur/wiki
 
-Mini site :
+##Mini site :
 https://www.demineur.ga/
