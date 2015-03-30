@@ -52,3 +52,6 @@ docs/_build/
 
 # PyBuilder
 target/
+Demineur-py/.spyderproject
+.spyderworkspace
+*.spyderproject
