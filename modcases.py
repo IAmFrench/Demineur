@@ -6,20 +6,13 @@ de la grille (taille)
 Usage dictionnaire :
 http://openclassrooms.com/courses/apprenez-a-programmer-en-python/les-dictionnaires-2
 
+documentation :
+https://github.com/IAmFrench/Demineur/wiki/Fonction-modcases -> modcases
+https://github.com/IAmFrench/Demineur/wiki/Explication-des-valeurs -> valeurs des clés dans la grille
 """
 from modgrille import * #besoin du dico grille+tailles
 from prop import *
-"""
-documentation :
-grille {'1x1' : [1,2,5,7]
-0-1=bombe ou non
-2-3=drapeau ou non
-4-5=? ou non
-6-7=dévoilé ou non
-dans ce cas ci, la case
-1x1 n'as pas de bombe, a un drapeau, 
-pas de ? et n'est pas dévoilé.
-"""
+
 def cases(xgrille,ygrille):
     """ Fonction qui crée de la grille """
     for x in range(1,xgrille+1) :
