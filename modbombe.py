@@ -17,3 +17,5 @@ def bombplace():
 #bombplace()
 #print(grille)    
 
+def bombchiffre():
+    
