@@ -8,4 +8,3 @@ zone_dessin.place(x=10,y=20)
 for i in range() :
     
 fenetre.mainloop()
-

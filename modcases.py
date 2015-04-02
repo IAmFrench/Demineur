@@ -60,7 +60,7 @@ def gr(xygrille,prop,statut):
         true
         False
         Statut
-        ou chiffre pour chiffre
+        (ou chiffre pour chiffre)
     """
         
     definition=grille[xygrille] #charge les propriété de la clé demandé
@@ -143,10 +143,11 @@ def gr(xygrille,prop,statut):
                     if a==6:
                         propriete[3]=7
         grille[xygrille]=propriete#met à jours la définition de la clef
-    if statut != True and statut != False and statut=int and prop='chiffre' : #satut == un entier
-        propriete[4]=int(statut)
-        
-        
+    """
+    Spécial pour le nombre de bombes
+    """
+    if statut != bool and type(statut)==int and prop=='chiffre' : #satut == un entier différent de booleen
+        definition[4]=int(statut)
 """
 Usage de la fonction gr()
 
