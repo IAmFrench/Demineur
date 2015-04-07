@@ -17,8 +17,12 @@ https://creativecommons.org/licenses/by-nc-nd/3.0
 from modgrille import *
 from modcases import *
 from prop import *
-
 """
-Création de la grille avec les cases + propriétés par défault
+Étape 1 : Creation de la grille + création des cases
 """
 cases(xgrille,ygrille)
+
+"""
+Étape 2 : Remplissage de la grille de bombes
+"""
+#foncition qui remplie la grille de bombes

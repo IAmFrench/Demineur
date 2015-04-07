@@ -1,26 +1,16 @@
 """
 Module Cases
-Objectif : créer les différentes
-cases en fonction des propriétés
-de la grille (taille)
+
 Usage dictionnaire :
 http://openclassrooms.com/courses/apprenez-a-programmer-en-python/les-dictionnaires-2
+
+Explication détaillé de la fonction :
+https://github.com/IAmFrench/Demineur/wiki/Fonction-modcases
 
 """
 from modgrille import * #besoin du dico grille+tailles
 from prop import *
-"""
-documentation :
-grille {'1x1' : [1,2,5,7]
-0-1=bombe ou non
-2-3=drapeau ou non
-4-5=? ou non
-6-7=dévoilé ou non
-dans ce cas ci, la case
-1x1 n'as pas de bombe, a un drapeau, 
-pas de ? et n'est pas dévoilé.
-case[4]=0 -> nombre de cases à definir
-"""
+
 def cases(xgrille,ygrille):
     """ Fonction qui crée de la grille """
     for x in range(1,xgrille+1) :
@@ -28,16 +18,6 @@ def cases(xgrille,ygrille):
             ncase=str(x)+'x'+str(y) #entièrement inutile, juste pour ahérer le code
             grille[ncase]=[1,3,5,7,0]#ni bombe,ni drapeau, ni ? et ni dévoilée
 
-
-"""
-normalement à ce stade la grille est pleine de cases
-resultat du dictionnaire grille :
-
-grille={'1x1' = [1,3,5,7],
-        '1x2' = [1,3,5,7],
-         ...
-        }
-"""
 
 def gr(xygrille,prop,statut):
     """
