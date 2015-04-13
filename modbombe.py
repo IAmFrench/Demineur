@@ -17,7 +17,7 @@ def bombplace():
 
     
 
-def num():
+def num(grillereg):
     if gr(grillereg,'bombe','statut')==True:
         gr(xyg,'chiffre',(gr(xyg,'chiffre',statut)+1))
    #return(grille)     
@@ -30,35 +30,36 @@ def bombchiffre():
             
             grillereg=str(x-1)+"x"+str(y)
             if x-1!=0:
-                num()
+                num(grillereg)
         
             grillereg=str(x+1)+"x"+str(y)
             if x+1!=(int(xgrille)+1):
-                num()
+                num(grillereg)
                 
             grillereg=str(x)+"x"+str(y+1)
             if y+1!=(int(xgrille)+1):
-                num()
+                num(grillereg)
             
             grillereg=str(x)+"x"+str(y-1)
             if y-1!=0:
-                num()
+                num(grillereg)
             
             grillereg=str(x-1)+"x"+str(y-1)
             if y-1!=0 and x-1!=0:
-                num()
+                num(grillereg)
             
             grillereg=str(x+1)+"x"+str(y+1)
             if y+1!=(int(ygrille)+1) and x+1!=(int(xgrille)+1):
-                num()
+                num(grillereg)
             
             grillereg=str(x+1)+"x"+str(y-1)
             if y-1!=0 and x+1!=(int(xgrille)+1):
-                num()
+                num(grillereg)
                 
             grillereg=str(x-1)+"x"+str(y+1)
             if y+1!=(int(ygrille)+1) and x-1!=0:
-                num()
+                num(grillereg)
+    
         
     #return(grille)
 
@@ -69,12 +70,4 @@ print("adc")
 bombplace()
 print(grille)
 bombchiffre() 
-
-
-
-
-
-
-
-
 
