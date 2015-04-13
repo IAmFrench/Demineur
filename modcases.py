@@ -41,7 +41,6 @@ def gr(xygrille,prop,statut):
     """
         
     definition=grille[xygrille] #charge les propriété de la clé demandé
-      
     """
     Renvoi un oui/non selon la propriété
     """
@@ -78,7 +77,7 @@ def gr(xygrille,prop,statut):
                 rvisible=False
                 return(rvisible)
         elif prop=='chiffre':
-            return int((propriete[4])) #ENTIER
+            return int((definition[4])) #ENTIER
 
     """
     Modifie les propriété

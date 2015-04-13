@@ -21,6 +21,7 @@ from prop import *
 Étape 1 : Creation de la grille + création des cases
 """
 cases(xgrille,ygrille)
+#print(gr("1x1",'chiffre','statut'))
 
 """
 Étape 2 : Remplissage de la grille de bombes
