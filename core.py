@@ -11,16 +11,20 @@ sous Licence CC BY-NC-ND 3.0:
 https://creativecommons.org/licenses/by-nc-nd/3.0
 
 ->Attribution
-->Pas d’Utilisation Commerciale 
+->Pas dUtilisation Commerciale 
 ->Pas de modifications
 """
 from modgrille import *
 from modcases import *
 from prop import *
+from modbombe import *
 """
 Étape 1 : Creation de la grille + création des cases
 """
 cases(xgrille,ygrille)
+bombplace()
+bombchiffre() 
+print(grille)
 #print(gr("1x1",'chiffre','statut'))
 
 """

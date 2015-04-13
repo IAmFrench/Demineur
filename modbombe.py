@@ -3,7 +3,7 @@ import random
 from modcases import *
 from modgrille import*
 
-cases(xgrille,ygrille)
+
 
 def bombplace():
     
@@ -63,10 +63,4 @@ def bombchiffre():
     #return(grille)
 
 
-            
-cases(xgrille,ygrille)
-
-bombplace()
-
-bombchiffre() 
 
