@@ -11,7 +11,7 @@ sous Licence CC BY-NC-ND 3.0:
 https://creativecommons.org/licenses/by-nc-nd/3.0
 
 ->Attribution
-->Pas dUtilisation Commerciale 
+->Pas dUtilisation Commerciale  
 ->Pas de modifications
 """
 from modgrille import *
