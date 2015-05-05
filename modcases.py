@@ -76,30 +76,39 @@ def gr(xygrille,prop,statut):
                 return(rbombe)
                 
         elif prop=='drapeau':
-            if 2 in definition:
+            if definition[1]==2:
                 rdrapeau=True
                 return(rdrapeau)
-            else :
+            
+            elif definition[1]==3 :
                 rdrapeau=False
                 return(rdrapeau)
+            else:
+                print("ERREUR->Case_statut "+prop+" "+xygrille)
                 
         elif prop=='interrogation':
-            if 4 in definition:
+            if definition[2]==4:
                 rinterro=True
                 return(rinterro)
-            else:
+            elif definition[2]==5:
                 rinterro=False
                 return(rinterro)
+            else :
+                print("ERREUR->Case_statut "+prop+" "+xygrille)
                 
         elif prop=='visible':
-            if 6 in definition:
+            if definition[3]==6:
                 rvisible=True
                 return(rvisible)
-            else:
+            elif definition[3]==7:
                 rvisible=False
                 return(rvisible)
+            else :
+                print("ERREUR->Case_statut "+prop+" "+xygrille)
         elif prop=='chiffre':
             return int((definition[4])) #ENTIER
+        elif prop=='cmbbombe':
+            return(definition[4])
     
     
     """
