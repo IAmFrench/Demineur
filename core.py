@@ -24,8 +24,6 @@ from modbombe import *
 cases(xgrille,ygrille)
 bombplace()
 bombchiffre() 
-print(grille)
-#print(gr("1x1",'chiffre','statut'))
 
 """
 Étape 2 : Remplissage de la grille de bombes
@@ -35,5 +33,7 @@ print(grille)
 """
 Test : partie réservée au test
 """
-#print(gr('1x1','bombe','statut'))
+print(gr('1x1','bombe','statut'))
 #print(gr('1x2','bombe',True))
+#print(grille)
+#print(gr("1x1",'chiffre','statut'))
