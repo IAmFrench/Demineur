@@ -68,7 +68,7 @@ def gr(xygrille,prop,statut):
     def case_statut():
         """ Affiche le statut (True/False) de la case """
         if prop=='bombe':
-            if 0 in definition:
+            if definition[0]==0:
                  rbombe=True
                  return(rbombe)
             else :
