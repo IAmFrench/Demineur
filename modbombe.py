@@ -19,7 +19,7 @@ def bombplace():
 
 def num(grillereg,xyg):
     if gr(xyg,'bombe','statut')==True:
-        #print(int(gr(grillereg,'chiffre','statut')+1))
+        print(int(gr(grillereg,'chiffre','statut')+1))
         gr(grillereg,'chiffre',int(gr(grillereg,'chiffre','statut')+1))
         
 

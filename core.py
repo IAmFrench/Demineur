@@ -22,18 +22,25 @@ from modbombe import *
 Étape 1 : Creation de la grille + création des cases
 """
 cases(xgrille,ygrille)
-bombplace()
-bombchiffre() 
+ 
 
 """
-Étape 2 : Remplissage de la grille de bombes
+Étape 2 : Remplissage de la grille de bombes + remplissage des cases de chiffre
 """
-#foncition qui remplie la grille de bombes
+
+bombplace()
+bombchiffre()
 
 """
 Test : partie réservée au test
 """
+
 print(gr('1x1','bombe','statut'))
 #print(gr('1x2','bombe',True))
 #print(grille)
 #print(gr("1x1",'chiffre','statut'))
+totalbombe=0
+for valeur in grille.values() :
+    if valeur[0]==0:
+        totalbombe=totalbombe+1
+print(totalbombe)
