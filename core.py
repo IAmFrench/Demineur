@@ -16,8 +16,8 @@ https://creativecommons.org/licenses/by-nc-nd/3.0
 """
 from modgrille import *
 from modcases import *
-#from prop import *
-#from modbombe import *
+from prop import *
+from modbombe import *
 """
 Étape 1 : Creation de la grille + création des cases
 """
@@ -31,3 +31,9 @@ print(grille)
 Étape 2 : Remplissage de la grille de bombes
 """
 #foncition qui remplie la grille de bombes
+
+"""
+Test : partie réservée au test
+"""
+#print(gr('1x1','bombe','statut'))
+#print(gr('1x2','bombe',True))
