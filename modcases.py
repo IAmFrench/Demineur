@@ -171,8 +171,7 @@ def gr(xygrille,prop,statut):
         """
         Spécial pour le nombre de bombes
         """
-        if statut != bool and type(statut)==int and prop=='chiffre' : #satut == un entier différent de booleen
-            definition[4]=int(statut)
+        definition[4]=int(statut)
         
     ##################
     ###Test logique###
@@ -195,8 +194,12 @@ def gr(xygrille,prop,statut):
         ###
         print("Statut=False")
         ###
-
-
+    if statut != bool and type(statut)==int and prop=='chiffre' : #satut == un entier différent de booleen
+        return(case_nbbombe)
+        ###
+        print("Statut=chiffre")
+        ###
+        
 """
 Usage de la fonction gr()
 exemple 1 :
