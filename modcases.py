@@ -106,9 +106,7 @@ def gr(xygrille,prop,statut):
             else :
                 print("ERREUR->Case_statut "+prop+" "+xygrille)
         elif prop=='chiffre':
-            return int((definition[4])) #ENTIER
-        elif prop=='cmbbombe':
-            return(definition[4])
+            return(definition[4]) #ENTIER
     
     
     """
@@ -167,10 +165,7 @@ def gr(xygrille,prop,statut):
         grille[xygrille]=propriete #met à jours la définition de la clef
         
     def case_nbbombe():
-        """ Renvoi la valeur du nombre de bombe """
-        """
-        Spécial pour le nombre de bombes
-        """
+        """  la valeur du nombre de bombe """
         definition[4]=int(statut)
         
     ##################
@@ -180,24 +175,24 @@ def gr(xygrille,prop,statut):
     if statut=='statut':
         return(case_statut())
         ###
-        print("Statut='statut'")
+        #print("Statut='statut'")
         ###
         
     if statut==True: #On demande a activer la propriété
         return(case_offon())
         ###
-        print("statut=True")
+        #print("statut=True")
         ###
     
     if statut==False: #On demande a désactiver la propriété
         return(case_onoff())
         ###
-        print("Statut=False")
+        #print("Statut=False")
         ###
-    if statut != bool and type(statut)==int and prop=='chiffre' : #satut == un entier différent de booleen
-        return(case_nbbombe)
+    if statut !=bool and type(statut)==int and prop=='chiffre' : #satut == un entier différent de booleen
+        return(case_nbbombe())
         ###
-        print("Statut=chiffre")
+        #print("Statut=chiffre")
         ###
         
 """
@@ -215,4 +210,3 @@ exemple3:
         gr('1x1')
         
 """
-
