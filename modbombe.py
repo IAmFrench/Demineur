@@ -13,14 +13,17 @@ def bombplace():
         while gr(al,'bombe','statut')==True:
             al=str(random.randint(1,xgrille))+'x'+str(random.randint(1,ygrille))
         gr(al,'bombe',True)
-    
-
-    
+     
+#if gr(grillereg,'bombe','statut')==True:
+        #print(int(gr(xyg,'chiffre','statut')+1))
+        #gr(xyg,'chiffre',int(gr(xyg,'chiffre','statut')+1))
+   
 
 def num(grillereg,xyg):
-    if gr(xyg,'bombe','statut')==True:
-        print(int(gr(grillereg,'chiffre','statut')+1))
-        gr(grillereg,'chiffre',int(gr(grillereg,'chiffre','statut')+1))
+    if gr(grillereg,'bombe','statut')==True:
+        if gr(xyg,'bombe','statut')==False:
+            defi=grille[xyg]
+            defi[4]=defi[4]+1
         
 
 def bombchiffre():
