@@ -1,4 +1,4 @@
-def difficulte('niveau'):
+def difficulte(niveau):
     """
     3 niveaux de difficulté
         "facile" -> 9x9
