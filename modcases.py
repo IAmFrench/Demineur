@@ -13,7 +13,7 @@ def cases(xgrille,ygrille):
     for x in range(1,xgrille+1) :
         for y in range(1,ygrille+1) :
             ncase=str(x)+'x'+str(y) #entièrement inutile, juste pour ahérer le code
-            grille[ncase]=[1,3,5,7,0]#ni bombe,ni drapeau, ni ? et ni dévoilée
+            grille[ncase]=[1,3,5,7,-1]#ni bombe,ni drapeau, ni ? et ni dévoilée
 
 """
 >>
