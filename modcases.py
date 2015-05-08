@@ -178,17 +178,18 @@ def gr(xygrille,prop,statut):
         #print("Statut='statut'")
         ###
         
-    if statut==True: #On demande a activer la propriété
-        return(case_offon())
+    if type(statut)==bool: #Statut = true ou Flase
+        if statut==True :#On demande a activer la propriété
+            return(case_offon())
         ###
         #print("statut=True")
         ###
     
-    if statut==False: #On demande a désactiver la propriété
-        return(case_onoff())
-        ###
-        #print("Statut=False")
-        ###
+        if statut==False: #On demande a désactiver la propriété
+            return(case_onoff())
+            ###
+            #print("Statut=False")
+            ###
     if statut !=bool and type(statut)==int and prop=='chiffre' : #satut == un entier différent de booleen
         return(case_nbbombe())
         ###

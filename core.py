@@ -34,13 +34,3 @@ bombchiffre()
 """
 Test : partie réservée au test
 """
-
-print(gr('1x1','bombe','statut'))
-#print(gr('1x2','bombe',True))
-#print(grille)
-#print(gr("1x1",'chiffre','statut'))
-totalbombe=0
-for valeur in grille.values() :
-    if valeur[0]==0:
-        totalbombe=totalbombe+1
-print(totalbombe)
