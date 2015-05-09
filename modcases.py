@@ -1,15 +1,23 @@
-"""
-Module Cases
-Usage dictionnaire :
-http://openclassrooms.com/courses/apprenez-a-programmer-en-python/les-dictionnaires-2
-Explication détaillé de la fonction :
-https://github.com/IAmFrench/Demineur/wiki/Fonction-modcases
-"""
+###############################################################################
+#Informations du module
+###############################################################################
+#Module Cases
+#Usage dictionnaire :
+#http://openclassrooms.com/courses/apprenez-a-programmer-en-python/les-dictionnaires-2
+#Explication détaillé du modulen :
+#https://github.com/IAmFrench/Demineur/wiki/Fonction-modcases
+
+###############################################################################
+#Importation des modules
+###############################################################################
 from modgrille import * #besoin du dico grille+tailles
 from prop import *
 
+###############################################################################
+#fonctionnalitées du module du module
+###############################################################################
 def cases(xgrille,ygrille):
-    """ Fonction qui crée de la grille """
+    """ Fonction qui créé les cases dans la grille """
     for x in range(1,xgrille+1) :
         for y in range(1,ygrille+1) :
             ncase=str(x)+'x'+str(y) #entièrement inutile, juste pour ahérer le code
@@ -195,19 +203,21 @@ def gr(xygrille,prop,statut):
         ###
         #print("Statut=chiffre")
         ###
-        
-"""
-Usage de la fonction gr()
-exemple 1 :
-        gr('1x1','drapeau',True)
-    résultat :
-        la case de coordonnée 1par1 a un drapeau, donc 3 passe à 2
-exemple2:
-        (on admet que la case 1x1 a une bombe)
-        gr('1x1','bombe','statut')
-    résultat :
-        retourne la valeur True
-exemple3:
-        gr('1x1')
-        
-"""
+
+###############################################################################
+#Exemple d'utilisation
+###############################################################################
+#Usage de la fonction gr()
+#exemple 1 :
+#        gr('1x1','drapeau',True)
+#    résultat :
+#        la case de coordonnée 1par1 a un drapeau, donc 3 passe à 2
+#exemple2:
+#        (on admet que la case 1x1 a une bombe)
+#        gr('1x1','bombe','statut')
+#    résultat :
+#        retourne la valeur True
+#exemple3:
+#        gr('1x1','chiffre,'1')
+#   résultat:
+#       il y a 1 bombe a coté de la case
