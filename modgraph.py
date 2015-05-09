@@ -36,30 +36,49 @@ def graph_fenetre(fonction):
         fenetre_titre="Choix Difficulté"    
         
         fenetre_choix_difficulte = Tk() #création de la fenetre
+        
+        def difficulte_facile():
+            difficulte("facile")
+            print("fonction difficulté -> facile")
+            fenetre_choix_difficulte.destroy()
+            print("fenetre destroy") 
+            
+        def difficulte_inter():
+            difficulte("intermediaire")
+            print("fonction difficulté -> inter")
+            fenetre_choix_difficulte.destroy()
+            print("fenetre destroy")
+            
+        def difficulte_expert():
+            difficulte("expert")
+            print("fonction difficulté -> expert")
+            fenetre_choix_difficulte.destroy()
+            print("fenetre destroy")
+    
         fenetre_choix_difficulte.title(fenetre_titre) #titre fenetre
         ########
         #Frames#
         ########
         frame_haut=Frame(fenetre_choix_difficulte)
-        frame_bas=Frame(fenetre_choix_difficulte)
+        #frame_bas=Frame(fenetre_choix_difficulte)
         
         #########
         #Boutons#
         #########
-        bouton_facile=Button(frame_haut,text='Facile',width=15,height=3,command=difficulte('facile'))
+        bouton_facile=Button(frame_haut,text='Facile',width=15,height=3,command=difficulte_facile)
         bouton_facile.pack(side=LEFT,padx=5,pady=5) #alignement à gauche 5px sur les cotés
         
-        bouton_intermediaire=Button(frame_haut,text='Intermediaire',width=15,height=3,command=difficulte('intermediaire'))
+        bouton_intermediaire=Button(frame_haut,text='Intermediaire',width=15,height=3,command=difficulte_inter)
         bouton_intermediaire.pack(side=LEFT,padx=5,pady=5)
         
-        bouton_expert=Button(frame_haut,text='Expert',width=15,height=3,command=difficulte('expert'))
+        bouton_expert=Button(frame_haut,text='Expert',width=15,height=3,command=difficulte_expert)
         bouton_expert.pack(side=LEFT,padx=5,pady=5)
         frame_haut.pack(side=TOP,padx=5, pady=5)
         
-        bouton_suivant=Button(frame_bas,text='Suivant',width=15,height=3,command=fenetre_choix_difficulte.destroy)
-        bouton_suivant.pack(side=BOTTOM)
+        #bouton_suivant=Button(frame_bas,text='Suivant',width=15,height=3,command=fenetre_choix_difficulte.destroy)
+        #bouton_suivant.pack(side=BOTTOM)
         
-        frame_bas.pack(side=BOTTOM,padx=5, pady=5)
+        #frame_bas.pack(side=BOTTOM,padx=5, pady=5)
 
         
         ###########

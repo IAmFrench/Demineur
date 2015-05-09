@@ -65,7 +65,3 @@ def couleur(style,r):
         return(DarkBlue_Red[r])
     else:
         return("#"+defaut[r])
-    
-        
-        
-

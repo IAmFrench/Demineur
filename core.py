@@ -28,7 +28,7 @@ from modgraph import *
 #Étape 1 : Affichage fenetre choix
 ###############################################################################
 graph_fenetre("choix_difficulte")
-
+print(ygrille)
 ###############################################################################
 #Étape 2 : Creation de la grille + création des cases
 ###############################################################################
