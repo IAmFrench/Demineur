@@ -18,7 +18,13 @@ nbbombe=-1
 #####################
 #Couleurs par défaut#
 #####################
-def difficulte(niveau):
+def difficulte(niveau):    
+    ####################################
+    #Importation des varialbes globales#
+    ####################################
+    global xgrille
+    global ygrille
+    global nbbombe
     """
     3 niveaux de difficulté
         "facile" -> 9x9 et 10 bombes

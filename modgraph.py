@@ -9,7 +9,7 @@
 #Importation des modules
 ###############################################################################
 from tkinter import * #bibliothèque graphique
-from prop import * #fonctions pour les propriétés
+from core import * #fonctions pour les propriétés
 
 ###############################################################################
 #fonctionnalitées du module du module
@@ -38,6 +38,9 @@ def graph_fenetre(fonction):
         fenetre_choix_difficulte = Tk() #création de la fenetre
         
         def difficulte_facile():
+            global xgrille
+            global ygrille
+            global nbbombe
             difficulte("facile")
             print("fonction difficulté -> facile")
             fenetre_choix_difficulte.destroy()
@@ -60,7 +63,6 @@ def graph_fenetre(fonction):
         #Frames#
         ########
         frame_haut=Frame(fenetre_choix_difficulte)
-        #frame_bas=Frame(fenetre_choix_difficulte)
         
         #########
         #Boutons#
@@ -74,11 +76,6 @@ def graph_fenetre(fonction):
         bouton_expert=Button(frame_haut,text='Expert',width=15,height=3,command=difficulte_expert)
         bouton_expert.pack(side=LEFT,padx=5,pady=5)
         frame_haut.pack(side=TOP,padx=5, pady=5)
-        
-        #bouton_suivant=Button(frame_bas,text='Suivant',width=15,height=3,command=fenetre_choix_difficulte.destroy)
-        #bouton_suivant.pack(side=BOTTOM)
-        
-        #frame_bas.pack(side=BOTTOM,padx=5, pady=5)
 
         
         ###########

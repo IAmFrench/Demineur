@@ -8,11 +8,11 @@
 ###############################################################################
 #Importation des modules
 ###############################################################################
-from prop import *
+from core import *
 
 ###############################################################################
 #fonctionnalitées du module du module
 ###############################################################################
-def creation_grille_vide():
-    """ Creation d'une grille vide """
-    grille={} #dictionnaire vide
+#def creation_grille_vide():
+#    """ Creation d'une grille vide """
+#    grille={} #dictionnaire vide

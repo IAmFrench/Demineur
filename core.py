@@ -32,7 +32,7 @@ print(ygrille)
 ###############################################################################
 #Étape 2 : Creation de la grille + création des cases
 ###############################################################################
-creation_grille_vide() #Création de la grille
+#creation_grille_vide() #Création de la grille
 cases(xgrille,ygrille) #Remplissage de la grille
  
 ###############################################################################

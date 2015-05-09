@@ -10,7 +10,7 @@
 ###############################################################################
 #Importation des modules
 ###############################################################################
-from modgrille import * #besoin du dico grille+tailles
+#f.rom modgrille import * #besoin du dico grille+tailles
 from prop import *
 
 ###############################################################################

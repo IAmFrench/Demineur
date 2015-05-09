@@ -6,10 +6,11 @@
 ###############################################################################
 #Importation des modules
 ###############################################################################
-from prop import *
+#from prop import *
 import random
-from modcases import *
-from modgrille import*
+#from modcases import *
+#from modgrille import*
+from core import *
 
 ###############################################################################
 #fonctionnalitées du module du module
