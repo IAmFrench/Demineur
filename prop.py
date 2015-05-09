@@ -33,12 +33,12 @@ def difficulte(niveau):
     elif niveau=='intermediaire':
         xgrille=16
         ygrille=16
-        nbbombe=20
+        nbbombe=40
         print('16x16 et 20 bombes')
     elif niveau=='expert':
         xgrille=30
         ygrille=16
-        nbbombe=30
+        nbbombe=99
         print('30x16 et 30 bombes')
     else :
         return('Erreur')
