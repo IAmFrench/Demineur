@@ -22,9 +22,7 @@ def difficulte(niveau):
     ####################################
     #Importation des varialbes globales#
     ####################################
-    global xgrille
-    global ygrille
-    global nbbombe
+
     """
     3 niveaux de difficulté
         "facile" -> 9x9 et 10 bombes
@@ -35,19 +33,25 @@ def difficulte(niveau):
         xgrille=9
         ygrille=9
         nbbombe=10
+        xybombe=[9,9,10]
         print('9x9 et 10 bombes')
     elif niveau=='intermediaire':
         xgrille=16
         ygrille=16
         nbbombe=40
+        xybombe=[16,16,40]
         print('16x16 et 20 bombes')
     elif niveau=='expert':
         xgrille=30
         ygrille=16
         nbbombe=99
-        print('30x16 et 30 bombes')
+        xybombe=[30,16,99]
+        print('30x16 et 30 bombes') 
     else :
         return('Erreur')
+    return(xybombe)    
+    
+     
 def couleur(style,r):
     DarkBlue_Red={"r1":"1A2530",
                   "r2":"2C3E50",
