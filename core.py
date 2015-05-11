@@ -25,15 +25,11 @@ from modcases import *
 from modbombe import *
 from modgraph import *
 
-global xgrille
-global ygrille
-global nbbombe
 ###############################################################################
 #Étape 1 : Affichage fenetre choix
 ###############################################################################
 graph_fenetre("choix_difficulte")
-print("y3= "+str(ygrille))
-#print(xybombe)
+print(xybombe)
 ###############################################################################
 #Étape 2 : Creation de la grille + création des cases
 ###############################################################################

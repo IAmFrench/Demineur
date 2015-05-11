@@ -37,22 +37,23 @@ def graph_fenetre(fonction):
         fenetre_titre="Choix Difficulté"    
         
         fenetre_choix_difficulte = Tk() #création de la fenetre
-        global xgrille
-        global ygrille
-        global nbbombe
+        
         def difficulte_facile():
+            global xybombe
             xybombe=difficulte("facile")
             print("fonction difficulté -> facile")
             fenetre_choix_difficulte.destroy()
             print("fenetre destroy") 
             
         def difficulte_inter():
+            global xybombe
             xybombe=difficulte("intermediaire")
             print("fonction difficulté -> inter")
             fenetre_choix_difficulte.destroy()
             print("fenetre destroy")
             
-        def difficulte_expert(xybombe):
+        def difficulte_expert():
+            global xybombe
             xybombe=difficulte("expert")
             print("fonction difficulté -> expert")
             fenetre_choix_difficulte.destroy()
@@ -85,8 +86,7 @@ def graph_fenetre(fonction):
         ##Fenêtre##
         ###########     
     
-        fenetre_choix_difficulte.mainloop() #boucle infinie fenetre
-        print(xybombe)
+        fenetre_choix_difficulte.mainloop() #boucle infinie fenetre       
     def interface_menu():
         remarque="à faire"
         #http://apprendre-python.com/page-tkinter-interface-graphique-python-tutoriel
