@@ -16,29 +16,6 @@ grille={}
 nbbombe=-1
 xybombe=[]
 
-#fonction difficulte et en fait inutile
-def difficulte(niveau):    
-    ####################################
-    #Importation des varialbes globales#
-    ####################################
-    global xybombe
-    """
-    3 niveaux de difficulté
-        "facile" -> 9x9 et 10 bombes
-        "intermediaire" -> 16x16 et 20 bombes
-        "expert" -> 30x16 et 30 bombes
-    """
-    if niveau=='facile':
-        xybombe.extend((9,9,10))#ajout plusieurs éléments
-        print('9x9 et 10 bombes')
-    elif niveau=='intermediaire':
-        xybombe.extend((16,16,40))
-        print('16x16 et 20 bombes')
-    elif niveau=="expert":
-        xybombe.extend((30,16,99))
-        print('30x16 et 99 bombes')
-    else :
-        print("Erreur fonction difficulté")
 #####################
 #Couleurs par défaut#
 #####################    

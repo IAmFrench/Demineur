@@ -74,6 +74,6 @@ def bombchiffre():
             grillereg=str(x-1)+"x"+str(y+1)
             if y+1!=(int(ygrille)+1) and x-1!=0:
                 num(grillereg,xyg)
-    print('chiffres "placé"')
+    print('chiffres placés')
             
     #return(grille)

@@ -40,21 +40,21 @@ def graph_fenetre(fonction):
         #actions bouton#
         ################
         def difficulte_facile():
-            xybombe.extend((9,9,10))
+            xybombe.extend((9,9,10,40))
             print("fonction difficulté -> facile")
             fenetre_choix_difficulte.destroy()
             #print("fenetre détruite") 
             
         def difficulte_inter():
             global xybombe
-            xybombe.extend((16,16,40))
+            xybombe.extend((16,16,40,35))
             print("fonction difficulté -> inter")
             fenetre_choix_difficulte.destroy()
             #print("fenetre détruite")
             
         def difficulte_expert():
             global xybombe
-            xybombe.extend((30,16,99))
+            xybombe.extend((30,16,99,25))
             print("fonction difficulté -> expert")
             fenetre_choix_difficulte.destroy()
             #print("fenetre détruite")
@@ -88,17 +88,65 @@ def graph_fenetre(fonction):
         remarque="à faire"
         #http://apprendre-python.com/page-tkinter-interface-graphique-python-tutoriel
     def interface_graph_grille():
-        fenetre_titre="Grille demineur"    
+        fenetre_titre="Grille demineur"  
         
+        ###########
+        #Variables#
+        ###########
+        global xybombe
+        xgrille=xybombe[0]
+        ygrille=xybombe[1]
+        L_H_case_px=xybombe[3] #bord d'une case 
+        fenetre_taille=str(15+(xgrille*L_H_case_px))+"x"+str(ygrille*L_H_case_px+15)
+        #########
+        #Fenêtre#
+        #########
         fenetre_grille = Tk() #création de la fenetre
         fenetre_grille.title(fenetre_titre) #titre fenetre
+        fenetre_grille.geometry(fenetre_taille)
+        #######
+        #Frame#
+        #######
+        #frame_menu=interface_menu()
+        #frame_menu.pack(side=TOP)
+        #frame_haut=Frame(fenetre_grille)
+        frame_grille=Frame(fenetre_grille)
+        #frame_bas=Frame(fenetre_grille)
         
-        ########
-        #Frames#
-        ########
-        frame_menu=interface_menu()
-        frame_haut=Frame(fenetre_choix_difficulte)
-        frame_bas=Frame(fenetre_choix_difficulte)
+        
+        ###########
+        #Fonctions#
+        ###########
+        
+        
+        ########################
+        #Affichage de la grille#
+        ########################
+        canvas_grille=Canvas(frame_grille,width=xgrille*50-1, height=ygrille*50-1)
+        canvas_grille.pack(side=TOP) #Affiche le canvas (5px de côté)
+        
+        """
+        A savoir : 1 case=50x50px
+        """
+        for h_ligne in range (ygrille+1): #Creation des lignes horizontales        
+            x_debut=0
+            x_fin=L_H_case_px*xgrille
+            y_debut=y_fin=h_ligne*L_H_case_px
+            canvas_grille.create_line(x_debut,y_debut,x_fin,y_fin) #crée la ligne
+            print(x_debut)
+            
+        for v_ligne in range(xgrille+1): #creation des lignes verticales    
+            x_debut=x_fin=v_ligne*L_H_case_px
+            y_debut=0
+            y_fin=L_H_case_px*ygrille
+        
+            canvas_grille.create_line(x_debut,y_debut,x_fin,y_fin) #crée la ligne
+        
+        canvas_grille.create_line(0,2,L_H_case_px*xgrille,2) #ligne horizontale haut
+        canvas_grille.create_line(2,0,2,L_H_case_px*ygrille) #ligne verticale gauche
+        
+        frame_grille.pack(side=TOP,padx=5,pady=5)
+        fenetre_grille.mainloop()
         
         
         
