@@ -45,6 +45,7 @@ Rappel (o=oui/n=non):
     ninterro=5
     ovisible=6
     nvisible=7
+    chiffre=un entier entre -1 et 7 (nb de bombe-1) ou -2 si il y a une bombe.
 Statuts :
     true
     False

@@ -24,10 +24,18 @@ def clic0(caseclic):
     if len(caseclic)==5:
         x=int(caseclic[0]+caseclic[1])  
         y=int(caseclic[3]+caseclic[4]) 
+    if len(caseclic)==4:
+        if caseclic[1]=='x':
+            x=int(caseclic[0])
+            y=int(caseclic[2]+caseclic[3])
+        elif caseclic[2]=='x':
+            x=int(caseclic[0]+caseclic[1])
+            y=int(caseclic[3])           
     print(x)
     print(y)
 
     case=grille[caseclic]
+    
     if case[3]==6:
         return(0)
         

@@ -33,8 +33,9 @@ def num(grillereg,xyg):
        if gr(xyg,'bombe','statut')==False:
            defi=grille[xyg]
            defi[4]=defi[4]+1
-            
-
+       else:
+           defi=grille[xyg]
+           defi[4]=-2
 
 def bombchiffre():
     xgrille=xybombe[0]
