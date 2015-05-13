@@ -9,7 +9,7 @@
 #Importation des modules
 ###############################################################################
 from tkinter import * #bibliothèque graphique
-from core import * #fonctions pour les propriétés
+from prop import * #nécéssaire pour le fonction difficulté
 
 ###############################################################################
 #fonctionnalitées du module du module
@@ -19,7 +19,6 @@ from core import * #fonctions pour les propriétés
     Fonctions Fenêtre (choix_difficulté, grille_demineur, a_propos,etc...)
 >>
 """
-
 def graph_fenetre(fonction):
     """
     liste des valeur pour fonction :
@@ -32,41 +31,40 @@ def graph_fenetre(fonction):
         Creation fenetre choix difficulté
     >>
     """
-    xybombe=[]
     def interface_graph_difficulte():
         fenetre_titre="Choix Difficulté"    
         
         fenetre_choix_difficulte = Tk() #création de la fenetre
         
+        ################
+        #actions bouton#
+        ################
         def difficulte_facile():
-            global xybombe
-            xybombe=difficulte("facile")
+            difficulte("facile")
             print("fonction difficulté -> facile")
             fenetre_choix_difficulte.destroy()
-            print("fenetre destroy") 
+            #print("fenetre détruite") 
             
         def difficulte_inter():
             global xybombe
             xybombe=difficulte("intermediaire")
             print("fonction difficulté -> inter")
             fenetre_choix_difficulte.destroy()
-            print("fenetre destroy")
+            #print("fenetre détruite")
             
         def difficulte_expert():
             global xybombe
             xybombe=difficulte("expert")
             print("fonction difficulté -> expert")
             fenetre_choix_difficulte.destroy()
-            print("fenetre destroy")
-            print(xybombe)
-            return(xybombe)
+            #print("fenetre détruite")
             
         
         fenetre_choix_difficulte.title(fenetre_titre) #titre fenetre
         ########
         #Frames#
         ########
-        frame_haut=Frame(fenetre_choix_difficulte)
+        frame_haut=Frame(fenetre_choix_difficulte) #cadre du haut
         
         #########
         #Boutons#
@@ -79,13 +77,12 @@ def graph_fenetre(fonction):
         
         bouton_expert=Button(frame_haut,text='Expert',width=15,height=3,command=difficulte_expert)
         bouton_expert.pack(side=LEFT,padx=5,pady=5)
-        frame_haut.pack(side=TOP,padx=5, pady=5)
+        frame_haut.pack(side=TOP,padx=5, pady=5) #affichage du cadre(haut)
 
         
         ###########
         ##Fenêtre##
-        ###########     
-    
+        ###########    
         fenetre_choix_difficulte.mainloop() #boucle infinie fenetre       
     def interface_menu():
         remarque="à faire"

@@ -29,17 +29,17 @@ from modgraph import *
 #Étape 1 : Affichage fenetre choix
 ###############################################################################
 graph_fenetre("choix_difficulte")
-print(xybombe)
+
 ###############################################################################
 #Étape 2 : Creation de la grille + création des cases
 ###############################################################################
 #creation_grille_vide() #Création de la grille
-cases(xgrille,ygrille) #Remplissage de la grille
+cases(xybombe[0],xybombe[1]) #Remplissage de la grille
  
 ###############################################################################
 #Étape 3 : Remplissage de la grille de bombes + remplissage des cases de chiffre
 ###############################################################################
-#bombplace() #Placement des bombes
+bombplace(xybombe) #Placement des bombes
 #bombchiffre() #Calcul du nombre de bombes autour de chaque cases
 
 ###############################################################################

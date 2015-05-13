@@ -8,22 +8,21 @@
 ###############################################################################
 #from prop import *
 import random
-#from modcases import *
-#from modgrille import*
-from core import *
+from modcases import * # pour la fonction gr()
 
 ###############################################################################
 #fonctionnalitées du module du module
 ###############################################################################
-def bombplace():
-    
-    nbbombe=int(input("Entrez le nombre de bombe: "))
+def bombplace(xybombe):
+    xgrille=xybombe[0]
+    ygrille=xybombe[1]
+    nbbombe=xybombe[2]
     for x in range(nbbombe):
         al=str(random.randint(1,xgrille))+'x'+str(random.randint(1,ygrille))
         while gr(al,'bombe','statut')==True:
             al=str(random.randint(1,xgrille))+'x'+str(random.randint(1,ygrille))
         gr(al,'bombe',True)
-     
+    print("Bombes placées")
 
 def num(grillereg,xyg):
     if gr(grillereg,'bombe','statut')==True:
