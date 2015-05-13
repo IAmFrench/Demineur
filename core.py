@@ -40,7 +40,7 @@ cases(xybombe[0],xybombe[1]) #Remplissage de la grille
 #Étape 3 : Remplissage de la grille de bombes + remplissage des cases de chiffre
 ###############################################################################
 bombplace(xybombe) #Placement des bombes
-#bombchiffre() #Calcul du nombre de bombes autour de chaque cases
+bombchiffre() #Calcul du nombre de bombes autour de chaque cases
 
 ###############################################################################
 #Étape 4 : Affichage de la grille

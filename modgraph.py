@@ -40,21 +40,21 @@ def graph_fenetre(fonction):
         #actions bouton#
         ################
         def difficulte_facile():
-            difficulte("facile")
+            xybombe.extend((9,9,10))
             print("fonction difficulté -> facile")
             fenetre_choix_difficulte.destroy()
             #print("fenetre détruite") 
             
         def difficulte_inter():
             global xybombe
-            xybombe=difficulte("intermediaire")
+            xybombe.extend((16,16,40))
             print("fonction difficulté -> inter")
             fenetre_choix_difficulte.destroy()
             #print("fenetre détruite")
             
         def difficulte_expert():
             global xybombe
-            xybombe=difficulte("expert")
+            xybombe.extend((30,16,99))
             print("fonction difficulté -> expert")
             fenetre_choix_difficulte.destroy()
             #print("fenetre détruite")

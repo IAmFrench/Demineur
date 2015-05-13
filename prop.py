@@ -15,6 +15,8 @@ grille={}
 #difficulte=""
 nbbombe=-1
 xybombe=[]
+
+#fonction difficulte et en fait inutile
 def difficulte(niveau):    
     ####################################
     #Importation des varialbes globales#
