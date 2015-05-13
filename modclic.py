@@ -10,7 +10,11 @@ from modcases import *
 from modbombe import *
 from modgraph import *
 
-
+def boucle(casereg):
+    dec=grille[casereg]
+    dec[3]=6
+    if dec[4]==-1:
+        clic0(casereg)
 
 
 def clic0(caseclic):
@@ -24,24 +28,42 @@ def clic0(caseclic):
     print(y)
 
     case=grille[caseclic]
-  
-    if case[4]==-1:        
-        casereg=str(x-1)+"x"+str(y) 
-        dec=grille[casereg]
-        dec[3]=6
-        if 
-        clic0(casereg)
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    if case[3]==6:
+        return(0)
+        
+    elif case[4]==-1:        
+        casereg=str(x-1)+"x"+str(y)
+        if x-1!=0:
+            boucle(casereg)
+       
+        casereg=str(x+1)+"x"+str(y) 
+        if x+1!=(int(xgrille)+1):
+            boucle(casereg)    
+           
+        casereg=str(x)+"x"+str(y+1) 
+        if y+1!=(int(xgrille)+1):
+            boucle(casereg)    
+          
+        casereg=str(x)+"x"+str(y-1) 
+        if y-1!=0:
+            boucle(casereg)    
+            
+        casereg=str(x-1)+"x"+str(y-1) 
+        if y-1!=0 and x-1!=0:
+            boucle(casereg)    
+        
+        casereg=str(x+1)+"x"+str(y+1) 
+        if y+1!=(int(ygrille)+1) and x+1!=(int(xgrille)+1):
+            boucle(casereg)    
+          
+        casereg=str(x+1)+"x"+str(y-1) 
+        if y-1!=0 and x+1!=(int(xgrille)+1):
+            boucle(casereg)
+               
+        casereg=str(x-1)+"x"+str(y+1) 
+        if y+1!=(int(ygrille)+1) and x-1!=0:
+            boucle(casereg)
+        
     
 graph_fenetre("choix_difficulte")
 cases(xybombe[0],xybombe[1])  
