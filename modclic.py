@@ -72,10 +72,11 @@ def clic0(caseclic):
         if y+1!=(int(ygrille)+1) and x-1!=0:
             boucle(casereg)
         
-    
+"""    
 graph_fenetre("choix_difficulte")
 cases(xybombe[0],xybombe[1])  
 bombplace(xybombe)
 bombchiffre() 
     
-clic0("5x5")    
+clic0("5x5")
+"""    
