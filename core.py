@@ -24,6 +24,7 @@ from modgrille import *
 from modcases import *
 from modbombe import *
 from modgraph import *
+from modclic import *
 
 ###############################################################################
 #Étape 1 : Affichage fenetre choix
@@ -41,7 +42,7 @@ cases(xybombe[0],xybombe[1]) #Remplissage de la grille
 ###############################################################################
 bombplace(xybombe) #Placement des bombes
 bombchiffre() #Calcul du nombre de bombes autour de chaque cases
-
+clic0("6x7")
 ###############################################################################
 #Étape 4 : Affichage de la grille
 ###############################################################################

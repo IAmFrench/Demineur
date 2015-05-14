@@ -3,12 +3,39 @@
 #les cases adjacentes soient découverte à leur tour, si l'une d'elles ne contient ni bombe 
 #ni chiffre alors les cases qui lui sont adjacentes seront découverte à leur tour ect.
 ###############################################################################
-
+from math import *
 from prop import *
 from modgrille import *
 from modcases import *
 from modbombe import *
 from modgraph import *
+
+def coord(x,y,difficulty):
+   
+   if difficulty=="facile":
+        x=ceil(x/40)
+        y=ceil(y/40)
+        print(x)
+        print(y)
+        xy=str(x)+"x"+str(y) #la clé de la case :) 
+    
+   if difficulty=="intermediaire":
+        x=ceil(x/35)
+        y=ceil(y/35)
+        print(x)
+        print(y)
+        xy=str(x)+"x"+str(y) #la clé de la case :) 
+
+   if difficulty=="expert":
+        x=ceil(x/25)
+        y=ceil(y/25)
+        print(x)
+        print(y)
+        xy=str(x)+"x"+str(y) #la clé de la case :) 
+
+   return(xy)
+    
+
 
 def boucle(casereg):
     dec=grille[casereg]
@@ -18,6 +45,9 @@ def boucle(casereg):
 
 
 def clic0(caseclic):
+    case=grille[caseclic]
+       
+        
     if len(caseclic)==3:
         x=int(caseclic[0])   
         y=int(caseclic[2])
@@ -33,50 +63,80 @@ def clic0(caseclic):
             y=int(caseclic[3])           
     print(x)
     print(y)
+    xgrille=xybombe[0]
+    ygrille=xybombe[1]
 
-    case=grille[caseclic]
-    
-    if case[3]==6:
-        return(0)
-        
-    elif case[4]==-1:        
+    if case[4]==-1:        
         casereg=str(x-1)+"x"+str(y)
         if x-1!=0:
-            boucle(casereg)
+           visi=grille[casereg]
+           if visi[3]==6:
+               return()
+           else:
+               boucle(casereg)
        
         casereg=str(x+1)+"x"+str(y) 
         if x+1!=(int(xgrille)+1):
-            boucle(casereg)    
-           
+           visi=grille[casereg]
+           if visi[3]==6:
+               return()
+           else:
+               boucle(casereg)
+        
+        
         casereg=str(x)+"x"+str(y+1) 
-        if y+1!=(int(xgrille)+1):
-            boucle(casereg)    
+        if y+1!=(int(ygrille)+1):
+           visi=grille[casereg]
+           if visi[3]==6:
+               return()
+           else:
+               boucle(casereg)
           
         casereg=str(x)+"x"+str(y-1) 
         if y-1!=0:
-            boucle(casereg)    
+           visi=grille[casereg]
+           if visi[3]==6:
+               return()
+           else:
+               boucle(casereg)
             
         casereg=str(x-1)+"x"+str(y-1) 
         if y-1!=0 and x-1!=0:
-            boucle(casereg)    
+           visi=grille[casereg]
+           if visi[3]==6:
+               return()
+           else:
+               boucle(casereg)
         
         casereg=str(x+1)+"x"+str(y+1) 
         if y+1!=(int(ygrille)+1) and x+1!=(int(xgrille)+1):
-            boucle(casereg)    
+           visi=grille[casereg]
+           if visi[3]==6:
+               return()
+           else:
+               boucle(casereg)
           
         casereg=str(x+1)+"x"+str(y-1) 
         if y-1!=0 and x+1!=(int(xgrille)+1):
-            boucle(casereg)
+           visi=grille[casereg]
+           if visi[3]==6:
+               return()
+           else:
+               boucle(casereg)
                
         casereg=str(x-1)+"x"+str(y+1) 
         if y+1!=(int(ygrille)+1) and x-1!=0:
-            boucle(casereg)
-        
-"""    
+           visi=grille[casereg]
+           if visi[3]==6:
+               return()
+           else:
+               boucle(casereg)
+
 graph_fenetre("choix_difficulte")
 cases(xybombe[0],xybombe[1])  
 bombplace(xybombe)
 bombchiffre() 
     
-clic0("5x5")
-"""    
+clic0("9x9")
+coord(52,38,"facile")  
+print(coord(52,38,"facile")  )
