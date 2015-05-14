@@ -84,9 +84,6 @@ def graph_fenetre(fonction):
         ##Fenêtre##
         ###########    
         fenetre_choix_difficulte.mainloop() #boucle infinie fenetre       
-    def interface_menu():
-        remarque="à faire"
-        #http://apprendre-python.com/page-tkinter-interface-graphique-python-tutoriel
         
     def interface_graph_grille():
         fenetre_titre="Grille demineur"  
@@ -108,9 +105,6 @@ def graph_fenetre(fonction):
         #######
         #Frame#
         #######
-        #frame_menu=interface_menu()
-        #frame_menu.pack(side=TOP)
-        #frame_haut=Frame(fenetre_grille)
         frame_grille=Frame(fenetre_grille)
         #frame_bas=Frame(fenetre_grille)
         
@@ -121,6 +115,28 @@ def graph_fenetre(fonction):
         def aff_nb_bombe(xgrille,ygrille):
             """ Renvoi le nombre de bombe pour la case sélecionnée """
         remarque="a faire"
+        
+        def interface_menu():
+            remarque="à faire"
+            #http://apprendre-python.com/page-tkinter-interface-graphique-python-tutoriel
+        
+        ###########
+        #FrameMenu#
+        ###########
+        bar_menu=Menu(fenetre_grille)
+        
+        menu_fichier=Menu(bar_menu,tearoff=0)
+        menu_fichier.add_command(label="Label 1")
+        menu_fichier.add_command(label="Label 2")
+        menu_fichier.add_command(label="Label 3")
+        menu_fichier.add_separator() #Afiche un trait de séparation
+        menu_fichier.add_command(label="Quitter", command=fenetre_grille.destroy)        
+        bar_menu.add_cascade(label="Fichier", menu=menu_fichier) # ajout du menu
+        
+        menu_aide=Menu(fenetre_grille)
+        menu_aide.add_command(label="Label 1")
+        bar_menu.add_cascade(label="Aide", menu=menu_aide) # ajout de menu
+        fenetre_grille.config(menu=bar_menu)
         
         ########################
         #Affichage de la grille#
@@ -136,7 +152,6 @@ def graph_fenetre(fonction):
             x_fin=L_H_case_px*xgrille
             y_debut=y_fin=h_ligne*L_H_case_px
             canvas_grille.create_line(x_debut,y_debut,x_fin,y_fin) #crée la ligne
-            print(x_debut)
             
         for v_ligne in range(xgrille+1): #creation des lignes verticales    
             x_debut=x_fin=v_ligne*L_H_case_px
