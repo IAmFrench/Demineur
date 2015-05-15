@@ -40,9 +40,9 @@ def graph_fenetre(fonction):
         #actions bouton#
         ################
         def difficulte_facile():
-            xybombe.extend((9,9,10,40))
+            xybombe.extend((9,9,10,40)) #grille 9x9, 10bombes, 40px de coté (case)
             print("fonction difficulté -> facile")
-            fenetre_choix_difficulte.destroy()
+            fenetre_choix_difficulte.destroy() #détruit la fenetre pour executer le code qui suit
             #print("fenetre détruite") 
             
         def difficulte_inter():
@@ -69,7 +69,7 @@ def graph_fenetre(fonction):
         #########
         #Boutons#
         #########
-        bouton_facile=Button(frame_haut,text='Facile',width=15,height=3,command=difficulte_facile)
+        bouton_facile=Button(frame_haut,text='Facile',width=15,height=3,command=difficulte_facile) #bouton=bouton(dans le cadre "frame_haut",longueur=15,hauteur=3, assigné a la fonction difficulte_facile)
         bouton_facile.pack(side=LEFT,padx=5,pady=5) #alignement à gauche 5px sur les cotés
         
         bouton_intermediaire=Button(frame_haut,text='Intermediaire',width=15,height=3,command=difficulte_inter)
@@ -77,12 +77,8 @@ def graph_fenetre(fonction):
         
         bouton_expert=Button(frame_haut,text='Expert',width=15,height=3,command=difficulte_expert)
         bouton_expert.pack(side=LEFT,padx=5,pady=5)
-        frame_haut.pack(side=TOP,padx=5, pady=5) #affichage du cadre(haut)
-
         
-        ###########
-        ##Fenêtre##
-        ###########    
+        frame_haut.pack(side=TOP,padx=5, pady=5) #affichage du cadre(haut)  
         fenetre_choix_difficulte.mainloop() #boucle infinie fenetre       
         
     def interface_graph_grille():
@@ -95,17 +91,19 @@ def graph_fenetre(fonction):
         xgrille=xybombe[0]
         ygrille=xybombe[1]
         L_H_case_px=xybombe[3] #bord d'une case 
-        fenetre_taille=str(15+(xgrille*L_H_case_px))+"x"+str(ygrille*L_H_case_px+15)
+        fenetre_taille=str(15+(xgrille*L_H_case_px))+"x"+str(ygrille*L_H_case_px+15) # renvoi du texte ex: "300x800"
+            
         #########
         #Fenêtre#
         #########
         fenetre_grille = Tk() #création de la fenetre
         fenetre_grille.title(fenetre_titre) #titre fenetre
-        fenetre_grille.geometry(fenetre_taille)
+        fenetre_grille.geometry(fenetre_taille) #défini la taille en px de la fenetre
+        
         #######
         #Frame#
         #######
-        frame_grille=Frame(fenetre_grille)
+        frame_grille=Frame(fenetre_grille) #créer le cadre qui contiendra la grille (canvas)
         #frame_bas=Frame(fenetre_grille)
         
         
@@ -116,16 +114,18 @@ def graph_fenetre(fonction):
             """ Renvoi le nombre de bombe pour la case sélecionnée """
         remarque="a faire"
         
-        def interface_menu():
-            remarque="à faire"
-            #http://apprendre-python.com/page-tkinter-interface-graphique-python-tutoriel
-        
+        def plein_ecran_F11():
+            #fenetre_grille.geometry(fenetre_taille_plein_ecran)
+            #fenetre_grille.overrideredirect(TRUE) #Supprime la bar de titre
+            fenetre_taille_plein_ecran=str(fenetre_grille.winfo_screenwidth())+"x"+str(fenetre_grille.winfo_screenheight())+"+0+0"
+            print(fenetre_taille_plein_ecran)      
+            remarque="a corriger: commande s'exécute dès le lancement de la fenetre"
         ###########
         #FrameMenu#
         ###########
-        bar_menu=Menu(fenetre_grille)
+        bar_menu=Menu(fenetre_grille) #Ligne qui contient les menus (collé au haut de la fenetre)
         
-        menu_fichier=Menu(bar_menu,tearoff=0)
+        menu_fichier=Menu(bar_menu, tearoff=0) #menu non détachabke (tearoff=0 -> http://python.developpez.com/faq/?page=Menu#Comment-permettre-ou-non-qu-un-menu-soit-detachable-de-son-parent)
         menu_fichier.add_command(label="Label 1")
         menu_fichier.add_command(label="Label 2")
         menu_fichier.add_command(label="Label 3")
@@ -133,8 +133,23 @@ def graph_fenetre(fonction):
         menu_fichier.add_command(label="Quitter", command=fenetre_grille.destroy)        
         bar_menu.add_cascade(label="Fichier", menu=menu_fichier) # ajout du menu
         
-        menu_aide=Menu(fenetre_grille)
-        menu_aide.add_command(label="Label 1")
+        menu_affichage=Menu(bar_menu, tearoff=0)
+        menu_affichage.add_command(label="Mode plein écran    F11", postcommand=plein_ecran_F11())
+        
+        menu_choix_couleur=Menu(menu_affichage, tearoff=0)
+        menu_choix_couleur.add_command(label="Choix 1")
+        menu_choix_couleur.add_command(label="Choix 2")
+        menu_choix_couleur.add_command(label="Choix 3")
+        menu_affichage.add_cascade(label="Choix couleur", menu=menu_choix_couleur, underline=0) #sous-menu, surligné quand sélectionné
+        bar_menu.add_cascade(label="Affichage", menu=menu_affichage)
+        
+        
+        menu_aide=Menu(bar_menu, tearoff=0)
+        menu_aide.add_command(label="Documentation du demineur    F1")
+        menu_aide.add_command(label="Tutoriel du démineur")
+        menu_aide.add_separator()
+        menu_aide.add_command(label="A propos")        
+        
         bar_menu.add_cascade(label="Aide", menu=menu_aide) # ajout de menu
         fenetre_grille.config(menu=bar_menu)
         
