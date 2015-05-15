@@ -134,6 +134,7 @@ def graph_fenetre(fonction):
         bar_menu.add_cascade(label="Fichier", menu=menu_fichier) # ajout du menu
         
         menu_affichage=Menu(bar_menu, tearoff=0)
+        menu_affichage.add_command(label="Mode plein écran    F11", command=plein_ecran_F11())
         
         menu_choix_couleur=Menu(menu_affichage, tearoff=0)
         menu_choix_couleur.add_command(label="Choix 1")
