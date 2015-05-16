@@ -14,6 +14,10 @@ from prop import * #nécéssaire pour le fonction difficulté
 ###############################################################################
 #fonctionnalitées du module du module
 ###############################################################################
+def pointeur(event):
+    print(str(event.x)+"x"+str(event.y))
+    a=str(event.x)+"x"+str(event.y)
+    return(a)
 """
 >>
     Fonctions Fenêtre (choix_difficulté, grille_demineur, a_propos,etc...)
@@ -177,8 +181,10 @@ def graph_fenetre(fonction):
         
         canvas_grille.create_line(0,2,L_H_case_px*xgrille,2) #ligne horizontale haut
         canvas_grille.create_line(2,0,2,L_H_case_px*ygrille) #ligne verticale gauche
-        
         frame_grille.pack(side=TOP,padx=5,pady=5)
+        
+        canvas_grille.bind("<Button-1>",pointeur)
+
         fenetre_grille.mainloop()
         
     ##############

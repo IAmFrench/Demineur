@@ -23,7 +23,7 @@ from prop import *
 from modcases import *
 from modbombe import *
 from modgraph import *
-#from modclic import *
+from modclic import *
 
 ###############################################################################
 #Étape 1 : Affichage fenetre choix
@@ -47,7 +47,7 @@ bombchiffre() #Calcul du nombre de bombes autour de chaque cases
 #Étape 4 : Affichage de la grille
 ###############################################################################
 graph_fenetre("grille")
-
+print(a)
 ###############################################################################
 #Étape 5 : Affichage de la fenetre en fonction du resultat du joueur
 ###############################################################################

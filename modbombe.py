@@ -40,7 +40,7 @@ def num(grillereg,xyg):
 def bombchiffre():
     xgrille=xybombe[0]
     ygrille=xybombe[1]
-    nbbombe=xybombe[2]
+    #nbbombe=xybombe[2]
     for x in range(1,int(xgrille)):
         for y in range(1,int(ygrille)):
             xyg=str(x)+"x"+str(y)

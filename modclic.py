@@ -4,37 +4,40 @@
 #ni chiffre alors les cases qui lui sont adjacentes seront découverte à leur tour ect.
 ###############################################################################
 from math import *
+"""
 from prop import *
 from modcases import *
 from modbombe import *
 from modgraph import *
+"""
 
 def coord(x,y,difficulty):
    
    if difficulty=="facile":
         x=ceil(x/40)
         y=ceil(y/40)
-        print(x)
-        print(y)
+        #print(x)
+        #print(y)
         xy=str(x)+"x"+str(y) #la clé de la case :) 
     
    if difficulty=="intermediaire":
         x=ceil(x/35)
         y=ceil(y/35)
-        print(x)
-        print(y)
+        #print(x)
+        #print(y)
         xy=str(x)+"x"+str(y) #la clé de la case :) 
 
    if difficulty=="expert":
         x=ceil(x/25)
         y=ceil(y/25)
-        print(x)
-        print(y)
+        #print(x)
+        #print(y)
         xy=str(x)+"x"+str(y) #la clé de la case :) 
 
    return(xy)
     
-
+def GameOver():
+    print("GAME OVER!!")
 
 def boucle(casereg):
     dec=grille[casereg]
@@ -43,9 +46,16 @@ def boucle(casereg):
         clic0(casereg)
 
 
-def clic0(caseclic):
+def clic0(caseclic): #clic gauche
     case=grille[caseclic]
-       
+    case[3]=6    
+
+    if case[1]==2:
+
+        return()
+
+    if case[4]==-2:
+        GameOver()
         
     if len(caseclic)==3:
         x=int(caseclic[0])   
@@ -130,12 +140,26 @@ def clic0(caseclic):
                return()
            else:
                boucle(casereg)
+               
+def clic1(caseclic): #clic droit
+    case=grille[caseclic]
+    
+    if case[2]==4: #si il y a un ? sur la case
+        case[2]=5
+    
+    elif case[1]==2: #si il y a un drapeau sur la case
+        case[2]=4
+        case[1]=3
+    
+    elif case[1]==3: #si il n'y a pas de drapeau sur la case
+        case[1]=2
 
+"""
 graph_fenetre("choix_difficulte")
 cases(xybombe[0],xybombe[1])  
 bombplace(xybombe)
 bombchiffre() 
-    
 clic0("9x9")
 coord(52,38,"facile")  
 print(coord(52,38,"facile")  )
+"""
