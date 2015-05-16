@@ -36,10 +36,10 @@ def coord(x,y,difficulty):
 
    return(xy)
     
-def GameOver():
+def GameOver(): #appelé dans clic0
     print("GAME OVER!!")
 
-def boucle(casereg):
+def boucle(casereg): #appelé dans clic0
     dec=grille[casereg]
     dec[3]=6
     if dec[4]==-1:
@@ -48,12 +48,13 @@ def boucle(casereg):
 
 def clic0(caseclic): #clic gauche
     case=grille[caseclic]
-    case[3]=6    
+        
 
     if case[1]==2:
-
         return()
-
+        
+    case[3]=6
+    
     if case[4]==-2:
         GameOver()
         

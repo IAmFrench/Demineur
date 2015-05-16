@@ -10,19 +10,37 @@
 ###############################################################################
 from tkinter import * #bibliothèque graphique
 from prop import * #nécéssaire pour le fonction difficulté
-
+from modclic import *
 ###############################################################################
 #fonctionnalitées du module du module
 ###############################################################################
-def pointeur(event):
-    print(str(event.x)+"x"+str(event.y))
-    a=str(event.x)+"x"+str(event.y)
-    return(a)
-"""
->>
-    Fonctions Fenêtre (choix_difficulté, grille_demineur, a_propos,etc...)
->>
-"""
+def pointeurG(event):
+    if xybombe[0]==9:
+        caseclic=coord(event.x,event.y,"facile")
+        print(caseclic)
+    
+    if xybombe[0]==16:
+        caseclic=coord(event.x,event.y,"intermediaire")
+        print(caseclic)
+
+    if xybombe[0]==30:
+        caseclic=coord(event.x,event.y,"expert")
+        print(caseclic)
+    
+def pointeurD(event):
+    if xybombe[0]==9:
+        caseclic=coord(event.x,event.y,"facile")
+        print(caseclic)
+    
+    if xybombe[0]==16:
+            caseclic=coord(event.x,event.y,"intermediaire")
+            print(caseclic)
+    
+    if xybombe[0]==30:
+            caseclic=coord(event.x,event.y,"expert")
+            print(caseclic)
+        
+    
 def graph_fenetre(fonction):
     """
     liste des valeur pour fonction :
@@ -183,7 +201,8 @@ def graph_fenetre(fonction):
         canvas_grille.create_line(2,0,2,L_H_case_px*ygrille) #ligne verticale gauche
         frame_grille.pack(side=TOP,padx=5,pady=5)
         
-        canvas_grille.bind("<Button-1>",pointeur)
+        canvas_grille.bind("<Button-1>",pointeurG)
+        canvas_grille.bind("<Button-3>",pointeurD)
 
         fenetre_grille.mainloop()
         
