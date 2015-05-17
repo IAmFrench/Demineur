@@ -18,27 +18,33 @@ def pointeurG(event):
     if xybombe[0]==9:
         caseclic=coord(event.x,event.y,"facile")
         print(caseclic)
+        clic0(caseclic)
     
     if xybombe[0]==16:
         caseclic=coord(event.x,event.y,"intermediaire")
         print(caseclic)
+        clic0(caseclic)        
 
     if xybombe[0]==30:
         caseclic=coord(event.x,event.y,"expert")
         print(caseclic)
+        clic0(caseclic)        
     
 def pointeurD(event):
     if xybombe[0]==9:
         caseclic=coord(event.x,event.y,"facile")
         print(caseclic)
+        clic1(caseclic)       
     
     if xybombe[0]==16:
             caseclic=coord(event.x,event.y,"intermediaire")
             print(caseclic)
+            clic1(caseclic)            
     
     if xybombe[0]==30:
             caseclic=coord(event.x,event.y,"expert")
             print(caseclic)
+            clic1(caseclic)
         
     
 def graph_fenetre(fonction):

@@ -4,12 +4,12 @@
 #ni chiffre alors les cases qui lui sont adjacentes seront découverte à leur tour ect.
 ###############################################################################
 from math import *
-"""
-from prop import *
-from modcases import *
-from modbombe import *
+
+#`from prop import *
+#from modcases import *
+#from modbombe import *
 from modgraph import *
-"""
+
 
 def coord(x,y,difficulty):
    
@@ -48,12 +48,13 @@ def boucle(casereg): #appelé dans clic0
 
 def clic0(caseclic): #clic gauche
     case=grille[caseclic]
-        
+     
 
     if case[1]==2:
         return()
         
     case[3]=6
+    print("case "+str(caseclic)+" est découverte")
     
     if case[4]==-2:
         GameOver()
@@ -71,8 +72,7 @@ def clic0(caseclic): #clic gauche
         elif caseclic[2]=='x':
             x=int(caseclic[0]+caseclic[1])
             y=int(caseclic[3])           
-    print(x)
-    print(y)
+
     xgrille=xybombe[0]
     ygrille=xybombe[1]
 
@@ -144,17 +144,19 @@ def clic0(caseclic): #clic gauche
                
 def clic1(caseclic): #clic droit
     case=grille[caseclic]
+    if case[3]==6:
+        return()
     
     if case[2]==4: #si il y a un ? sur la case
         case[2]=5
-    
+        print("il n'y plus rien sur la case")
     elif case[1]==2: #si il y a un drapeau sur la case
         case[2]=4
         case[1]=3
-    
+        print("il y a un ? sur la case")
     elif case[1]==3: #si il n'y a pas de drapeau sur la case
         case[1]=2
-
+        print("il y a un drapeau sur la case")
 """
 graph_fenetre("choix_difficulte")
 cases(xybombe[0],xybombe[1])  
