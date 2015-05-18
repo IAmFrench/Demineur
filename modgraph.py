@@ -184,7 +184,7 @@ def graph_fenetre(fonction):
         ########################
         #Affichage de la grille#
         ########################
-        canvas_grille=Canvas(frame_grille,width=xgrille*50-1, height=ygrille*50-1)
+        canvas_grille=Canvas(frame_grille,width=xgrille*L_H_case_px-1, height=ygrille*L_H_case_px-1)
         canvas_grille.pack(side=TOP) #Affiche le canvas (5px de côté)
         
         """
