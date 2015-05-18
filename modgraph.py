@@ -16,7 +16,7 @@ from modclic import *
 ###############################################################################
 def pointeurG(event):
     if xybombe[0]==9:
-        caseclic=coord(event.x,event.y,"facile")
+        caseclic=coord(event.x,event.y,"facile") #les coordonnées en pixels sont convertie en coordonné de case par coord 
         print(caseclic)
         clic0(caseclic)
     
@@ -205,10 +205,10 @@ def graph_fenetre(fonction):
         
         canvas_grille.create_line(0,2,L_H_case_px*xgrille,2) #ligne horizontale haut
         canvas_grille.create_line(2,0,2,L_H_case_px*ygrille) #ligne verticale gauche
-        frame_grille.pack(side=TOP,padx=5,pady=5)
+        frame_grille.pack(side=TOP,padx=5,pady=5)#(5px de côté)
         
-        canvas_grille.bind("<Button-1>",pointeurG)
-        canvas_grille.bind("<Button-3>",pointeurD)
+        canvas_grille.bind("<Button-1>",pointeurG) #clicgauche binb:pour l'interface
+        canvas_grille.bind("<Button-3>",pointeurD) #clicdroit 
 
         fenetre_grille.mainloop()
         

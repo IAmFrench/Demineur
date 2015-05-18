@@ -14,7 +14,7 @@ from modgraph import *
 def coord(x,y,difficulty):
    
    if difficulty=="facile":
-        x=ceil(x/40)
+        x=ceil(x/40) #divise le nombre de pixel par le nombre de pixel d'un case.
         y=ceil(y/40)
         #print(x)
         #print(y)
@@ -50,7 +50,7 @@ def clic0(caseclic): #clic gauche
     case=grille[caseclic]
      
 
-    if case[1]==2:
+    if case[1]==2: #vérifie qu'il n'y a pas de drapeau
         return()
         
     case[3]=6
