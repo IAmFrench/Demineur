@@ -15,10 +15,16 @@ grille={}
 #difficulte=""
 nbbombe=-1
 xybombe=[]
+statut_plein_ecran=False #Plein ecran désactivé par défaut
 
 #####################
 #Couleurs par défaut#
-#####################    
+#####################
+#A savoir sur les niveau de couleur
+#le niveau "standard" est r3, exemple la grille viens d'être crée
+#lorsqu'une case est cliqué, la couleur change pour devenir "active"
+#On utilise donc le niveau r2
+#Etc...
 def couleur(style,r):
     DarkBlue_Red={"r1":"1A2530",
                   "r2":"2C3E50",

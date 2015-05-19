@@ -14,39 +14,62 @@ from modclic import *
 ###############################################################################
 #fonctionnalitées du module du module
 ###############################################################################
+
 def pointeurG(event):
     if xybombe[0]==9:
-        caseclic=coord(event.x,event.y,"facile") #les coordonnées en pixels sont convertie en coordonné de case par coord 
-        print(caseclic)
-        clic0(caseclic)
+        caseclic=coord(event.x,event.y,"facile") #les coordonnées en pixels sont convertie en coordonné de case par coord
     
     if xybombe[0]==16:
-        caseclic=coord(event.x,event.y,"intermediaire")
-        print(caseclic)
-        clic0(caseclic)        
+        caseclic=coord(event.x,event.y,"intermediaire")  
 
     if xybombe[0]==30:
         caseclic=coord(event.x,event.y,"expert")
-        print(caseclic)
-        clic0(caseclic)        
+    clic0(caseclic)
+    print("Clic gauche sur la case "+caseclic)
+    #case_visuel() #active la fonction qui change la propriété viseulle d'une case
     
 def pointeurD(event):
     if xybombe[0]==9:
         caseclic=coord(event.x,event.y,"facile")
-        print(caseclic)
-        clic1(caseclic)       
     
     if xybombe[0]==16:
-            caseclic=coord(event.x,event.y,"intermediaire")
-            print(caseclic)
-            clic1(caseclic)            
+        caseclic=coord(event.x,event.y,"intermediaire")
     
     if xybombe[0]==30:
-            caseclic=coord(event.x,event.y,"expert")
-            print(caseclic)
-            clic1(caseclic)
-        
+        caseclic=coord(event.x,event.y,"expert")
+    clic1(caseclic)    
+    print("Clic droit sur la case "+caseclic)
+    #case_visuel() #active la fonction qui change la propriété viseulle d'une case
+      
+def case_visuel():
+    #############
+    #Explication#
+    #############
+    #Change la case de couleur/visuel
+    #Fonction qui s'active dès l'appel de l'une des fonctions
+    #PointeurG ou PointeurD
     
+    ##############
+    #Test logique#
+    ##############
+    #if  # si clic gauche, alors :
+    remarque="a faire"
+
+def taille_cases_plein_ecran(taille_x_ecran,taille_y_ecran):
+    """ calcule la taille des cases en fonction de la taille de l'écran de l'utilisateur """
+    #taille_x_ecran=taille_x_ecran #Taille horizontale en px de l'écran (ex:1920)
+    #taille_y_ecran=taille_y_ecran #Taille verticale en px de l'écran (ex:1080)
+    
+    ###########################
+    #Importation des variables#
+    ###########################
+    global xybombe #Nécéssaire pour savoir le nombre de case en fonction de la difficulté choisie
+    
+    ##############
+    #Test logique#
+    ##############
+    print(xybombe)    
+        
 def graph_fenetre(fonction):
     """
     liste des valeur pour fonction :
@@ -120,7 +143,6 @@ def graph_fenetre(fonction):
         ygrille=xybombe[1]
         L_H_case_px=xybombe[3] #bord d'une case 
         fenetre_taille=str(15+(xgrille*L_H_case_px))+"x"+str(ygrille*L_H_case_px+15) # renvoi du texte ex: "300x800"
-            
         #########
         #Fenêtre#
         #########
@@ -143,16 +165,35 @@ def graph_fenetre(fonction):
         remarque="a faire"
         
         def plein_ecran_F11():
-            #fenetre_grille.geometry(fenetre_taille_plein_ecran)
-            #fenetre_grille.overrideredirect(TRUE) #Supprime la bar de titre
-            fenetre_taille_plein_ecran=str(fenetre_grille.winfo_screenwidth())+"x"+str(fenetre_grille.winfo_screenheight())+"+0+0"
-            print(fenetre_taille_plein_ecran)      
-            remarque="a corriger: commande s'exécute dès le lancement de la fenetre"
+            global statut_plein_ecran #savoir le statut en cours (True/False)
+            taille_x_ecran=fenetre_grille.winfo_screenwidth() #Taille horizontale de l'écran
+            taille_y_ecran=fenetre_grille.winfo_screenheight() #Taille verticale de l'écran
+            fenetre_taille_plein_ecran=str(taille_x_ecran)+"x"+str(taille_y_ecran) #+"+0+0" #Taille de la fenetre en plein ecran, résultat sous forme de chaine de caractère, (ex:1920x180)
+            ##############
+            #Test logique#
+            ##############
+            if statut_plein_ecran==False: #Alors activé le plein ecran
+                for compteur in range(0,2):
+                    print(compteur)                
+                    fenetre_grille.geometry(fenetre_taille_plein_ecran) #Modifie la taille de la fenetre
+                    taille_cases_plein_ecran(taille_x_ecran,taille_y_ecran) #modifie la taille des cases
+                fenetre_grille.overrideredirect(TRUE) #Supprime la bar de titre
+            elif statut_plein_ecran==True: #Désactiver le plein ecran
+                fenetre_grille.geometry(fenetre_taille)
+            else:
+                print("Erreur Fonction Plein Ecran")
+            fenetre_taille_plein_ecran=str(taille_x_ecran)+"x"+str(taille_y_ecran) #+"+0+0" #Taille de la fenetre en plein ecran, résultat sous forme de chaine de caractère, (ex:1920x180)
+            fenetre_grille.geometry(fenetre_taille_plein_ecran) #Modifie la taille de la fenetre
+            fenetre_grille.overrideredirect(TRUE) #Supprime la bar de titre
+            taille_cases_plein_ecran(taille_x_ecran,taille_y_ecran) #modifie la taille des cases
+            remarque="a finir"
+            
         ###########
         #FrameMenu#
         ###########
         bar_menu=Menu(fenetre_grille) #Ligne qui contient les menus (collé au haut de la fenetre)
         
+        #Groupe 1
         menu_fichier=Menu(bar_menu, tearoff=0) #menu non détachabke (tearoff=0 -> http://python.developpez.com/faq/?page=Menu#Comment-permettre-ou-non-qu-un-menu-soit-detachable-de-son-parent)
         menu_fichier.add_command(label="Label 1")
         menu_fichier.add_command(label="Label 2")
@@ -162,8 +203,9 @@ def graph_fenetre(fonction):
         bar_menu.add_cascade(label="Fichier", menu=menu_fichier) # ajout du menu
         
         menu_affichage=Menu(bar_menu, tearoff=0)
-        menu_affichage.add_command(label="Mode plein écran    F11", command=plein_ecran_F11())
+        menu_affichage.add_command(label="Mode plein écran    F11", command=plein_ecran_F11)
         
+        #Groupe 2
         menu_choix_couleur=Menu(menu_affichage, tearoff=0)
         menu_choix_couleur.add_command(label="Choix 1")
         menu_choix_couleur.add_command(label="Choix 2")
@@ -171,7 +213,7 @@ def graph_fenetre(fonction):
         menu_affichage.add_cascade(label="Choix couleur", menu=menu_choix_couleur, underline=0) #sous-menu, surligné quand sélectionné
         bar_menu.add_cascade(label="Affichage", menu=menu_affichage)
         
-        
+        #Groupe 3
         menu_aide=Menu(bar_menu, tearoff=0)
         menu_aide.add_command(label="Documentation du demineur    F1")
         menu_aide.add_command(label="Tutoriel du démineur")
@@ -191,10 +233,10 @@ def graph_fenetre(fonction):
         A savoir : 1 case=50x50px
         """
         for h_ligne in range (ygrille+1): #Creation des lignes horizontales        
-            x_debut=0
-            x_fin=L_H_case_px*xgrille
-            y_debut=y_fin=h_ligne*L_H_case_px
-            canvas_grille.create_line(x_debut,y_debut,x_fin,y_fin) #crée la ligne
+            x_debut=0 #coordonné x du point de départ
+            x_fin=L_H_case_px*xgrille #coordonné x du point d'arrivé
+            y_debut=y_fin=h_ligne*L_H_case_px #coordonné y du point de départ et d'arrivé (égaux car c'est une droite horizontale)
+            canvas_grille.create_line(x_debut,y_debut,x_fin,y_fin) #crée la ligne du point de départ au point d'arrivé
             
         for v_ligne in range(xgrille+1): #creation des lignes verticales    
             x_debut=x_fin=v_ligne*L_H_case_px
@@ -205,12 +247,15 @@ def graph_fenetre(fonction):
         
         canvas_grille.create_line(0,2,L_H_case_px*xgrille,2) #ligne horizontale haut
         canvas_grille.create_line(2,0,2,L_H_case_px*ygrille) #ligne verticale gauche
-        frame_grille.pack(side=TOP,padx=5,pady=5)#(5px de côté)
+        frame_grille.pack(side=TOP,padx=5,pady=5) #(5px de côté)
         
-        canvas_grille.bind("<Button-1>",pointeurG) #clicgauche binb:pour l'interface
-        canvas_grille.bind("<Button-3>",pointeurD) #clicdroit 
+        ##############
+        #Clics souris#
+        ##############
+        canvas_grille.bind("<Button-1>",pointeurG) #Si clic gauche(.bind("<Button-1>")) alors exécute la fonction pointeurG
+        canvas_grille.bind("<Button-3>",pointeurD) #Si clic droit alors exécute la fonction pointeurG
 
-        fenetre_grille.mainloop()
+        fenetre_grille.mainloop() # boucle de la fenêtre
         
     ##############
     #Test logique#
