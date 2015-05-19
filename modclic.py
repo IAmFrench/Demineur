@@ -14,7 +14,7 @@ from modgraph import *
 def coord(x,y,difficulty):
    
    if difficulty=="facile":
-        x=ceil(x/40) #divise le nombre de pixel par le nombre de pixel d'un case.
+        x=ceil(x/40) #divise le nombre de pixel par le nombre de pixel d'une case.
         y=ceil(y/40)
         #print(x)
         #print(y)
