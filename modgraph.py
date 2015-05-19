@@ -16,96 +16,8 @@ from modcases import * #nécéssaire pour la fonction statut_case_texte()
 ###############################################################################
 #fonctionnalitées du module du module
 ###############################################################################
+xygrille_liste=["-1x-1"]
 
-def pointeurG(event):
-    if xybombe[0]==9:
-        xygrille=coord(event.x,event.y,"facile") #les coordonnées en pixels sont convertie en coordonné de case par coord
-    
-    if xybombe[0]==16:
-        xygrille=coord(event.x,event.y,"intermediaire")  
-
-    if xybombe[0]==30:
-        xygrille=coord(event.x,event.y,"expert")
-    clic0(xygrille)
-    print("Clic gauche sur la case "+xygrille)
-    case_visuel(xygrille) #active la fonction qui change la propriété viseulle d'une case
-    
-def pointeurD(event):
-    if xybombe[0]==9:
-        xygrille=coord(event.x,event.y,"facile")
-    
-    if xybombe[0]==16:
-        xygrille=coord(event.x,event.y,"intermediaire")
-    
-    if xybombe[0]==30:
-        xygrille=coord(event.x,event.y,"expert")
-    clic1(xygrille)    
-    print("Clic droit sur la case "+xygrille)
-    case_visuel(xygrille) #active la fonction qui change la propriété viseulle d'une case
-    
-def coordonne_case(xygrille):
-    global xybombe
-    #############
-    #Explication#
-    #############
-    #Renvoi sous forme de dictionnaire/liste les coordonnées des 4 extrémités d'une case donnée
-    #Exemple : coordonne_case(1x1) -> {A:[1,1],B:[1,24],C:[24,1],D:[24,24]}
-    remarque="a faire"
-    dico_coord={} #Création du dico vide
-    points=['haut_gauche','bas_droite']
-    a=0
-    for point in points: #parcours les elements de la liste des points
-        xgrille=ext_xy(xygrille,"x") #Extraction coordonnée x de la case (ex:8x12 -> 8)
-        ygrille=ext_xy(xygrille,'y') #Extraction coordonnée y de la case (ex:8x12 -> 12)        
-        if a==0:
-            a=1
-            xgrille=xgrille-1
-            ygrille=ygrille-1            
-        x=2+xybombe[3]*xgrille #Calcul
-        y=2+xybombe[3]*ygrille #Calcul  
-        xycoord=[x,y] #Assemblage
-        dico_coord[point]=xycoord #Intégration dans le dico
-    print(dico_coord)
-    return(dico_coord) #Retourne le dico
-    
-def case_visuel(xygrille):
-    #############
-    #Explication#
-    #############
-    #Change la case de couleur/visuel
-    #Fonction qui s'active dès l'appel de l'une des fonctions
-    #PointeurG ou PointeurD
-    
-    #xygrille=xygrille #la case cliqué
-    #########################
-    #Creation des rectangles#
-    #########################
-    #rectangle_visible=canvas_grille.create_rectangle(2,2,50,50,fill=couleur("defaut","r4"),outline=couleur("defaut","r4")) #fill = couleur du rectangle(intérieur), outline = couleur de la bordure du rectangle
-    #canvas_grille.coords(rectangle_visible,-1,-1,-1,-1) #masque l'élément (le déplace aux coordonnées -1,-1,-1,-1)
-    #rectangle_bombe_perdu=canvas_grille.create_rectangle(2,2,50,50,fill=couleur("defaut","r3"),outline=couleur("defaut","r3"))
-    #canvas_grille.coords(rectangle_bombe_perdu,20,-1,-1,-1)
-    #rectangle_dapeau=canvas_grille.create_rectangle(2,2,50,50,fill=couleur("defaut","r5"),outline=couleur("defaut","r5"))
-    #canvas_grille.coords(rectangle_dapeau,-1,-1,-1,-1)
-    #ici, tout est créé, mais rien n'est visible
-    
-    #################################
-    #Lire les coordonnées de la case#
-    #################################
-    coordcase=coordonne_case(xygrille) #charge les coordonnées des 2 points aux extrémités de la case (haut_gauche et bas_droite)
-    prop_case=statut_case_texte(xygrille) #charge les propriétés de la case en question
-    
-    ############################    
-    #Applique les modifications#
-    ############################
-    prop_possibles=["bombe","drapeau","interrogation","visible","chiffre"]
-    for prop in prop_possibles:
-        if prop==True:
-            remarque="a faire"
-            
-    
-    
-    
-    
 
 def taille_cases_plein_ecran(taille_x_ecran,taille_y_ecran):
     """ calcule la taille des cases en fonction de la taille de l'écran de l'utilisateur """
@@ -240,7 +152,59 @@ def graph_fenetre(fonction):
             fenetre_grille.overrideredirect(TRUE) #Supprime la bar de titre
             taille_cases_plein_ecran(taille_x_ecran,taille_y_ecran) #modifie la taille des cases
             remarque="a finir"
+        
+        def pointeurG(event):
+            if xybombe[0]==9:
+                xygrille=coord(event.x,event.y,"facile") #les coordonnées en pixels sont convertie en coordonné de case par coord
             
+            if xybombe[0]==16:
+                xygrille=coord(event.x,event.y,"intermediaire")  
+        
+            if xybombe[0]==30:
+                xygrille=coord(event.x,event.y,"expert")
+            clic0(xygrille)
+            print("Clic gauche sur la case "+xygrille)
+            case_visuel(xygrille) #active la fonction qui change la propriété visuelle d'une case
+            xygrille_liste[0]=xygrille #assigne a la variable xygrille_liste la case cliqué
+            
+        def pointeurD(event):
+            if xybombe[0]==9:
+                xygrille=coord(event.x,event.y,"facile")
+            
+            if xybombe[0]==16:
+                xygrille=coord(event.x,event.y,"intermediaire")
+            
+            if xybombe[0]==30:
+                xygrille=coord(event.x,event.y,"expert")
+            clic1(xygrille)
+            print("Clic droit sur la case "+xygrille)
+            xygrille_liste[0]=xygrille
+            case_visuel(xygrille) #active la fonction qui change la propriété viseulle d'une case
+            
+        def coordonne_case(xygrille):
+            global xybombe
+            #############
+            #Explication#
+            #############
+            #Renvoi sous forme de dictionnaire/liste les coordonnées des 4 extrémités d'une case donnée
+            #Exemple : coordonne_case(1x1) -> {A:[1,1],B:[1,24],C:[24,1],D:[24,24]}
+            remarque="a faire"
+            dico_coord={} #Création du dico vide
+            points=['haut_gauche','bas_droite']
+            a=0
+            for point in points: #parcours les elements de la liste des points
+                xgrille=ext_xy(xygrille,"x") #Extraction coordonnée x de la case (ex:8x12 -> 8)
+                ygrille=ext_xy(xygrille,'y') #Extraction coordonnée y de la case (ex:8x12 -> 12)        
+                if a==0:
+                    a=1
+                    xgrille=xgrille-1
+                    ygrille=ygrille-1            
+                x=2+xybombe[3]*xgrille #Calcul
+                y=2+xybombe[3]*ygrille #Calcul  
+                xycoord=[x,y] #Assemblage
+                dico_coord[point]=xycoord #Intégration dans le dico
+            print(dico_coord)
+            return(dico_coord) #Retourne le dico
         ###########
         #FrameMenu#
         ###########
@@ -282,6 +246,46 @@ def graph_fenetre(fonction):
         canvas_grille=Canvas(frame_grille,width=xgrille*L_H_case_px-1, height=ygrille*L_H_case_px-1)
         canvas_grille.pack(side=TOP) #Affiche le canvas (5px de côté)
         
+        #######################
+        #Fonctions Dans canvas#    
+        #######################
+        def case_visuel(xygrille):
+            #global xygrille_liste
+            #xygrille=xygrille_liste[0]
+            #############
+            #Explication#
+            #############
+            #Change la case de couleur/visuel
+            #Fonction qui s'active dès l'appel de l'une des fonctions
+            #PointeurG ou PointeurD            
+            #xygrille=xygrille #la case cliqué
+            
+            #########################
+            #Creation des rectangles#
+            #########################
+            rectangle_visible=canvas_grille.create_rectangle(2,2,50,50,fill=couleur("defaut","r4"),outline=couleur("defaut","r4")) #fill = couleur du rectangle(intérieur), outline = couleur de la bordure du rectangle
+            canvas_grille.coords(rectangle_visible,-1,-1,-1,-1) #masque l'élément (le déplace aux coordonnées -1,-1,-1,-1)
+            rectangle_bombe_perdu=canvas_grille.create_rectangle(2,2,50,50,fill=couleur("defaut","r3"),outline=couleur("defaut","r3"))
+            canvas_grille.coords(rectangle_bombe_perdu,20,-1,-1,-1)
+            rectangle_dapeau=canvas_grille.create_rectangle(2,2,50,50,fill=couleur("defaut","r5"),outline=couleur("defaut","r5"))
+            canvas_grille.coords(rectangle_dapeau,-1,-1,-1,-1)
+            #ici, tout est créé, mais rien n'est visible
+            
+            #################################
+            #Lire les coordonnées de la case#
+            #################################
+            #if xygrille != "-1x-1":
+            coordcase=coordonne_case(xygrille) #charge les coordonnées des 2 points aux extrémités de la case (haut_gauche et bas_droite)
+            prop_case=statut_case_texte(xygrille) #charge les propriétés de la case en question
+            
+            ############################    
+            #Applique les modifications#
+            ############################
+            prop_possibles=["bombe","drapeau","interrogation","visible","chiffre"]
+            for propri in prop_possibles:
+                if propri==True:
+                    #canvas_grille.coords(rectangle_+propri+_perdu,coordcase[""].value[0],coordcase[1],coordcase[],coordcase[])
+                    remarque="a faire"
         #################
         #Création Grille#
         #################
@@ -307,7 +311,6 @@ def graph_fenetre(fonction):
         ##############
         canvas_grille.bind("<Button-1>",pointeurG) #Si clic gauche(.bind("<Button-1>")) alors exécute la fonction pointeurG
         canvas_grille.bind("<Button-3>",pointeurD) #Si clic droit alors exécute la fonction pointeurG
-
         fenetre_grille.mainloop() # boucle de la fenêtre
         
     ##############
