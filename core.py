@@ -4,7 +4,6 @@
 #Document réalisé par :
 #    Alexandre Parès
 #    Raphaël Guerin
-#    Alexandre Quintais
 #    
 #Dernières version disponible sur le repo Github:
 #https://github.com/IAmFrench/Demineur

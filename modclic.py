@@ -45,6 +45,25 @@ def boucle(casereg): #appelé dans clic0
     if dec[4]==-1: #si la case est un 0 alors on exécute de nouveau clic0 pour découvrir les cases adjacente
         clic0(casereg)
 
+def ext_xy(caseclic,XouY):
+    if len(caseclic)==3: #extrait x y de la clé
+        x=int(caseclic[0])   
+        y=int(caseclic[2])
+    if len(caseclic)==5:
+        x=int(caseclic[0]+caseclic[1])  
+        y=int(caseclic[3]+caseclic[4]) 
+    if len(caseclic)==4:
+        if caseclic[1]=='x':
+            x=int(caseclic[0])
+            y=int(caseclic[2]+caseclic[3])
+        elif caseclic[2]=='x':
+            x=int(caseclic[0]+caseclic[1])
+            y=int(caseclic[3])   
+    if XouY=="x":
+        return(x)
+    elif XouY=="y":
+        return(y)
+    
 
 def clic0(caseclic): #clic gauche
     case=grille[caseclic]
@@ -59,19 +78,8 @@ def clic0(caseclic): #clic gauche
     if case[4]==-2: #
         GameOver()
         
-    if len(caseclic)==3: #extrait x y de la clé
-        x=int(caseclic[0])   
-        y=int(caseclic[2])
-    if len(caseclic)==5:
-        x=int(caseclic[0]+caseclic[1])  
-        y=int(caseclic[3]+caseclic[4]) 
-    if len(caseclic)==4:
-        if caseclic[1]=='x':
-            x=int(caseclic[0])
-            y=int(caseclic[2]+caseclic[3])
-        elif caseclic[2]=='x':
-            x=int(caseclic[0]+caseclic[1])
-            y=int(caseclic[3])           
+    x=ext_xy(caseclic,"x")
+    y=ext_xy(caseclic,'y')
 
     xgrille=xybombe[0]
     ygrille=xybombe[1]
