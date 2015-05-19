@@ -11,6 +11,8 @@
 from tkinter import * #bibliothèque graphique
 from prop import * #nécéssaire pour le fonction difficulté
 from modclic import *
+from modcases import * #nécéssaire pour la fonction statut_case_texte()
+
 ###############################################################################
 #fonctionnalitées du module du module
 ###############################################################################
@@ -26,7 +28,7 @@ def pointeurG(event):
         xygrille=coord(event.x,event.y,"expert")
     clic0(xygrille)
     print("Clic gauche sur la case "+xygrille)
-    #case_visuel(xygrille) #active la fonction qui change la propriété viseulle d'une case
+    case_visuel(xygrille) #active la fonction qui change la propriété viseulle d'une case
     
 def pointeurD(event):
     if xybombe[0]==9:
@@ -39,7 +41,7 @@ def pointeurD(event):
         xygrille=coord(event.x,event.y,"expert")
     clic1(xygrille)    
     print("Clic droit sur la case "+xygrille)
-    #case_visuel(xygrille) #active la fonction qui change la propriété viseulle d'une case
+    case_visuel(xygrille) #active la fonction qui change la propriété viseulle d'une case
     
 def coordonne_case(xygrille):
     global xybombe
@@ -52,18 +54,16 @@ def coordonne_case(xygrille):
     dico_coord={} #Création du dico vide
     points=['haut_gauche','bas_droite']
     for point in points: #parcours les elements de la liste des points
-    
-            x=ext_xy(caseclic,"x")
-            y=ext_xy(caseclic,'y')
-        
-        x=2+xybombe[3]*xgrille
-        y=2+xybombe[3]*ygrille
-        xycoord=[x,y]
-        dico_coord[point]=xycoord
+        xgrille=ext_xy(xygrille,"x") #Extraction coordonnée x de la case (ex:8x12 -> 8)
+        ygrille=ext_xy(xygrille,'y') #Extraction coordonnée y de la case (ex:8x12 -> 12)
+        x=2+xybombe[3]*xgrille #Calcul 
+        y=2+xybombe[3]*ygrille #Calcul
+        xycoord=[x,y] #Assemblage
+        dico_coord[point]=xycoord #Intégration dans le dico
         print(dico_coord)
-    return(dico_coord)
+    return(dico_coord) #Retourne le dico
     
-def case_visuel():
+def case_visuel(xygrille):
     #############
     #Explication#
     #############
@@ -71,15 +71,16 @@ def case_visuel():
     #Fonction qui s'active dès l'appel de l'une des fonctions
     #PointeurG ou PointeurD
     
+    #xygrille=xygrille #la case cliqué
     #########################
     #Creation des rectangles#
     #########################
-    rectangle_visible=canvas_grille.create_rectangle(2,2,50,50,fill=couleur("defaut","r4"),outline=couleur("defaut","r4")) #fill = couleur du rectangle(intérieur), outline = couleur de la bordure du rectangle
-    canvas_grille.coords(rectangle_visible,-1,-1,-1,-1) #masque l'élément (le déplace aux coordonnées -1,-1,-1,-1)
-    rectangle_bombe_perdu=canvas_grille.create_rectangle(2,2,50,50,fill=couleur("defaut","r3"),outline=couleur("defaut","r3"))
-    canvas_grille.coords(rectangle_bombe_perdu,20,-1,-1,-1)
-    rectangle_dapeau=canvas_grille.create_rectangle(2,2,50,50,fill=couleur("defaut","r5"),outline=couleur("defaut","r5"))
-    canvas_grille.coords(rectangle_dapeau,-1,-1,-1,-1)
+    #rectangle_visible=canvas_grille.create_rectangle(2,2,50,50,fill=couleur("defaut","r4"),outline=couleur("defaut","r4")) #fill = couleur du rectangle(intérieur), outline = couleur de la bordure du rectangle
+    #canvas_grille.coords(rectangle_visible,-1,-1,-1,-1) #masque l'élément (le déplace aux coordonnées -1,-1,-1,-1)
+    #rectangle_bombe_perdu=canvas_grille.create_rectangle(2,2,50,50,fill=couleur("defaut","r3"),outline=couleur("defaut","r3"))
+    #canvas_grille.coords(rectangle_bombe_perdu,20,-1,-1,-1)
+    #rectangle_dapeau=canvas_grille.create_rectangle(2,2,50,50,fill=couleur("defaut","r5"),outline=couleur("defaut","r5"))
+    #canvas_grille.coords(rectangle_dapeau,-1,-1,-1,-1)
     #ici, tout est créé, mais rien n'est visible
     
     #################################
@@ -92,7 +93,7 @@ def case_visuel():
     #Applique les modifications#
     ############################
     prop_possibles=["bombe","drapeau","interrogation","visible","chiffre"]
-    for prop in props_possible:
+    for prop in prop_possibles:
         if prop==True:
             remarque="a faire"
             
