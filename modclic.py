@@ -42,7 +42,7 @@ def GameOver(): #appelé dans clic0
 def boucle(casereg): #appelé dans clic0
     dec=grille[casereg]
     dec[3]=6
-    if dec[4]==-1:
+    if dec[4]==-1: #si la case est un 0 alors on exécute de nouveau clic0 pour découvrir les cases adjacente
         clic0(casereg)
 
 
@@ -53,13 +53,13 @@ def clic0(caseclic): #clic gauche
     if case[1]==2: #vérifie qu'il n'y a pas de drapeau
         return()
         
-    case[3]=6
+    case[3]=6 #rend la case visible
     print("case "+str(caseclic)+" est découverte")
     
-    if case[4]==-2:
+    if case[4]==-2: #
         GameOver()
         
-    if len(caseclic)==3:
+    if len(caseclic)==3: #extrait x y de la clé
         x=int(caseclic[0])   
         y=int(caseclic[2])
     if len(caseclic)==5:
@@ -76,7 +76,7 @@ def clic0(caseclic): #clic gauche
     xgrille=xybombe[0]
     ygrille=xybombe[1]
 
-    if case[4]==-1:        
+    if case[4]==-1:  #si la case est un 0 on va regarder toutes les cases autours pour les découvrirs
         casereg=str(x-1)+"x"+str(y)
         if x-1!=0:
            visi=grille[casereg]
@@ -157,6 +157,7 @@ def clic1(caseclic): #clic droit
     elif case[1]==3: #si il n'y a pas de drapeau sur la case
         case[1]=2
         print("il y a un drapeau sur la case")
+        
 """
 graph_fenetre("choix_difficulte")
 cases(xybombe[0],xybombe[1])  
