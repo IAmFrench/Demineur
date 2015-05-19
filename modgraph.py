@@ -17,30 +17,47 @@ from modclic import *
 
 def pointeurG(event):
     if xybombe[0]==9:
-        caseclic=coord(event.x,event.y,"facile") #les coordonnées en pixels sont convertie en coordonné de case par coord
+        xygrille=coord(event.x,event.y,"facile") #les coordonnées en pixels sont convertie en coordonné de case par coord
     
     if xybombe[0]==16:
-        caseclic=coord(event.x,event.y,"intermediaire")  
+        xygrille=coord(event.x,event.y,"intermediaire")  
 
     if xybombe[0]==30:
-        caseclic=coord(event.x,event.y,"expert")
-    clic0(caseclic)
-    print("Clic gauche sur la case "+caseclic)
-    #case_visuel() #active la fonction qui change la propriété viseulle d'une case
+        xygrille=coord(event.x,event.y,"expert")
+    clic0(xygrille)
+    print("Clic gauche sur la case "+xygrille)
+    #case_visuel(xygrille) #active la fonction qui change la propriété viseulle d'une case
     
 def pointeurD(event):
     if xybombe[0]==9:
-        caseclic=coord(event.x,event.y,"facile")
+        xygrille=coord(event.x,event.y,"facile")
     
     if xybombe[0]==16:
-        caseclic=coord(event.x,event.y,"intermediaire")
+        xygrille=coord(event.x,event.y,"intermediaire")
     
     if xybombe[0]==30:
-        caseclic=coord(event.x,event.y,"expert")
-    clic1(caseclic)    
-    print("Clic droit sur la case "+caseclic)
-    #case_visuel() #active la fonction qui change la propriété viseulle d'une case
-      
+        xygrille=coord(event.x,event.y,"expert")
+    clic1(xygrille)    
+    print("Clic droit sur la case "+xygrille)
+    #case_visuel(xygrille) #active la fonction qui change la propriété viseulle d'une case
+    
+def coordonne_case(xygrille):
+    #############
+    #Explication#
+    #############
+    #Renvoi sous forme de dictionnaire/liste les coordonnées des 4 extrémités d'une case donnée
+    #Exemple : coordonne_case(1x1) -> {A:[1,1],B:[1,24],C:[24,1],D:[24,24]}
+    remarque="a faire"
+    dico_coord={} #Création du dico vide
+    points=['haut_gauche','bas_droite']
+    for point in points: #parcours les elements de la liste des points
+        x=
+        y=
+        xycoord=[x,y]
+        dico_coord[point]=xycoord
+        
+    return(dico_coord)    
+    
 def case_visuel():
     #############
     #Explication#
@@ -48,11 +65,17 @@ def case_visuel():
     #Change la case de couleur/visuel
     #Fonction qui s'active dès l'appel de l'une des fonctions
     #PointeurG ou PointeurD
+
+    #################################
+    #Lire les coordonnées de la case#
+    #################################
+    coordcase=coordonne_case(xygrille) #charge les coordonnées des 4 points aux extrémités de la case
+    prop_case=statut_case_texte(xygrille) #charge les propriétés de la case en question
     
-    ##############
-    #Test logique#
-    ##############
-    #if  # si clic gauche, alors :
+    ############################    
+    #Applique les modifications#
+    ############################
+    
     remarque="a faire"
 
 def taille_cases_plein_ecran(taille_x_ecran,taille_y_ecran):
@@ -203,7 +226,7 @@ def graph_fenetre(fonction):
         bar_menu.add_cascade(label="Fichier", menu=menu_fichier) # ajout du menu
         
         menu_affichage=Menu(bar_menu, tearoff=0)
-        menu_affichage.add_command(label="Mode plein écran    F11", command=plein_ecran_F11)
+        menu_affichage.add_command(label="Mode plein écran    F11") #, command=plein_ecran_F11
         
         #Groupe 2
         menu_choix_couleur=Menu(menu_affichage, tearoff=0)

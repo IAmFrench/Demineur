@@ -65,7 +65,7 @@ def gr(xygrille,prop,statut):
     ###################
     ###Les variables###
     ###################
-    
+    global statut_case_texte
     
     ###################
     ###Les Fonctions###
@@ -126,10 +126,10 @@ def gr(xygrille,prop,statut):
     """
     def case_offon():
         """ Active la propriété """
+        #######################
+        #Passe de non vers oui#
+        #######################        
         for a in definition :
-            """
-            Passe de non vers oui
-            """
             if statut==True:
                 propriete=definition
                 if prop=='bombe':
@@ -154,9 +154,9 @@ def gr(xygrille,prop,statut):
     """
     def case_onoff():
         """ Désactive le statut de la propriété """
-        """
-            Passe de oui vers non
-        """
+        #######################
+        #Passe de oui vers non#
+        #######################
         for a in definition :
             if statut==False:
                 propriete=definition
@@ -177,35 +177,35 @@ def gr(xygrille,prop,statut):
     def case_nbbombe():
         """  la valeur du nombre de bombe """
         definition[4]=int(statut)
+    
+    def statut_case_texte():
+        """ Renvoi sous forme d'un dictionnaire lisible les caractéristiques d'une case donnée """
+        #Etape 1 : Creation du dictionnaire
+        dico_statut_case={}
+        prop_possibles=["bombe","drapeau","interrogation","visible","chiffre"]
+        for prop_en_cours in prop_possibles: #Execute autant de fois la boucle qu'il y a de propriétés
+            #############################
+            #Remplissage du dictionnaire#
+            #############################
+            dico_statut_case[prop_en_cours]=gr(xygrille,prop_en_cours,"statut")
+        return(dico_statut_case)            
         
     ##################
     ###Test logique###
-    ##################
-    
+    ##################    
     if statut=='statut':
         return(case_statut())
-        ###
-        #print("Statut='statut'")
-        ###
         
     if type(statut)==bool: #Statut = true ou Flase
         if statut==True :#On demande a activer la propriété
             return(case_offon())
-        ###
-        #print("statut=True")
-        ###
     
         if statut==False: #On demande a désactiver la propriété
             return(case_onoff())
-            ###
-            #print("Statut=False")
-            ###
+            
     if statut !=bool and type(statut)==int and prop=='chiffre' : #satut == un entier différent de booleen
         return(case_nbbombe())
-        ###
-        #print("Statut=chiffre")
-        ###
-
+        
 ###############################################################################
 #Exemple d'utilisation
 ###############################################################################
@@ -223,3 +223,15 @@ def gr(xygrille,prop,statut):
 #        gr('1x1','chiffre,'1')
 #   résultat:
 #       il y a 1 bombe a coté de la case
+        
+def statut_case_texte(xygrille):
+    """ Renvoi sous forme d'un dictionnaire lisible les caractéristiques d'une case donnée """
+    #Etape 1 : Creation du dictionnaire
+    dico_statut_case={}
+    prop_possibles=["bombe","drapeau","interrogation","visible","chiffre"]
+    for prop_en_cours in prop_possibles: #Execute autant de fois la boucle qu'il y a de propriétés
+        #############################
+        #Remplissage du dictionnaire#
+        #############################
+        dico_statut_case[prop_en_cours]=gr(xygrille,prop_en_cours,"statut")
+    return(dico_statut_case)
