@@ -53,16 +53,11 @@ def coordonne_case(xygrille):
     remarque="a faire"
     dico_coord={} #Création du dico vide
     points=['haut_gauche','bas_droite']
-    a=0
     for point in points: #parcours les elements de la liste des points
         xgrille=ext_xy(xygrille,"x") #Extraction coordonnée x de la case (ex:8x12 -> 8)
-        ygrille=ext_xy(xygrille,'y') #Extraction coordonnée y de la case (ex:8x12 -> 12)        
-        if a==0:
-            a=1
-            xgrille=xgrille-1
-            ygrille=ygrille-1            
-        x=2+xybombe[3]*xgrille #Calcul
-        y=2+xybombe[3]*ygrille #Calcul  
+        ygrille=ext_xy(xygrille,'y') #Extraction coordonnée y de la case (ex:8x12 -> 12)
+        x=2+xybombe[3]*xgrille #Calcul 
+        y=2+xybombe[3]*ygrille #Calcul
         xycoord=[x,y] #Assemblage
         dico_coord[point]=xycoord #Intégration dans le dico
     print(dico_coord)
