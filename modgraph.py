@@ -60,7 +60,7 @@ def coordonne_case(xygrille):
         y=2+xybombe[3]*ygrille #Calcul
         xycoord=[x,y] #Assemblage
         dico_coord[point]=xycoord #Intégration dans le dico
-        print(dico_coord)
+    print(dico_coord)
     return(dico_coord) #Retourne le dico
     
 def case_visuel(xygrille):
