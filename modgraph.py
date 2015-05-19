@@ -42,6 +42,7 @@ def pointeurD(event):
     #case_visuel(xygrille) #active la fonction qui change la propriété viseulle d'une case
     
 def coordonne_case(xygrille):
+    global xybombe
     #############
     #Explication#
     #############
@@ -51,12 +52,30 @@ def coordonne_case(xygrille):
     dico_coord={} #Création du dico vide
     points=['haut_gauche','bas_droite']
     for point in points: #parcours les elements de la liste des points
-        x=
-        y=
+    
+        if len(caseclic)==3: #extrait x y de la clé
+            x=int(caseclic[0])   
+            y=int(caseclic[2])
+        if len(caseclic)==5:
+            x=int(caseclic[0]+caseclic[1])  
+            y=int(caseclic[3]+caseclic[4]) 
+        if len(caseclic)==4:
+            if caseclic[1]=='x':
+                x=int(caseclic[0])
+                y=int(caseclic[2]+caseclic[3])
+            elif caseclic[2]=='x':
+                x=int(caseclic[0]+caseclic[1])
+                y=int(caseclic[3])           
+        
+        xgrille=xybombe[0]
+        ygrille=xybombe[1]    
+        
+        x=2+xybombe[3]*xgrille
+        y=2+xybombe[3]*ygrille
         xycoord=[x,y]
         dico_coord[point]=xycoord
-        
-    return(dico_coord)    
+        print(dico_coord)
+    return(dico_coord)
     
 def case_visuel():
     #############
@@ -65,18 +84,36 @@ def case_visuel():
     #Change la case de couleur/visuel
     #Fonction qui s'active dès l'appel de l'une des fonctions
     #PointeurG ou PointeurD
-
+    
+    #########################
+    #Creation des rectangles#
+    #########################
+    rectangle_visible=canvas_grille.create_rectangle(2,2,50,50,fill=couleur("defaut","r4"),outline=couleur("defaut","r4")) #fill = couleur du rectangle(intérieur), outline = couleur de la bordure du rectangle
+    canvas_grille.coords(rectangle_visible,-1,-1,-1,-1) #masque l'élément (le déplace aux coordonnées -1,-1,-1,-1)
+    rectangle_bombe_perdu=canvas_grille.create_rectangle(2,2,50,50,fill=couleur("defaut","r3"),outline=couleur("defaut","r3"))
+    canvas_grille.coords(rectangle_bombe_perdu,20,-1,-1,-1)
+    rectangle_dapeau=canvas_grille.create_rectangle(2,2,50,50,fill=couleur("defaut","r5"),outline=couleur("defaut","r5"))
+    canvas_grille.coords(rectangle_dapeau,-1,-1,-1,-1)
+    #ici, tout est créé, mais rien n'est visible
+    
     #################################
     #Lire les coordonnées de la case#
     #################################
-    coordcase=coordonne_case(xygrille) #charge les coordonnées des 4 points aux extrémités de la case
+    coordcase=coordonne_case(xygrille) #charge les coordonnées des 2 points aux extrémités de la case (haut_gauche et bas_droite)
     prop_case=statut_case_texte(xygrille) #charge les propriétés de la case en question
     
     ############################    
     #Applique les modifications#
     ############################
+    prop_possibles=["bombe","drapeau","interrogation","visible","chiffre"]
+    for prop in props_possible:
+        if prop==True:
+            remarque="a faire"
+            
     
-    remarque="a faire"
+    
+    
+    
 
 def taille_cases_plein_ecran(taille_x_ecran,taille_y_ecran):
     """ calcule la taille des cases en fonction de la taille de l'écran de l'utilisateur """
@@ -91,7 +128,7 @@ def taille_cases_plein_ecran(taille_x_ecran,taille_y_ecran):
     ##############
     #Test logique#
     ##############
-    print(xybombe)    
+    #print(xybombe)    
         
 def graph_fenetre(fonction):
     """
@@ -166,6 +203,7 @@ def graph_fenetre(fonction):
         ygrille=xybombe[1]
         L_H_case_px=xybombe[3] #bord d'une case 
         fenetre_taille=str(15+(xgrille*L_H_case_px))+"x"+str(ygrille*L_H_case_px+15) # renvoi du texte ex: "300x800"
+        
         #########
         #Fenêtre#
         #########
@@ -252,9 +290,9 @@ def graph_fenetre(fonction):
         canvas_grille=Canvas(frame_grille,width=xgrille*L_H_case_px-1, height=ygrille*L_H_case_px-1)
         canvas_grille.pack(side=TOP) #Affiche le canvas (5px de côté)
         
-        """
-        A savoir : 1 case=50x50px
-        """
+        #################
+        #Création Grille#
+        #################
         for h_ligne in range (ygrille+1): #Creation des lignes horizontales        
             x_debut=0 #coordonné x du point de départ
             x_fin=L_H_case_px*xgrille #coordonné x du point d'arrivé

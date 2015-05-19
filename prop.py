@@ -25,12 +25,13 @@ statut_plein_ecran=False #Plein ecran désactivé par défaut
 #lorsqu'une case est cliqué, la couleur change pour devenir "active"
 #On utilise donc le niveau r2
 #Etc...
+#Voir les palettes sur https://color.adobe.com/
 def couleur(style,r):
-    DarkBlue_Red={"r1":"1A2530",
-                  "r2":"2C3E50",
-                  "r3":"34495E",
-                  "r4":"E74C3C",
-                  "r5":"FFFFFF",
+    DarkBlue_Red={"r1":"1A2530", #bordures
+                  "r2":"2C3E50", #Case par défaut
+                  "r3":"34495E", #Bombe
+                  "r4":"E74C3C", #Case visible
+                  "r5":"FFFFFF", #Drapeau
                   }
     Flat_design_colors={"r1":"334D5C",
                         "r2":"45B29D",
@@ -38,13 +39,13 @@ def couleur(style,r):
                         "r4":"E27A3F",
                         "r5":"DF5A49",
                         }
-    defaut={"r1":"113F59",
-            "r2":"19BEC0",
-            "r3":"20D6C7",
-            "r4":"F3EDD3",
-            "r5":"D54F58",            
+    defaut={"r1":"1A2732", #Voir sur https://color.adobe.com/fr/Sytherworks-2014-color-theme-3711492/
+            "r2":"51626F",
+            "r3":"D3222A",
+            "r4":"DFE5E6",
+            "r5":"4ECCC3",            
             }
     if style==DarkBlue_Red:
-        return(DarkBlue_Red[r])
+        return("#"+DarkBlue_Red[r])
     else:
         return("#"+defaut[r])
