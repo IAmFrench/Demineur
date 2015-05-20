@@ -18,7 +18,6 @@ from modcases import * #nécéssaire pour la fonction statut_case_texte()
 ###############################################################################
 xygrille_liste=["-1x-1"]
 
-
 def taille_cases_plein_ecran(taille_x_ecran,taille_y_ecran):
     """ calcule la taille des cases en fonction de la taille de l'écran de l'utilisateur """
     #taille_x_ecran=taille_x_ecran #Taille horizontale en px de l'écran (ex:1920)
@@ -155,6 +154,7 @@ def graph_fenetre(fonction):
             remarque="a finir"
         
         def pointeurG(event):
+            global cases_modif
             if xybombe[0]==9:
                 xygrille=coord(event.x,event.y,"facile") #les coordonnées en pixels sont convertie en coordonné de case par coord
             
@@ -169,6 +169,7 @@ def graph_fenetre(fonction):
             xygrille_liste[0]=xygrille #assigne a la variable xygrille_liste la case cliqué
             
         def pointeurD(event):
+            global cases_modif
             if xybombe[0]==9:
                 xygrille=coord(event.x,event.y,"facile")
             

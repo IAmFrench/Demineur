@@ -9,7 +9,7 @@ from math import *
 #from modcases import *
 #from modbombe import *
 from modgraph import *
-
+cases_modif=["-1x-1"]
 
 def coord(x,y,difficulty):
    
@@ -67,7 +67,8 @@ def ext_xy(caseclic,XouY):
 
 def clic0(caseclic): #clic gauche
     case=grille[caseclic]
-     
+    global cases_modif
+    cases_modif.append(caseclic)
 
     if case[1]==2: #vérifie qu'il n'y a pas de drapeau
         return()
