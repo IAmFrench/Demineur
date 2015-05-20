@@ -261,9 +261,8 @@ def graph_fenetre(fonction):
                 rectangle_visible=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r4"),outline=couleur("defaut","r4")) #fill = couleur du rectangle(intérieur), outline = couleur de la bordure du rectangle
             elif propri=="chiffre":
                 remarque="a faire"
+                
         def case_visuel(xygrille):
-            #global xygrille_liste
-            #xygrille=xygrille_liste[0]
             #############
             #Explication#
             #############
@@ -271,17 +270,6 @@ def graph_fenetre(fonction):
             #Fonction qui s'active dès l'appel de l'une des fonctions
             #PointeurG ou PointeurD            
             #xygrille=xygrille #la case cliqué
-            
-            #########################
-            #Creation des rectangles#
-            #########################
-            #
-            #canvas_grille.coords(rectangle_visible,-1,-1,-1,-1) #masque l'élément (le déplace aux coordonnées -1,-1,-1,-1)
-            #
-            #canvas_grille.coords(rectangle_bombe_perdu,20,-1,-1,-1)
-            #
-            #canvas_grille.coords(rectangle_dapeau,-1,-1,-1,-1)
-            #ici, tout est créé, mais rien n'est visible
             
             #################################
             #Lire les coordonnées de la case#
