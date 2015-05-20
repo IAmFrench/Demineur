@@ -203,7 +203,7 @@ def graph_fenetre(fonction):
                 y=2+xybombe[3]*ygrille #Calcul  
                 xycoord=[x,y] #Assemblage
                 dico_coord[point]=xycoord #Intégration dans le dico
-            print(dico_coord)
+            #print(dico_coord)
             return(dico_coord) #Retourne le dico
         ###########
         #FrameMenu#
@@ -263,12 +263,12 @@ def graph_fenetre(fonction):
             #########################
             #Creation des rectangles#
             #########################
-            rectangle_visible=canvas_grille.create_rectangle(2,2,50,50,fill=couleur("defaut","r4"),outline=couleur("defaut","r4")) #fill = couleur du rectangle(intérieur), outline = couleur de la bordure du rectangle
-            canvas_grille.coords(rectangle_visible,-1,-1,-1,-1) #masque l'élément (le déplace aux coordonnées -1,-1,-1,-1)
-            rectangle_bombe_perdu=canvas_grille.create_rectangle(2,2,50,50,fill=couleur("defaut","r3"),outline=couleur("defaut","r3"))
-            canvas_grille.coords(rectangle_bombe_perdu,20,-1,-1,-1)
-            rectangle_dapeau=canvas_grille.create_rectangle(2,2,50,50,fill=couleur("defaut","r5"),outline=couleur("defaut","r5"))
-            canvas_grille.coords(rectangle_dapeau,-1,-1,-1,-1)
+            #rectangle_visible=canvas_grille.create_rectangle(2,2,50,50,fill=couleur("defaut","r4"),outline=couleur("defaut","r4")) #fill = couleur du rectangle(intérieur), outline = couleur de la bordure du rectangle
+            #canvas_grille.coords(rectangle_visible,-1,-1,-1,-1) #masque l'élément (le déplace aux coordonnées -1,-1,-1,-1)
+            #rectangle_bombe_perdu=canvas_grille.create_rectangle(2,2,50,50,fill=couleur("defaut","r3"),outline=couleur("defaut","r3"))
+            #canvas_grille.coords(rectangle_bombe_perdu,20,-1,-1,-1)
+            #rectangle_dapeau=canvas_grille.create_rectangle(2,2,50,50,fill=couleur("defaut","r5"),outline=couleur("defaut","r5"))
+            #canvas_grille.coords(rectangle_dapeau,-1,-1,-1,-1)
             #ici, tout est créé, mais rien n'est visible
             
             #################################
@@ -276,14 +276,21 @@ def graph_fenetre(fonction):
             #################################
             #if xygrille != "-1x-1":
             coordcase=coordonne_case(xygrille) #charge les coordonnées des 2 points aux extrémités de la case (haut_gauche et bas_droite)
-            prop_case=statut_case_texte(xygrille) #charge les propriétés de la case en question
-            
+            prop_case=statut_case_texte(xygrille) #charge les propriétés de la case en question -> dico
             ############################    
             #Applique les modifications#
             ############################
             prop_possibles=["bombe","drapeau","interrogation","visible","chiffre"]
             for propri in prop_possibles:
-                if propri==True:
+                #print(prop_case[propri])
+                if prop_case[propri]==True:
+                    haut_gauche=coordcase["haut_gauche"] #retourne une liste, (ex:[177, 107])
+                    x_haut_gauche=haut_gauche[0] #prend la première valeur de la liste (ex:177)
+                    y_haut_gauche=haut_gauche[1] #Prend la seconde valeure de la liste (ex:107)
+                    bas_droite=coordcase["bas_droite"] #idem que pour haut_gauche
+                    x_bas_droite=bas_droite[0]
+                    y_bas_droite=bas_droite[1]
+                    
                     #canvas_grille.coords(rectangle_+propri+_perdu,coordcase[""].value[0],coordcase[1],coordcase[],coordcase[])
                     remarque="a faire"
         #################
