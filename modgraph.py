@@ -249,6 +249,18 @@ def graph_fenetre(fonction):
         #######################
         #Fonctions Dans canvas#    
         #######################
+        def rectangle_canvas(x0,y0,x1,y1,propri):
+            """ Crée le canvas rectangle """
+            if propri == "bombe":
+                rectangle_bombe_perdu=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r3"),outline=couleur("defaut","r3"))
+            elif propri=="drapeau":
+                rectangle_dapeau=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r5"),outline=couleur("defaut","r5"))
+            elif propri=="interrogation":
+                remarque="a faire"
+            elif propri=="visible":
+                rectangle_visible=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r4"),outline=couleur("defaut","r4")) #fill = couleur du rectangle(intérieur), outline = couleur de la bordure du rectangle
+            elif propri=="chiffre":
+                remarque="a faire"
         def case_visuel(xygrille):
             #global xygrille_liste
             #xygrille=xygrille_liste[0]
@@ -263,11 +275,11 @@ def graph_fenetre(fonction):
             #########################
             #Creation des rectangles#
             #########################
-            #rectangle_visible=canvas_grille.create_rectangle(2,2,50,50,fill=couleur("defaut","r4"),outline=couleur("defaut","r4")) #fill = couleur du rectangle(intérieur), outline = couleur de la bordure du rectangle
+            #
             #canvas_grille.coords(rectangle_visible,-1,-1,-1,-1) #masque l'élément (le déplace aux coordonnées -1,-1,-1,-1)
-            #rectangle_bombe_perdu=canvas_grille.create_rectangle(2,2,50,50,fill=couleur("defaut","r3"),outline=couleur("defaut","r3"))
+            #
             #canvas_grille.coords(rectangle_bombe_perdu,20,-1,-1,-1)
-            #rectangle_dapeau=canvas_grille.create_rectangle(2,2,50,50,fill=couleur("defaut","r5"),outline=couleur("defaut","r5"))
+            #
             #canvas_grille.coords(rectangle_dapeau,-1,-1,-1,-1)
             #ici, tout est créé, mais rien n'est visible
             
@@ -290,9 +302,8 @@ def graph_fenetre(fonction):
                     bas_droite=coordcase["bas_droite"] #idem que pour haut_gauche
                     x_bas_droite=bas_droite[0]
                     y_bas_droite=bas_droite[1]
+                    rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,propri) #Fonction qui crée le canvas
                     
-                    #canvas_grille.coords(rectangle_+propri+_perdu,coordcase[""].value[0],coordcase[1],coordcase[],coordcase[])
-                    remarque="a faire"
         #################
         #Création Grille#
         #################
