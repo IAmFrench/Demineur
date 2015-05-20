@@ -134,6 +134,7 @@ def graph_fenetre(fonction):
             taille_x_ecran=fenetre_grille.winfo_screenwidth() #Taille horizontale de l'écran
             taille_y_ecran=fenetre_grille.winfo_screenheight() #Taille verticale de l'écran
             fenetre_taille_plein_ecran=str(taille_x_ecran)+"x"+str(taille_y_ecran) #+"+0+0" #Taille de la fenetre en plein ecran, résultat sous forme de chaine de caractère, (ex:1920x180)
+            
             ##############
             #Test logique#
             ##############
