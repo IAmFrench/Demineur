@@ -188,22 +188,27 @@ def graph_fenetre(fonction):
             #############
             #Renvoi sous forme de dictionnaire/liste les coordonnées des 4 extrémités d'une case donnée
             #Exemple : coordonne_case(1x1) -> {A:[1,1],B:[1,24],C:[24,1],D:[24,24]}
-            remarque="a faire"
             dico_coord={} #Création du dico vide
             points=['haut_gauche','bas_droite']
             a=0
             for point in points: #parcours les elements de la liste des points
                 xgrille=ext_xy(xygrille,"x") #Extraction coordonnée x de la case (ex:8x12 -> 8)
                 ygrille=ext_xy(xygrille,'y') #Extraction coordonnée y de la case (ex:8x12 -> 12)        
-                if a==0:
-                    a=1
+                if a==0: #fait dans un premier temps x/y haut_gauche
                     xgrille=xgrille-1
-                    ygrille=ygrille-1            
-                x=2+xybombe[3]*xgrille #Calcul
-                y=2+xybombe[3]*ygrille #Calcul  
-                xycoord=[x,y] #Assemblage
-                dico_coord[point]=xycoord #Intégration dans le dico
-            #print(dico_coord)
+                    ygrille=ygrille-1
+                    x=xybombe[3]*xgrille #Calcul
+                    y=xybombe[3]*ygrille #Calcul
+                    xycoord=[x+1,y+1] #Assemblage
+                    dico_coord[point]=xycoord #Intégration dans le dico
+                if a==1:
+                    x=xybombe[3]*xgrille #Calcul
+                    y=xybombe[3]*ygrille #Calcul
+                    xycoord=[x-1,y-1] #Assemblage
+                    dico_coord[point]=xycoord #Intégration dans le dico
+                a=1
+                print(xycoord)
+                
             return(dico_coord) #Retourne le dico
         ###########
         #FrameMenu#
