@@ -262,6 +262,7 @@ def graph_fenetre(fonction):
                 rectangle_dapeau=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r5"),outline=couleur("defaut","r5"))
             elif propri=="interrogation":
                 remarque="a faire"
+                rectangle_interro=canvas_grille.create_text(x0,y0,x1,y1,text="?")
             elif propri=="visible":
                 rectangle_visible=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r4"),outline=couleur("defaut","r4")) #fill = couleur du rectangle(intérieur), outline = couleur de la bordure du rectangle
             elif propri=="chiffre":
