@@ -243,7 +243,7 @@ def graph_fenetre(fonction):
         ########################
         #Affichage de la grille#
         ########################
-        canvas_grille=Canvas(frame_grille,width=xgrille*L_H_case_px-1, height=ygrille*L_H_case_px-1)
+        canvas_grille=Canvas(frame_grille,width=xgrille*L_H_case_px-1, height=ygrille*L_H_case_px-1,background=couleur("defaut","r2"))
         canvas_grille.pack(side=TOP) #Affiche le canvas (5px de côté)
         
         #######################
@@ -293,17 +293,17 @@ def graph_fenetre(fonction):
             x_debut=0 #coordonné x du point de départ
             x_fin=L_H_case_px*xgrille #coordonné x du point d'arrivé
             y_debut=y_fin=h_ligne*L_H_case_px #coordonné y du point de départ et d'arrivé (égaux car c'est une droite horizontale)
-            canvas_grille.create_line(x_debut,y_debut,x_fin,y_fin) #crée la ligne du point de départ au point d'arrivé
+            canvas_grille.create_line(x_debut,y_debut,x_fin,y_fin,fill=couleur("defaut","r1")) #crée la ligne du point de départ au point d'arrivé
             
         for v_ligne in range(xgrille+1): #creation des lignes verticales    
             x_debut=x_fin=v_ligne*L_H_case_px
             y_debut=0
             y_fin=L_H_case_px*ygrille
         
-            canvas_grille.create_line(x_debut,y_debut,x_fin,y_fin) #crée la ligne
+            canvas_grille.create_line(x_debut,y_debut,x_fin,y_fin,fill=couleur("defaut","r1")) #crée la ligne
         
-        canvas_grille.create_line(0,2,L_H_case_px*xgrille,2) #ligne horizontale haut
-        canvas_grille.create_line(2,0,2,L_H_case_px*ygrille) #ligne verticale gauche
+        canvas_grille.create_line(0,2,L_H_case_px*xgrille,2,fill=couleur("defaut","r1")) #ligne horizontale haut
+        canvas_grille.create_line(2,0,2,L_H_case_px*ygrille,fill=couleur("defaut","r1")) #ligne verticale gauche
         frame_grille.pack(side=TOP,padx=5,pady=5) #(5px de côté)
         
         ##############
