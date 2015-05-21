@@ -41,8 +41,8 @@ def bombchiffre():
     xgrille=xybombe[0]
     ygrille=xybombe[1]
     #nbbombe=xybombe[2]
-    for x in range(1,int(xgrille)):
-        for y in range(1,int(ygrille)):
+    for x in range(1,int(xgrille)+1):
+        for y in range(1,int(ygrille)+1):
             xyg=str(x)+"x"+str(y)
             grillereg=str(x-1)+"x"+str(y)
             if x-1!=0:
