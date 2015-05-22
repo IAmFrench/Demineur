@@ -9,8 +9,8 @@ from math import *
 #from modcases import *
 #from modbombe import *
 from modgraph import *
-from modgraph import case_dec
-cases_modif=["-1x-1"]
+#from modgraph import case_dec (déjà importé a la ligne précédente)
+cases_modif=["-1x-1"] #Liste des cases qui ont été modifiées par une action de l'utilisateur
 
 def coord(x,y,difficulty):
    
@@ -41,7 +41,7 @@ def GameOver(): #appelé dans clic0
     print("GAME OVER!!")
 
 def boucle(casereg): #appelé dans clic0
-    global case_reg
+    global case_dec
     dec=grille[casereg]
     dec[3]=6
     case_dec.append(casereg)

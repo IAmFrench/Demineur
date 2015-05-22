@@ -17,7 +17,7 @@ from modcases import * #nécéssaire pour la fonction statut_case_texte()
 #fonctionnalitées du module du module
 ###############################################################################
 xygrille_liste=["-1x-1"]
-case_dec=[0]
+case_dec=["0"]
 
 def taille_cases_plein_ecran(taille_x_ecran,taille_y_ecran):
     """ calcule la taille des cases en fonction de la taille de l'écran de l'utilisateur """
