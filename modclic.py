@@ -9,6 +9,7 @@ from math import *
 #from modcases import *
 #from modbombe import *
 from modgraph import *
+from modgraph import case_dec
 cases_modif=["-1x-1"]
 
 def coord(x,y,difficulty):
@@ -40,9 +41,12 @@ def GameOver(): #appelé dans clic0
     print("GAME OVER!!")
 
 def boucle(casereg): #appelé dans clic0
+    global case_reg
     dec=grille[casereg]
     dec[3]=6
-    if dec[4]==-1: #si la case est un 0 alors on exécute de nouveau clic0 pour découvrir les cases adjacente
+    case_dec.append(casereg)
+    if dec[4]!=-1: #si la case est un 0 alors on exécute de nouveau clic0 pour découvrir les cases adjacente
+        
         clic0(casereg)
 
 def ext_xy(caseclic,XouY):

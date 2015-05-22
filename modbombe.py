@@ -53,7 +53,7 @@ def bombchiffre():
                 num(grillereg,xyg)
                 
             grillereg=str(x)+"x"+str(y+1)
-            if y+1!=(int(xgrille)+1):
+            if y+1!=(int(ygrille)+1):
                 num(grillereg,xyg)
             
             grillereg=str(x)+"x"+str(y-1)

@@ -17,6 +17,7 @@ from modcases import * #nécéssaire pour la fonction statut_case_texte()
 #fonctionnalitées du module du module
 ###############################################################################
 xygrille_liste=["-1x-1"]
+case_dec=[0]
 
 def taille_cases_plein_ecran(taille_x_ecran,taille_y_ecran):
     """ calcule la taille des cases en fonction de la taille de l'écran de l'utilisateur """
@@ -152,9 +153,18 @@ def graph_fenetre(fonction):
             fenetre_grille.overrideredirect(TRUE) #Supprime la bar de titre
             taille_cases_plein_ecran(taille_x_ecran,taille_y_ecran) #modifie la taille des cases
             remarque="a finir"
-        
+
+       # def decouvre():
+          #   for cle in grille:
+             #    case=grille[cle]
+              #   if case[3]==6:#
+                     #   if cle is not case_dec:
+                       #     case_dec.append(cle)                         
+                        #    case_visuel(cle)   
+    
         def pointeurG(event):
             global cases_modif
+            global case_dec
             if xybombe[0]==9:
                 xygrille=coord(event.x,event.y,"facile") #les coordonnées en pixels sont convertie en coordonné de case par coord
             
@@ -163,13 +173,15 @@ def graph_fenetre(fonction):
         
             if xybombe[0]==30:
                 xygrille=coord(event.x,event.y,"expert")
-            clic0(xygrille)
+            
             print("Clic gauche sur la case "+xygrille)
-            case_visuel(xygrille) #active la fonction qui change la propriété visuelle d'une case
+            case_dec[:] = []
+            case_dec.append(xygrille)
+            clic0(xygrille)            
+            case_visuel(xygrille)
             xygrille_liste[0]=xygrille #assigne a la variable xygrille_liste la case cliqué
             
         def pointeurD(event):
-            global cases_modif
             if xybombe[0]==9:
                 xygrille=coord(event.x,event.y,"facile")
             
@@ -181,7 +193,7 @@ def graph_fenetre(fonction):
             clic1(xygrille)
             print("Clic droit sur la case "+xygrille)
             xygrille_liste[0]=xygrille
-            case_visuel(xygrille) #active la fonction qui change la propriété viseulle d'une case
+            case_visuel(xygrille)
             
         def coordonne_case(xygrille):
             global xybombe
