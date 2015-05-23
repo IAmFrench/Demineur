@@ -18,8 +18,8 @@ from modcases import * #nécéssaire pour la fonction statut_case_texte()
 ###############################################################################
 xygrille_liste=["-1x-1"]
 case_dec=["0"]
-
-
+liste_bombes=[] #liste de toutes les cases qui contiennent une bombe
+show=[0] #fonction show_all_bbs pas encore demandé
 def taille_cases_plein_ecran(taille_x_ecran,taille_y_ecran):
     """ calcule la taille des cases en fonction de la taille de l'écran de l'utilisateur """
     #taille_x_ecran=taille_x_ecran #Taille horizontale en px de l'écran (ex:1920)
@@ -154,14 +154,7 @@ def graph_fenetre(fonction):
             fenetre_grille.overrideredirect(TRUE) #Supprime la bar de titre
             taille_cases_plein_ecran(taille_x_ecran,taille_y_ecran) #modifie la taille des cases
             remarque="a finir"
-
-       # def decouvre():
-          #   for cle in grille:
-             #    case=grille[cle]
-              #   if case[3]==6:#
-                     #   if cle is not case_dec:
-                       #     case_dec.append(cle)                         
-                        #    case_visuel(cle)   
+            
         def decou(liste):
             for cle in liste:
                 case_visuel(cle)
@@ -293,7 +286,17 @@ def graph_fenetre(fonction):
                 canvas_id = canvas_grille.create_text(x0, y0, anchor="nw")
 
                 canvas_grille.itemconfig(canvas_id, text=gr(xygrille,"chiffre","statut"))
-                
+        
+        def show_all_bbs():
+            """ dévoile toute les bombes de la grille """
+            #Ajoute les cases qui ont une  bombes dans une liste
+            global liste_bombes #importe la liste
+            for case in grille:
+                if gr(case,"bombe","statut")==True:
+                    liste_bombes.append(case) #rempli la liste            
+            #la liste est remplie, on va donc dévoilét toutes les cases :
+            #decou(liste_bombes)  
+        
         def case_visuel(xygrille):
             #############
             #Explication#
@@ -302,7 +305,7 @@ def graph_fenetre(fonction):
             #Fonction qui s'active dès l'appel de l'une des fonctions
             #PointeurG ou PointeurD            
             #xygrille=xygrille #la case cliqué
-            
+            global show #nécéssaire pour éviter de faire une boucle infinie
             #################################
             #Lire les coordonnées de la case#
             #################################
@@ -322,9 +325,13 @@ def graph_fenetre(fonction):
                     x_bas_droite=bas_droite[0]
                     y_bas_droite=bas_droite[1]
                     rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,propri,xygrille) #Fonction qui crée le canvas
-                    if propri=="visible" and prop_case["bombe"]==True : #si case visible et il y a une bombe alors le joueur a perdu donc case en rouge
-                        rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,"perdu",xygrille) #rectangle rouge
-                    
+                    if propri=="visible" and prop_case["bombe"]==True: #si case visible et il y a une bombe alors le joueur a perdu donc case en rouge et pas encore demandé
+                        if show[0]==0:
+                            #fonction qui révèle toutes les bombes
+                            show_all_bbs()
+                            show[0]=1
+                        rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,"perdu",xygrille)
+                        
         #################
         #Création Grille#
         #################
