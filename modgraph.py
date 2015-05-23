@@ -228,10 +228,10 @@ def graph_fenetre(fonction):
         
         #Groupe 1
         menu_fichier=Menu(bar_menu, tearoff=0) #menu non détachabke (tearoff=0 -> http://python.developpez.com/faq/?page=Menu#Comment-permettre-ou-non-qu-un-menu-soit-detachable-de-son-parent)
-        menu_fichier.add_command(label="Label 1")
-        menu_fichier.add_command(label="Label 2")
-        menu_fichier.add_command(label="Label 3")
-        menu_fichier.add_separator() #Afiche un trait de séparation
+        #menu_fichier.add_command(label="Nouveau jeu")
+        #menu_fichier.add_command(label="Difficulté")
+        #menu_fichier.add_command(label="Label 3")
+        #menu_fichier.add_separator() #Afiche un trait de séparation
         menu_fichier.add_command(label="Quitter", command=fenetre_grille.destroy)        
         bar_menu.add_cascade(label="Fichier", menu=menu_fichier) # ajout du menu
         
@@ -239,12 +239,12 @@ def graph_fenetre(fonction):
         menu_affichage.add_command(label="Mode plein écran    F11") #, command=plein_ecran_F11
         
         #Groupe 2
-        menu_choix_couleur=Menu(menu_affichage, tearoff=0)
-        menu_choix_couleur.add_command(label="Choix 1")
-        menu_choix_couleur.add_command(label="Choix 2")
-        menu_choix_couleur.add_command(label="Choix 3")
-        menu_affichage.add_cascade(label="Choix couleur", menu=menu_choix_couleur, underline=0) #sous-menu, surligné quand sélectionné
-        bar_menu.add_cascade(label="Affichage", menu=menu_affichage)
+        #menu_choix_couleur=Menu(menu_affichage, tearoff=0)
+        #menu_choix_couleur.add_command(label="defaut")
+        #menu_choix_couleur.add_command(label="DarkBlue Red")
+        #menu_choix_couleur.add_command(label="Flat design colors")
+        #menu_affichage.add_cascade(label="Choix couleur", menu=menu_choix_couleur, underline=0) #sous-menu, surligné quand sélectionné
+        #bar_menu.add_cascade(label="Affichage", menu=menu_affichage)
         
         #Groupe 3
         menu_aide=Menu(bar_menu, tearoff=0)
