@@ -272,9 +272,9 @@ def graph_fenetre(fonction):
         #######################
         #Fonctions Dans canvas#    
         #######################
-        def rectangle_canvas(x0,y0,x1,y1,propri):
+        def rectangle_canvas(x0,y0,x1,y1,propri,xygrille):
             """ Crée le canvas rectangle """
-            if propri == "bombe":
+            if propri == "perdu":
                 rectangle_bombe_perdu=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r3"),outline=couleur("defaut","r3"))
             elif propri=="drapeau":
                 rectangle_dapeau=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r5"),outline=couleur("defaut","r5"))
@@ -289,10 +289,10 @@ def graph_fenetre(fonction):
             elif propri=="visible":
                 rectangle_visible=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r4"),outline=couleur("defaut","r4")) #fill = couleur du rectangle(intérieur), outline = couleur de la bordure du rectangle
             elif propri=="chiffre":
-                rectangle_dapeau=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r4"),outline=couleur("defaut","r4"))
+                #rectangle_dapeau=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r4"),outline=couleur("defaut","r4"))
                 canvas_id = canvas_grille.create_text(x0, y0, anchor="nw")
 
-                canvas_grille.itemconfig(canvas_id, text="1")
+                canvas_grille.itemconfig(canvas_id, text=gr(xygrille,"chiffre","statut"))
                 
         def case_visuel(xygrille):
             #############
@@ -306,7 +306,6 @@ def graph_fenetre(fonction):
             #################################
             #Lire les coordonnées de la case#
             #################################
-            #if xygrille != "-1x-1":
             coordcase=coordonne_case(xygrille) #charge les coordonnées des 2 points aux extrémités de la case (haut_gauche et bas_droite)
             prop_case=statut_case_texte(xygrille) #charge les propriétés de la case en question -> dico
             ############################    
@@ -322,7 +321,9 @@ def graph_fenetre(fonction):
                     bas_droite=coordcase["bas_droite"] #idem que pour haut_gauche
                     x_bas_droite=bas_droite[0]
                     y_bas_droite=bas_droite[1]
-                    rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,propri) #Fonction qui crée le canvas
+                    rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,propri,xygrille) #Fonction qui crée le canvas
+                    if propri=="visible" and prop_case["bombe"]==True : #si case visible et il y a une bombe alors le joueur a perdu donc case en rouge
+                        rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,"perdu",xygrille) #rectangle rouge
                     
         #################
         #Création Grille#
