@@ -21,8 +21,11 @@ def bombplace(xybombe):
         al=str(random.randint(1,xgrille))+'x'+str(random.randint(1,ygrille))
         while gr(al,'bombe','statut')==True:
             al=str(random.randint(1,xgrille))+'x'+str(random.randint(1,ygrille))
-        gr(al,'bombe',True)
+        gr(al,'bombe',True) 
+        gr(al,'chiffre',-2)
     print("Bombes placées")
+    
+            
 
 def num(grillereg,xyg):
    # if gr(grillereg,'bombe','statut')==True:
@@ -31,6 +34,7 @@ def num(grillereg,xyg):
     
     if gr(grillereg,'bombe','statut')==True:
        if gr(xyg,'bombe','statut')==False:
+           
            defi=grille[xyg]
            defi[4]=defi[4]+1
        else:
@@ -38,6 +42,7 @@ def num(grillereg,xyg):
            defi[4]=-2
 
 def bombchiffre():
+
     xgrille=xybombe[0]
     ygrille=xybombe[1]
     #nbbombe=xybombe[2]

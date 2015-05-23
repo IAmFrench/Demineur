@@ -10,7 +10,8 @@ from math import *
 #from modbombe import *
 from modgraph import *
 #from modgraph import case_dec (déjà importé a la ligne précédente)
-cases_modif=["-1x-1"] #Liste des cases qui ont été modifiées par une action de l'utilisateur
+camo=["-1x-1"] #Liste des cases qui ont été modifiées par une action de l'utilisateur
+
 
 def coord(x,y,difficulty):
    
@@ -41,11 +42,11 @@ def GameOver(): #appelé dans clic0
     print("GAME OVER!!")
 
 def boucle(casereg): #appelé dans clic0
-    global case_dec
+
     dec=grille[casereg]
     dec[3]=6
-    case_dec.append(casereg)
-    if dec[4]!=-1: #si la case est un 0 alors on exécute de nouveau clic0 pour découvrir les cases adjacente
+    camo.append(casereg)
+    if dec[4]==-1: #si la case est un 0 alors on exécute de nouveau clic0 pour découvrir les cases adjacente
         
         clic0(casereg)
 
@@ -71,8 +72,8 @@ def ext_xy(caseclic,XouY):
 
 def clic0(caseclic): #clic gauche
     case=grille[caseclic]
-    global cases_modif
-    cases_modif.append(caseclic)
+
+    
 
     if case[1]==2: #vérifie qu'il n'y a pas de drapeau
         return()
@@ -93,66 +94,51 @@ def clic0(caseclic): #clic gauche
         casereg=str(x-1)+"x"+str(y)
         if x-1!=0:
            visi=grille[casereg]
-           if visi[3]==6:
-               return()
-           else:
+           if visi[3]!=6:
                boucle(casereg)
        
         casereg=str(x+1)+"x"+str(y) 
         if x+1!=(int(xgrille)+1):
            visi=grille[casereg]
-           if visi[3]==6:
-               return()
-           else:
+           if visi[3]!=6:
                boucle(casereg)
         
         
         casereg=str(x)+"x"+str(y+1) 
         if y+1!=(int(ygrille)+1):
            visi=grille[casereg]
-           if visi[3]==6:
-               return()
-           else:
+           if visi[3]!=6:
                boucle(casereg)
+              
           
         casereg=str(x)+"x"+str(y-1) 
         if y-1!=0:
            visi=grille[casereg]
-           if visi[3]==6:
-               return()
-           else:
+           if visi[3]!=6:
                boucle(casereg)
             
         casereg=str(x-1)+"x"+str(y-1) 
         if y-1!=0 and x-1!=0:
            visi=grille[casereg]
-           if visi[3]==6:
-               return()
-           else:
+           if visi[3]!=6:
                boucle(casereg)
         
         casereg=str(x+1)+"x"+str(y+1) 
         if y+1!=(int(ygrille)+1) and x+1!=(int(xgrille)+1):
            visi=grille[casereg]
-           if visi[3]==6:
-               return()
-           else:
+           if visi[3]!=6:
                boucle(casereg)
           
         casereg=str(x+1)+"x"+str(y-1) 
         if y-1!=0 and x+1!=(int(xgrille)+1):
            visi=grille[casereg]
-           if visi[3]==6:
-               return()
-           else:
+           if visi[3]!=6:              
                boucle(casereg)
                
         casereg=str(x-1)+"x"+str(y+1) 
         if y+1!=(int(ygrille)+1) and x-1!=0:
            visi=grille[casereg]
-           if visi[3]==6:
-               return()
-           else:
+           if visi[3]!=6:
                boucle(casereg)
                
 def clic1(caseclic): #clic droit

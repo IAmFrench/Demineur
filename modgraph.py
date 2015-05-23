@@ -19,6 +19,7 @@ from modcases import * #nécéssaire pour la fonction statut_case_texte()
 xygrille_liste=["-1x-1"]
 case_dec=["0"]
 
+
 def taille_cases_plein_ecran(taille_x_ecran,taille_y_ecran):
     """ calcule la taille des cases en fonction de la taille de l'écran de l'utilisateur """
     #taille_x_ecran=taille_x_ecran #Taille horizontale en px de l'écran (ex:1920)
@@ -161,10 +162,13 @@ def graph_fenetre(fonction):
                      #   if cle is not case_dec:
                        #     case_dec.append(cle)                         
                         #    case_visuel(cle)   
+        def decou(liste):
+            for cle in liste:
+                case_visuel(cle)
     
         def pointeurG(event):
             global cases_modif
-            global case_dec
+            
             if xybombe[0]==9:
                 xygrille=coord(event.x,event.y,"facile") #les coordonnées en pixels sont convertie en coordonné de case par coord
             
@@ -175,10 +179,10 @@ def graph_fenetre(fonction):
                 xygrille=coord(event.x,event.y,"expert")
             
             print("Clic gauche sur la case "+xygrille)
-            case_dec[:] = []
-            case_dec.append(xygrille)
+            camo[:] = []
+            camo.append(xygrille)
             clic0(xygrille)            
-            case_visuel(xygrille)
+            decou(camo)
             xygrille_liste[0]=xygrille #assigne a la variable xygrille_liste la case cliqué
             
         def pointeurD(event):
@@ -221,7 +225,7 @@ def graph_fenetre(fonction):
                     xycoord=[x-1,y-1] #Assemblage
                     dico_coord[point]=xycoord #Intégration dans le dico
                 a=1
-                print(xycoord)
+                #print(xycoord)
                 
             return(dico_coord) #Retourne le dico
         ###########
@@ -274,13 +278,21 @@ def graph_fenetre(fonction):
                 rectangle_bombe_perdu=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r3"),outline=couleur("defaut","r3"))
             elif propri=="drapeau":
                 rectangle_dapeau=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r5"),outline=couleur("defaut","r5"))
+                canvas_id = canvas_grille.create_text(x0, y0, anchor="nw")
+
+                canvas_grille.itemconfig(canvas_id, text="  |*")
+                #canvas_grille.insert(canvas_id, 12)
+            
             elif propri=="interrogation":
                 remarque="a faire"
                 rectangle_interro=canvas_grille.create_text(x0,y0,x1,y1,text="?")
             elif propri=="visible":
                 rectangle_visible=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r4"),outline=couleur("defaut","r4")) #fill = couleur du rectangle(intérieur), outline = couleur de la bordure du rectangle
             elif propri=="chiffre":
-                remarque="a faire"
+                rectangle_dapeau=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r4"),outline=couleur("defaut","r4"))
+                canvas_id = canvas_grille.create_text(x0, y0, anchor="nw")
+
+                canvas_grille.itemconfig(canvas_id, text="1")
                 
         def case_visuel(xygrille):
             #############
