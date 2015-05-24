@@ -277,13 +277,15 @@ def graph_fenetre(fonction):
                             
             elif propri=="interrogation":
                 remarque="a faire"
-                rectangle_interro=canvas_grille.create_text(x0,y0,x1,y1,text="?")
+                #rectangle_interro=canvas_grille.create_text(x0,y0,x1,y1,text="?") #remarque : ne marche pas
+                
             elif propri=="visible":
                 rectangle_visible=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r4"),outline=couleur("defaut","r4")) #fill = couleur du rectangle(intérieur), outline = couleur de la bordure du rectangle
             elif propri=="chiffre":
                 case=grille[xygrille]
-
-                if case[4]==1:
+                if case[4]<=-1:
+                    a="coucou" #NE SERT STRICTEMENT A RIEN
+                else :
                     canvas_id = canvas_grille.create_text(x0, y0, anchor="nw")
                     canvas_grille.itemconfig(canvas_id, text=str(case[4]+1))
 
@@ -317,7 +319,8 @@ def graph_fenetre(fonction):
             prop_possibles=["bombe","drapeau","interrogation","visible","chiffre"]
             for propri in prop_possibles:
                 #print(prop_case[propri])
-                if prop_case[propri]==True :
+                if prop_case[propri]==True or type(prop_case[propri])==int: #si vrai ou si un chiffre
+                    #print(propri)
                     haut_gauche=coordcase["haut_gauche"] #retourne une liste, (ex:[177, 107])
                     x_haut_gauche=haut_gauche[0] #prend la première valeur de la liste (ex:177)
                     y_haut_gauche=haut_gauche[1] #Prend la seconde valeure de la liste (ex:107)
@@ -325,13 +328,18 @@ def graph_fenetre(fonction):
                     x_bas_droite=bas_droite[0]
                     y_bas_droite=bas_droite[1]
                     rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,propri,xygrille) #Fonction qui crée le canvas
+                    if propri=="chiffre":
+                        if prop_case[propri]>-1:
+                            print("ok")
+                            print(propri)
+                            rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,propri,xygrille)
+                    
                     if propri=="visible" and prop_case["bombe"]==True: #si case visible et il y a une bombe alors le joueur a perdu donc case en rouge et pas encore demandé
                         if show[0]==0:
                             #fonction qui révèle toutes les bombes
                             show_all_bbs()
                             show[0]=1
                         rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,"perdu",xygrille)
-                        
         #################
         #Création Grille#
         #################
