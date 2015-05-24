@@ -218,9 +218,24 @@ def graph_fenetre(fonction):
                     xycoord=[x-1,y-1] #Assemblage
                     dico_coord[point]=xycoord #Intégration dans le dico
                 a=1
-                #print(xycoord)
-                
+                #print(xycoord)                
             return(dico_coord) #Retourne le dico
+            
+        def a_propos():
+            fenetre_a_propos=Tk()
+            frame_haut=Frame(fenetre_a_propos)
+            frame_haut.pack()
+            frame_bas=Frame(fenetre_a_propos)
+            frame_bas.pack()
+            
+            titre=Label(frame_haut,text="Demineur")
+            titre.pack()
+            description=Label(frame_haut,text="Description du démineur")
+            description.pack()            
+            button=Button(frame_bas,text="Fermer",command=fenetre_a_propos.destroy)
+            button.pack()
+            fenetre_a_propos.mainloop()
+        
         ###########
         #FrameMenu#
         ###########
@@ -251,7 +266,7 @@ def graph_fenetre(fonction):
         menu_aide.add_command(label="Documentation du demineur    F1")
         menu_aide.add_command(label="Tutoriel du démineur")
         menu_aide.add_separator()
-        menu_aide.add_command(label="A propos")        
+        menu_aide.add_command(label="A propos",command=a_propos)        
         
         bar_menu.add_cascade(label="Aide", menu=menu_aide) # ajout de menu
         fenetre_grille.config(menu=bar_menu)
