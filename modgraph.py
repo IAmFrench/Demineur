@@ -274,19 +274,19 @@ def graph_fenetre(fonction):
                 canvas_id = canvas_grille.create_text(x0, y0, anchor="nw")
 
                 canvas_grille.itemconfig(canvas_id, text="  |*")
-                #canvas_grille.insert(canvas_id, 12)
-            
+                            
             elif propri=="interrogation":
                 remarque="a faire"
                 rectangle_interro=canvas_grille.create_text(x0,y0,x1,y1,text="?")
             elif propri=="visible":
                 rectangle_visible=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r4"),outline=couleur("defaut","r4")) #fill = couleur du rectangle(intérieur), outline = couleur de la bordure du rectangle
             elif propri=="chiffre":
-                #rectangle_dapeau=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r4"),outline=couleur("defaut","r4"))
-                canvas_id = canvas_grille.create_text(x0, y0, anchor="nw")
+                case=grille[xygrille]
 
-                canvas_grille.itemconfig(canvas_id, text=gr(xygrille,"chiffre","statut"))
-        
+                if case[4]==1:
+                    canvas_id = canvas_grille.create_text(x0, y0, anchor="nw")
+                    canvas_grille.itemconfig(canvas_id, text=str(case[4]+1))
+
         def show_all_bbs():
             """ dévoile toute les bombes de la grille """
             #Ajoute les cases qui ont une  bombes dans une liste
@@ -317,7 +317,7 @@ def graph_fenetre(fonction):
             prop_possibles=["bombe","drapeau","interrogation","visible","chiffre"]
             for propri in prop_possibles:
                 #print(prop_case[propri])
-                if prop_case[propri]==True:
+                if prop_case[propri]==True :
                     haut_gauche=coordcase["haut_gauche"] #retourne une liste, (ex:[177, 107])
                     x_haut_gauche=haut_gauche[0] #prend la première valeur de la liste (ex:177)
                     y_haut_gauche=haut_gauche[1] #Prend la seconde valeure de la liste (ex:107)
