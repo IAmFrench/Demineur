@@ -158,7 +158,7 @@ def graph_fenetre(fonction):
             
         def decou(liste):
             for cle in liste:
-                case_visuel(cle)
+                case_visuel(cle,"gauche")
     
         def pointeurG(event):
             global cases_modif
@@ -191,7 +191,7 @@ def graph_fenetre(fonction):
             clic1(xygrille)
             print("Clic droit sur la case "+xygrille)
             xygrille_liste[0]=xygrille
-            case_visuel(xygrille)
+            case_visuel(xygrille,"droit")
             
         def coordonne_case(xygrille):
             global xybombe
@@ -336,7 +336,7 @@ def graph_fenetre(fonction):
             #la liste est remplie, on va donc dévoilét toutes les cases :
             #decou(liste_bombes)  
         
-        def case_visuel(xygrille):
+        def case_visuel(xygrille,clic):
             #############
             #Explication#
             #############
@@ -364,8 +364,9 @@ def graph_fenetre(fonction):
                     bas_droite=coordcase["bas_droite"] #idem que pour haut_gauche
                     x_bas_droite=bas_droite[0]
                     y_bas_droite=bas_droite[1]
-                    rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,propri,xygrille) #Fonction qui crée le canvas
-                    if propri=="chiffre":
+                    if propri!="chiffre":
+                        rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,propri,xygrille) #Fonction qui crée le canvas
+                    if propri=="chiffre" and clic=="gauche":
                         if prop_case[propri]>-1:
                             rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,propri,xygrille)
                     
