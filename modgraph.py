@@ -20,6 +20,7 @@ xygrille_liste=["-1x-1"]
 case_dec=["0"]
 liste_bombes=[] #liste de toutes les cases qui contiennent une bombe
 show=[0] #fonction show_all_bbs pas encore demandé
+version="1.0.0-beta" #version en cours du démineur
 def taille_cases_plein_ecran(taille_x_ecran,taille_y_ecran):
     """ calcule la taille des cases en fonction de la taille de l'écran de l'utilisateur """
     #taille_x_ecran=taille_x_ecran #Taille horizontale en px de l'écran (ex:1920)
@@ -220,8 +221,23 @@ def graph_fenetre(fonction):
                 a=1
                 #print(xycoord)                
             return(dico_coord) #Retourne le dico
+        
+        def ie(url):
+            """ ouvre une page web (donnée en argument) """
+            import webbrowser
+            ie = webbrowser.get(webbrowser.iexplore)
+            ie.open(url)
             
+        def ie_docu():
+            """ ouvre la page d'aide """
+            ie("https://github.com/IAmFrench/Demineur/wiki")
+        
+        def ie_tuto():
+            """ ouvre la page de tuto """
+            ie("https://github.com/IAmFrench/Demineur/wiki")
+        
         def a_propos():
+            global version #pour le n° de version
             fenetre_a_propos=Tk()
             frame_haut=Frame(fenetre_a_propos)
             frame_haut.pack()
@@ -230,8 +246,14 @@ def graph_fenetre(fonction):
             
             titre=Label(frame_haut,text="Demineur")
             titre.pack()
-            description=Label(frame_haut,text="Description du démineur")
-            description.pack()            
+            ss_titre=Label(frame_haut,text="Un démineur codé en python\n")
+            ss_titre.pack()
+            description=Label(frame_haut,text="Copyright © 2015\nAlexandre Parès,\nRaphaël Gurerin et\nAlexandre Quintais (à vérifier)\n")
+            description.pack()
+            licence=Label(frame_haut,text="Sous licence CC BY-NC-ND 3.0\n")
+            licence.pack()
+            version=Label(frame_haut,text="Vous utilisez la version "+version+" du démineur\n")
+            version.pack()
             button=Button(frame_bas,text="Fermer",command=fenetre_a_propos.destroy)
             button.pack()
             fenetre_a_propos.mainloop()
@@ -263,8 +285,8 @@ def graph_fenetre(fonction):
         
         #Groupe 3
         menu_aide=Menu(bar_menu, tearoff=0)
-        menu_aide.add_command(label="Documentation du demineur    F1")
-        menu_aide.add_command(label="Tutoriel du démineur")
+        menu_aide.add_command(label="Documentation du demineur    F1", command=ie_docu)
+        menu_aide.add_command(label="Tutoriel du démineur", command=ie_tuto)
         menu_aide.add_separator()
         menu_aide.add_command(label="A propos",command=a_propos)        
         
@@ -345,8 +367,6 @@ def graph_fenetre(fonction):
                     rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,propri,xygrille) #Fonction qui crée le canvas
                     if propri=="chiffre":
                         if prop_case[propri]>-1:
-                            print("ok")
-                            print(propri)
                             rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,propri,xygrille)
                     
                     if propri=="visible" and prop_case["bombe"]==True: #si case visible et il y a une bombe alors le joueur a perdu donc case en rouge et pas encore demandé
