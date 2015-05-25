@@ -364,7 +364,7 @@ def graph_fenetre(fonction):
                     bas_droite=coordcase["bas_droite"] #idem que pour haut_gauche
                     x_bas_droite=bas_droite[0]
                     y_bas_droite=bas_droite[1]
-                    if propri!="chiffre":
+                    if propri=="drapeau" or clic=="gauche":
                         rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,propri,xygrille) #Fonction qui crée le canvas
                     if propri=="chiffre" and clic=="gauche":
                         if prop_case[propri]>-1:
