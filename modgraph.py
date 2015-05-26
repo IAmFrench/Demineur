@@ -213,6 +213,9 @@ def graph_fenetre(fonction):
             decou(camo)
             xygrille_liste[0]=xygrille #assigne a la variable xygrille_liste la case cliqué
             gagne_ou_perdu() #on effectue le test pour savoir si le joueur a gagné ou perdu
+            if statut_partie()=="Perdue" or statut_partie()=="Gagnée":
+                fenetre_grille.destroy()
+                print("fenetre détruite")
             
         def pointeurD(event):
             if xybombe[0]==9:
@@ -228,7 +231,10 @@ def graph_fenetre(fonction):
             xygrille_liste[0]=xygrille
             case_visuel(xygrille,"droit")
             gagne_ou_perdu()
-            
+            if statut_partie()=="Perdue" or statut_partie()=="Gagnée":
+                fenetre_grille.destroy()
+                print("fenetre détruite")
+                
         def coordonne_case(xygrille):
             global xybombe
             #############
@@ -438,6 +444,14 @@ def graph_fenetre(fonction):
         canvas_grille.bind("<Button-1>",pointeurG) #Si clic gauche(.bind("<Button-1>")) alors exécute la fonction pointeurG
         canvas_grille.bind("<Button-3>",pointeurD) #Si clic droit alors exécute la fonction pointeurG
         fenetre_grille.mainloop() # boucle de la fenêtre
+        
+    def interface_graph_resultat():
+        """ fenetre résumé des scores, de la partie etc... """
+        fenetre_score=Tk()
+
+        remarque="a remplir"        
+        
+        fenetre_score.mainloop()
         
     ##############
     #Test logique#

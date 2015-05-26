@@ -49,7 +49,7 @@ graph_fenetre("grille")
 ###############################################################################
 #Étape 5 : Affichage de la fenetre en fonction du resultat du joueur
 ###############################################################################
-#graph_fenetre("resultat")
+graph_fenetre("resultat")
 
 ###############################################################################
 #Test : partie réservée au test
