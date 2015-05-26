@@ -23,6 +23,8 @@ def bombplace(xybombe):
             al=str(random.randint(1,xgrille))+'x'+str(random.randint(1,ygrille))
         gr(al,'bombe',True) 
         gr(al,'chiffre',-2)
+        from modgraph import liste_bombes
+        liste_bombes.append(al)
     print("Bombes placées")
     
             

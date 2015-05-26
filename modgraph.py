@@ -48,27 +48,30 @@ def statut_partie():
         if case_bombe in liste_cases_visibles: #si une case qui contient une bombe se trouve dans la liste des cases visibles alors le joueur a perdu
             au_cas_ou=False            
             return("Perdue") #perduE car unE partie
-    #si le joueur a perdu la fonction s'arrète là
+    #si le joueur a perdu la fonction s'arrète là    
     
     if au_cas_ou==True: #si la fonction ne s'arrète pas et que le joueur a perdu
         if len(liste_cases_visibles)!=xybombe[0]*xybombe[1]-xybombe[3]: #si la taille de la liste est différente de la taille de la grille ([0] et [1]) moins le bombre de bombes ([2])
             return("En cours")
-        elif len(liste_cases_visibles)==xybombe[0]*xybombe[1]-xybombe[3]:
+        elif len(liste_cases_visibles)==xybombe[0]*xybombe[1]-xybombe[3]: #taille de la grille mois le nombre de bombes
             return("Gagnée") #éE -> meme remarque pour pour perdue
      
 def gagne_ou_perdu():
     """ Effectue une action en fonction du résultat de la partie"""
     texte_msg="defaut"
     #Contenue de la boite de dialogue
-    if statut_partie()=="Gagnée":
+    statut=statut_partie()
+    print(statut)
+    if statut=="Gagnée":
         texte_msg="Bravo !\n Vous avez gagné\n"
         print(texte_msg)
-    if statut_partie()=="Perdue":
+    if statut=="Perdue":
         texte_msg="Vous ferais mieux la prochaine fois\n"
         print(texte_msg)
     if texte_msg!="defaut": #si le joueur a gagné ou perdu alors:
         #On va créer une boite de dialogue qui affiche le texte_msg et un bouton pour quitter
-        showinfo("Partie "+statut_partie(),texte_msg) #voilà c'est tout !
+        showinfo("Partie "+statut,texte_msg) #voilà c'est tout !
+        
 def graph_fenetre(fonction):
     """
     liste des valeur pour fonction :
@@ -372,11 +375,7 @@ def graph_fenetre(fonction):
             """ dévoile toute les bombes de la grille """
             #Ajoute les cases qui ont une  bombes dans une liste
             global liste_bombes #importe la liste
-            for case in grille:
-                if gr(case,"bombe","statut")==True:
-                    liste_bombes.append(case) #rempli la liste            
-            #la liste est remplie, on va donc dévoilét toutes les cases :
-            #decou(liste_bombes)  
+            #decou(liste_bombes)
         
         def case_visuel(xygrille,clic):
             #############
@@ -411,7 +410,10 @@ def graph_fenetre(fonction):
                     if propri=="chiffre" and clic=="gauche":
                         if prop_case[propri]>-1:
                             rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,propri,xygrille)
-                    
+                            if xygrille in liste_cases_visibles:
+                                remarque=""
+                            else:                                
+                                liste_cases_visibles.append(xygrille)
                     if propri=="visible" and prop_case["bombe"]==True: #si case visible et il y a une bombe alors le joueur a perdu donc case en rouge et pas encore demandé
                         if show[0]==0:
                             #fonction qui révèle toutes les bombes
