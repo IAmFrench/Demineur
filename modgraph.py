@@ -63,7 +63,7 @@ def gagne_ou_perdu():
     statut=statut_partie()
     print(statut)
     if statut=="Gagnée":
-        texte_msg="Bravo !\n Vous avez gagné\n"
+        texte_msg="Bravo !\nVous avez gagné\n"
         print(texte_msg)
     if statut=="Perdue":
         texte_msg="Vous ferais mieux la prochaine fois\n"
