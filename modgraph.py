@@ -9,6 +9,7 @@
 #Importation des modules
 ###############################################################################
 from tkinter import * #bibliothèque graphique
+from tkinter.messagebox import * # boîte de dialogue
 from prop import * #nécéssaire pour le fonction difficulté
 from modclic import *
 from modcases import * #nécéssaire pour la fonction statut_case_texte()
@@ -19,6 +20,7 @@ from modcases import * #nécéssaire pour la fonction statut_case_texte()
 xygrille_liste=["-1x-1"]
 case_dec=["0"]
 liste_bombes=[] #liste de toutes les cases qui contiennent une bombe
+liste_cases_visibles=[] #liste des cases visibles
 show=[0] #fonction show_all_bbs pas encore demandé
 version="1.0.0-beta" #version en cours du démineur
 def taille_cases_plein_ecran(taille_x_ecran,taille_y_ecran):
@@ -35,7 +37,38 @@ def taille_cases_plein_ecran(taille_x_ecran,taille_y_ecran):
     #Test logique#
     ##############
     #print(xybombe)    
-        
+
+def statut_partie():
+    """ renvoi le statut de la partie\n 3 possibilitées :\n-Gagnée,\n-Perdue,\n-En cours. """
+    global liste_bombes #case qui contiennent des bombes
+    global liste_cases_visibles #les cases dévoilées depuis le début
+    global xybombe #pour le nombre de cases et le bombre de bombes bref pour tout
+    au_cas_ou=True
+    for case_bombe in liste_bombes:
+        if case_bombe in liste_cases_visibles: #si une case qui contient une bombe se trouve dans la liste des cases visibles alors le joueur a perdu
+            au_cas_ou=False            
+            return("Perdue") #perduE car unE partie
+    #si le joueur a perdu la fonction s'arrète là
+    
+    if au_cas_ou==True: #si la fonction ne s'arrète pas et que le joueur a perdu
+        if len(liste_cases_visibles)!=xybombe[0]*xybombe[1]-xybombe[3]: #si la taille de la liste est différente de la taille de la grille ([0] et [1]) moins le bombre de bombes ([2])
+            return("En cours")
+        elif len(liste_cases_visibles)==xybombe[0]*xybombe[1]-xybombe[3]:
+            return("Gagnée") #éE -> meme remarque pour pour perdue
+     
+def gagne_ou_perdu():
+    """ Effectue une action en fonction du résultat de la partie"""
+    texte_msg="defaut"
+    #Contenue de la boite de dialogue
+    if statut_partie()=="Gagnée":
+        texte_msg="Bravo !\n Vous avez gagné\n"
+        print(texte_msg)
+    if statut_partie()=="Perdue":
+        texte_msg="Vous ferais mieux la prochaine fois\n"
+        print(texte_msg)
+    if texte_msg!="defaut": #si le joueur a gagné ou perdu alors:
+        #On va créer une boite de dialogue qui affiche le texte_msg et un bouton pour quitter
+        showinfo("Partie "+statut_partie(),texte_msg) #voilà c'est tout !
 def graph_fenetre(fonction):
     """
     liste des valeur pour fonction :
@@ -173,11 +206,13 @@ def graph_fenetre(fonction):
                 xygrille=coord(event.x,event.y,"expert")
             
             print("Clic gauche sur la case "+xygrille)
+            
             camo[:] = []
             camo.append(xygrille)
             clic0(xygrille)            
             decou(camo)
             xygrille_liste[0]=xygrille #assigne a la variable xygrille_liste la case cliqué
+            gagne_ou_perdu() #on effectue le test pour savoir si le joueur a gagné ou perdu
             
         def pointeurD(event):
             if xybombe[0]==9:
@@ -192,6 +227,7 @@ def graph_fenetre(fonction):
             print("Clic droit sur la case "+xygrille)
             xygrille_liste[0]=xygrille
             case_visuel(xygrille,"droit")
+            gagne_ou_perdu()
             
         def coordonne_case(xygrille):
             global xybombe

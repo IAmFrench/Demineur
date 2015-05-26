@@ -71,15 +71,21 @@ def ext_xy(caseclic,XouY):
     
 
 def clic0(caseclic): #clic gauche
+    from modgraph import liste_cases_visibles
+    #global liste_cases_visibles #-> ne marche pas (je ne sais pas pourquoi !)
     case=grille[caseclic]
-
-    
-
+    ds_liste=False #valeur par défaut, n'est pas dans la liste
     if case[1]==2: #vérifie qu'il n'y a pas de drapeau
         return()
         
     case[3]=6 #rend la case visible
-    print("case "+str(caseclic)+" est découverte")
+    print("case "+caseclic+" est découverte")
+    #ajout de la case découverte à la liste des cases découverte (liste_cases_visibles)
+    #on vérifie que la case n'est pas déja dans la liste
+    if caseclic in liste_cases_visibles :
+        ds_liste=True #dans la liste
+    if ds_liste==False: #si n'est pas dans la liste
+        liste_cases_visibles.append(caseclic)
     
     if case[4]==-2: #
         GameOver()
