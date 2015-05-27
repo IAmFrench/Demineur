@@ -51,10 +51,10 @@ def statut_partie():
     #si le joueur a perdu la fonction s'arrète là    
     
     if au_cas_ou==True: #si la fonction ne s'arrète pas et que le joueur a perdu
-        if len(liste_cases_visibles)!=xybombe[0]*xybombe[1]-xybombe[3]: #si la taille de la liste est différente de la taille de la grille ([0] et [1]) moins le bombre de bombes ([2])
-            return("En cours")
-        elif len(liste_cases_visibles)==xybombe[0]*xybombe[1]-xybombe[3]: #taille de la grille mois le nombre de bombes
+        if len(liste_cases_visibles)==xybombe[0]*xybombe[1]-xybombe[3]: #taille de la grille mois le nombre de bombes
             return("Gagnée") #éE -> meme remarque pour pour perdue
+        if len(liste_cases_visibles)!=xybombe[0]*xybombe[1]-xybombe[3]: #si la taille de la liste est différente de la taille de la grille ([0] et [1]) moins le bombre de bombes ([2])
+            return("En cours")        
      
 def gagne_ou_perdu():
     """ Effectue une action en fonction du résultat de la partie"""
