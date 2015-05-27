@@ -270,8 +270,7 @@ def graph_fenetre(fonction):
         def ie(url):
             """ ouvre une page web (donnée en argument) """
             import webbrowser
-            ie = webbrowser.get(webbrowser.iexplore)
-            ie.open(url)
+            webbrowser.open(url) #mieux car permet d'ouvrir avec le navigateur par défaut
             
         def ie_docu():
             """ ouvre la page d'aide """
