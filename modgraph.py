@@ -360,8 +360,10 @@ def graph_fenetre(fonction):
                 canvas_grille.itemconfig(canvas_id, text="|*")
                             
             elif propri=="interrogation":
-                remarque="a faire"
-                #rectangle_interro=canvas_grille.create_text(x0,y0,x1,y1,text="?") #remarque : ne marche pas
+                rectangle_dapeau=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r5"),outline=couleur("defaut","r5"))
+                canvas_id = canvas_grille.create_text(x0, y0, anchor="nw")
+
+                canvas_grille.itemconfig(canvas_id, text="?")
                 
             elif propri=="visible":
                 rectangle_visible=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r4"),outline=couleur("defaut","r4")) #fill = couleur du rectangle(intérieur), outline = couleur de la bordure du rectangle
@@ -408,7 +410,7 @@ def graph_fenetre(fonction):
                 if prop_case[propri]==True or type(prop_case[propri])==int: #si vrai ou si un chiffre
                     #print(propri)
                     
-                    if propri=="drapeau" or clic=="gauche":
+                    if propri=="drapeau" or clic=="gauche" or propri=="interrogation":
                         rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,propri,xygrille) #Fonction qui crée le canvas
                     if propri=="chiffre" and clic=="gauche":
                         if prop_case[propri]>-1:
@@ -423,7 +425,7 @@ def graph_fenetre(fonction):
                             show_all_bbs()
                             show[0]=1
                         rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,"perdu",xygrille)
-                if prop_case["drapeau"]==False and prop_case["visible"]==False:
+                if prop_case["drapeau"]==False and prop_case["visible"]==False and prop_case["interrogation"]==False:
                     rectangle_dapeau=canvas_grille.create_rectangle(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,fill=couleur("defaut","r2"),outline=couleur("defaut","r2"))
         #################
         #Création Grille#
