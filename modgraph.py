@@ -59,7 +59,7 @@ def statut_partie():
             return("En cours")        
      
 def gagne_ou_perdu():
-    """ Effectue une action en fonction du résultat de la partie"""
+    """ Effectue une action en fonction du résultat de la partie """
     texte_msg="defaut"
     #Contenue de la boite de dialogue
     statut=statut_partie()
@@ -68,7 +68,7 @@ def gagne_ou_perdu():
         texte_msg="Bravo !\nVous avez gagné\n"
         print(texte_msg)
     if statut=="Perdue":
-        texte_msg="Vous ferais mieux la prochaine fois\n"
+        texte_msg="Vous ferez mieux la prochaine fois\n"
         print(texte_msg)
     if texte_msg!="defaut": #si le joueur a gagné ou perdu alors:
         #On va créer une boite de dialogue qui affiche le texte_msg et un bouton pour quitter
@@ -95,21 +95,21 @@ def graph_fenetre(fonction):
         #actions bouton#
         ################
         def difficulte_facile():
-            xybombe.extend((9,9,10,40)) #grille 9x9, 10bombes, 40px de coté (case)
+            xybombe.extend((9,9,10,40,"facile")) #grille 9x9, 10bombes, 40px de coté (case)
             print("fonction difficulté -> facile")
             fenetre_choix_difficulte.destroy() #détruit la fenetre pour executer le code qui suit
             #print("fenetre détruite") 
             
         def difficulte_inter():
             global xybombe
-            xybombe.extend((16,16,40,35))
+            xybombe.extend((16,16,40,35,"intermediaire"))
             print("fonction difficulté -> inter")
             fenetre_choix_difficulte.destroy()
             #print("fenetre détruite")
             
         def difficulte_expert():
             global xybombe
-            xybombe.extend((30,16,99,25))
+            xybombe.extend((30,16,99,25,"expert"))
             print("fonction difficulté -> expert")
             fenetre_choix_difficulte.destroy()
             #print("fenetre détruite")
@@ -201,13 +201,13 @@ def graph_fenetre(fonction):
         def pointeurG(event):
             global cases_modif
             
-            if xybombe[0]==4:
+            if xybombe[4]=="facile":
                 xygrille=coord(event.x,event.y,"facile") #les coordonnées en pixels sont convertie en coordonné de case par coord
             
-            if xybombe[0]==16:
+            if xybombe[4]=="intermediaire":
                 xygrille=coord(event.x,event.y,"intermediaire")  
         
-            if xybombe[0]==30:
+            if xybombe[4]=="expert":
                 xygrille=coord(event.x,event.y,"expert")
             
             #print("Clic gauche sur la case "+xygrille)
