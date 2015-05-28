@@ -51,9 +51,11 @@ def statut_partie():
     #si le joueur a perdu la fonction s'arrète là    
     
     if au_cas_ou==True: #si la fonction ne s'arrète pas et que le joueur a perdu
-        if len(liste_cases_visibles)==xybombe[0]*xybombe[1]-xybombe[3]: #taille de la grille mois le nombre de bombes
+        taille_liste=len(liste_cases_visibles)
+        taille_grille=xybombe[0]*xybombe[1]
+        if taille_liste==taille_grille-xybombe[2]: #taille de la grille mois le nombre de bombes
             return("Gagnée") #éE -> meme remarque pour pour perdue
-        if len(liste_cases_visibles)!=xybombe[0]*xybombe[1]-xybombe[3]: #si la taille de la liste est différente de la taille de la grille ([0] et [1]) moins le bombre de bombes ([2])
+        else: #si la taille de la liste est différente de la taille de la grille ([0] et [1]) moins le bombre de bombes ([2])
             return("En cours")        
      
 def gagne_ou_perdu():
@@ -199,7 +201,7 @@ def graph_fenetre(fonction):
         def pointeurG(event):
             global cases_modif
             
-            if xybombe[0]==9:
+            if xybombe[0]==4:
                 xygrille=coord(event.x,event.y,"facile") #les coordonnées en pixels sont convertie en coordonné de case par coord
             
             if xybombe[0]==16:
@@ -208,7 +210,7 @@ def graph_fenetre(fonction):
             if xybombe[0]==30:
                 xygrille=coord(event.x,event.y,"expert")
             
-            print("Clic gauche sur la case "+xygrille)
+            #print("Clic gauche sur la case "+xygrille)
             
             camo[:] = []
             camo.append(xygrille)
