@@ -266,7 +266,7 @@ def graph_fenetre(fonction):
                     xycoord=[x-1,y-1] #Assemblage
                     dico_coord[point]=xycoord #Intégration dans le dico
                 a=1
-                #print(xycoord)                
+                #print(xycoord)
             return(dico_coord) #Retourne le dico
         
         def ie(url):
@@ -350,13 +350,14 @@ def graph_fenetre(fonction):
         #######################
         def rectangle_canvas(x0,y0,x1,y1,propri,xygrille):
             """ Crée le canvas rectangle """
+            global xybombe
             if propri == "perdu":
                 rectangle_bombe_perdu=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r3"),outline=couleur("defaut","r3"))
             elif propri=="drapeau":
                 rectangle_dapeau=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r5"),outline=couleur("defaut","r5"))
-                canvas_id = canvas_grille.create_text(x0, y0, anchor="nw")
+                canvas_id = canvas_grille.create_text(x0+(2/5)*xybombe[3], y0+((1/4)*xybombe[3]), anchor="nw")
 
-                canvas_grille.itemconfig(canvas_id, text="  |*")
+                canvas_grille.itemconfig(canvas_id, text="|*")
                             
             elif propri=="interrogation":
                 remarque="a faire"
