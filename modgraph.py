@@ -351,17 +351,22 @@ def graph_fenetre(fonction):
         def rectangle_canvas(x0,y0,x1,y1,propri,xygrille):
             """ Crée le canvas rectangle """
             global xybombe
+            ajustementx=(2/5)*xybombe[3]
+            if xybombe[4]=="expert":
+                ajustementy=(1/11)*xybombe[3]
+            else :
+                ajustementy=(1/4)*xybombe[3]
             if propri == "perdu":
                 rectangle_bombe_perdu=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r3"),outline=couleur("defaut","r3"))
             elif propri=="drapeau":
                 rectangle_dapeau=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r5"),outline=couleur("defaut","r5"))
-                canvas_id = canvas_grille.create_text(x0+(2/5)*xybombe[3], y0+((1/4)*xybombe[3]), anchor="nw")
+                canvas_id = canvas_grille.create_text(x0+ajustementx, y0+ajustementy, anchor="nw")
 
                 canvas_grille.itemconfig(canvas_id, text="|*")
                             
             elif propri=="interrogation":
                 rectangle_dapeau=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r5"),outline=couleur("defaut","r5"))
-                canvas_id = canvas_grille.create_text(x0+(2/5)*xybombe[3], y0+((1/4)*xybombe[3]), anchor="nw")
+                canvas_id = canvas_grille.create_text(x0+ajustementx, y0+ajustementy, anchor="nw")
 
                 canvas_grille.itemconfig(canvas_id, text="?")
                 
