@@ -14,6 +14,11 @@ camo=["-1x-1"] #Liste des cases qui ont été modifiées par une action de l'uti
 
 
 def coord(x,y,difficulty):
+   """x: coordonnées x en pixels du clic sur le canvas
+    y: coordonnées y en pixels du clic sur le canvas
+    difficulty: difficulté, nécessaire pour diviser le nombre de pixels correctement 
+    """
+   
    
    if difficulty=="facile":
         x=ceil(x/40) #divise le nombre de pixel par le nombre de pixel d'une case.
