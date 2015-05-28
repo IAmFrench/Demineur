@@ -361,6 +361,7 @@ def graph_fenetre(fonction):
                             
             elif propri=="interrogation":
                 rectangle_dapeau=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r5"),outline=couleur("defaut","r5"))
+                canvas_id = canvas_grille.create_text(x0+(2/5)*xybombe[3], y0+((1/4)*xybombe[3]), anchor="nw")
 
                 canvas_grille.itemconfig(canvas_id, text="?")
                 
