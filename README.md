@@ -6,6 +6,8 @@ Pensez à télécharger la dernière version du programme [ici](https://github.c
 ##Quelques images
 ![image](https://cloud.githubusercontent.com/assets/10818450/7811004/1fabc632-03a7-11e5-9e2b-b12a78eaa6dc.png)
 
+![image](https://cloud.githubusercontent.com/assets/10818450/7811221/f361604e-03a8-11e5-8d34-de4d9144308c.png)
+
 ##Documentation :
 https://github.com/IAmFrench/Demineur/wiki
 
