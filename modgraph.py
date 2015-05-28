@@ -398,14 +398,15 @@ def graph_fenetre(fonction):
             prop_possibles=["bombe","drapeau","interrogation","visible","chiffre"]
             for propri in prop_possibles:
                 #print(prop_case[propri])
+                haut_gauche=coordcase["haut_gauche"] #retourne une liste, (ex:[177, 107])
+                x_haut_gauche=haut_gauche[0] #prend la première valeur de la liste (ex:177)
+                y_haut_gauche=haut_gauche[1] #Prend la seconde valeure de la liste (ex:107)
+                bas_droite=coordcase["bas_droite"] #idem que pour haut_gauche
+                x_bas_droite=bas_droite[0]
+                y_bas_droite=bas_droite[1]
                 if prop_case[propri]==True or type(prop_case[propri])==int: #si vrai ou si un chiffre
                     #print(propri)
-                    haut_gauche=coordcase["haut_gauche"] #retourne une liste, (ex:[177, 107])
-                    x_haut_gauche=haut_gauche[0] #prend la première valeur de la liste (ex:177)
-                    y_haut_gauche=haut_gauche[1] #Prend la seconde valeure de la liste (ex:107)
-                    bas_droite=coordcase["bas_droite"] #idem que pour haut_gauche
-                    x_bas_droite=bas_droite[0]
-                    y_bas_droite=bas_droite[1]
+                    
                     if propri=="drapeau" or clic=="gauche":
                         rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,propri,xygrille) #Fonction qui crée le canvas
                     if propri=="chiffre" and clic=="gauche":
@@ -421,6 +422,8 @@ def graph_fenetre(fonction):
                             show_all_bbs()
                             show[0]=1
                         rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,"perdu",xygrille)
+                if prop_case["drapeau"]==False and prop_case["visible"]==False:
+                    rectangle_dapeau=canvas_grille.create_rectangle(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,fill=couleur("defaut","r2"),outline=couleur("defaut","r2"))
         #################
         #Création Grille#
         #################
