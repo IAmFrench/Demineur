@@ -14,10 +14,13 @@ camo=["-1x-1"] #Liste des cases qui ont été modifiées par une action de l'uti
 
 
 def coord(x,y,difficulty):
-   """x: coordonnées x en pixels du clic sur le canvas
-    y: coordonnées y en pixels du clic sur le canvas
-    difficulty: difficulté, nécessaire pour diviser le nombre de pixels correctement 
-    """
+   """
+   Coord est une fonction qui permet de convertir les coordonnées en pixels d'un 
+   clic en coordonnées de la case sur laquelle on à cliqué.
+   x: coordonnées x en pixels du clic sur le canvas
+   y: coordonnées y en pixels du clic sur le canvas
+   difficulty: difficulté, nécessaire pour diviser le nombre de pixels correctement 
+   """
    
    
    if difficulty=="facile":
@@ -25,48 +28,59 @@ def coord(x,y,difficulty):
         y=ceil(y/40)
         #print(x)
         #print(y)
-        xy=str(x)+"x"+str(y) #la clé de la case :) 
+        xy=str(x)+"x"+str(y) #la clé de la case 
     
    if difficulty=="intermediaire":
         x=ceil(x/35)
         y=ceil(y/35)
         #print(x)
         #print(y)
-        xy=str(x)+"x"+str(y) #la clé de la case :) 
+        xy=str(x)+"x"+str(y) #la clé de la case
 
    if difficulty=="expert":
         x=ceil(x/25)
         y=ceil(y/25)
         #print(x)
         #print(y)
-        xy=str(x)+"x"+str(y) #la clé de la case :) 
+        xy=str(x)+"x"+str(y) #la clé de la case  
 
    return(xy)
     
-def GameOver(): #appelé dans clic0
-    print("GAME OVER!!")
 
 def boucle(casereg): #appelé dans clic0
-
+    """
+    Cette fonction permet de découvrir les cases adjacentes à des cases dont la 
+    propriété chiffre est égale à -1 (ce qui correspond à une case sans bombe,
+    ni drapeau, ni chiffre...) si cette case est aussi un chiffre égale à -1,
+    alors elle va appelé clic0.
+    casereg: clé d'une case adjacente à une case vide et découverte.
+    """
     dec=grille[casereg]
     dec[3]=6
-    camo.append(casereg)
+    camo.append(casereg) #ajoute casereg à la liste camo, la liste des cases découvertes lors d'un clic
     if dec[4]==-1: #si la case est un 0 alors on exécute de nouveau clic0 pour découvrir les cases adjacente
         
         clic0(casereg)
 
 def ext_xy(caseclic,XouY):
-    if len(caseclic)==3: #extrait x y de la clé
+    """"
+    ext_xy est une fonction qui permet d'extraire de la chaine de caractère du
+    nom d'une clé (de la bibliothèque grille) le x et le y.
+    Par exemple pour caseclic="1x14" elle va renvoyer x=1 et y=14.
+    caseclic: le nom de la clé 
+    XouY: l'information que l'on souhaite extraire (soit x, soit y)
+    """
+    if len(caseclic)==3: #extrait x y de la clé si x et y sont inférieur à 10
         x=int(caseclic[0])   
         y=int(caseclic[2])
-    if len(caseclic)==5:
+    if len(caseclic)==5: #extrait x y de la clé si x et y sont supérieur à 10
         x=int(caseclic[0]+caseclic[1])  
         y=int(caseclic[3]+caseclic[4]) 
-    if len(caseclic)==4:
-        if caseclic[1]=='x':
+    if len(caseclic)==4: #extrait x y 
+        if caseclic[1]=='x': #extrait x y de la clé si x<10 et y>=10
             x=int(caseclic[0])
             y=int(caseclic[2]+caseclic[3])
-        elif caseclic[2]=='x':
+        elif caseclic[2]=='x': #extrait x y de la clé si x>=10 et y<10
             x=int(caseclic[0]+caseclic[1])
             y=int(caseclic[3])   
     if XouY=="x":
@@ -75,9 +89,17 @@ def ext_xy(caseclic,XouY):
         return(y)
     
 
-def clic0(caseclic): #clic gauche
+def clic0(caseclic):
+    """
+    clic0 est une fonction qui modifie les propriétés d'une case sur laquelle
+    on fait un clic gauche ou qui est à côté d'une case vide qui vient d'être 
+    découverte.
+    clic0 va découvrir la case puis si elle est vide ()
+    caseclic: clé de la case dont on souhaite modifier les propriétées
+    """    
+    
     from modgraph import liste_cases_visibles
-    #global liste_cases_visibles #-> ne marche pas (je ne sais pas pourquoi !)
+
     case=grille[caseclic]
     if case[1]==2: #vérifie qu'il n'y a pas de drapeau
         return()
@@ -91,9 +113,6 @@ def clic0(caseclic): #clic gauche
     else: #si n'est pas dans la liste
         liste_cases_visibles.append(caseclic)
     
-    if case[4]==-2: #
-        GameOver()
-        
     x=ext_xy(caseclic,"x")
     y=ext_xy(caseclic,'y')
 
@@ -167,12 +186,4 @@ def clic1(caseclic): #clic droit
         case[1]=2
         print("il y a un drapeau sur la case")
         
-"""
-graph_fenetre("choix_difficulte")
-cases(xybombe[0],xybombe[1])  
-bombplace(xybombe)
-bombchiffre() 
-clic0("9x9")
-coord(52,38,"facile")  
-print(coord(52,38,"facile")  )
-"""
+
