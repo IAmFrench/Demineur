@@ -4,7 +4,6 @@
 #Module graphique
 #Objectif : créations des interfaces du programme, interraction avec l'utilisateur
 
-
 ###############################################################################
 #Importation des modules
 ###############################################################################
@@ -23,6 +22,13 @@ liste_bombes=[] #liste de toutes les cases qui contiennent une bombe
 liste_cases_visibles=[] #liste des cases visibles
 show=[0] #fonction show_all_bbs pas encore demandé
 version="1.0.0" #version en cours du démineur
+def dans_la_liste(xygrille):
+    """ permet de vérifier si une case (xygrille) se trouve dans la liste """
+    if xygrille in grille.keys(): #dans la liste, pas de problème
+        return(True)
+    else : #pas dans la liste
+        print("Attention la case n'est pas dans la liste")
+        return(False)
 
 def statut_partie():
     """ renvoi le statut de la partie\n 3 possibilités :\n-Gagnée,\n-Perdue,\n-En cours. """
@@ -148,8 +154,6 @@ def graph_fenetre(fonction):
             print("fonction difficulté -> expert")
             fenetre_choix_difficulte.destroy()
             print("fenêtre choix détruite")
-            
-
         
         ########
         #Frames#
@@ -198,7 +202,6 @@ def graph_fenetre(fonction):
         #######
         frame_grille=Frame(fenetre_grille) #créer le cadre qui contiendra la grille (canvas)
         
-        
         ###########
         #Fonctions#
         ###########
@@ -229,14 +232,15 @@ def graph_fenetre(fonction):
                 xygrille=coord(event.x,event.y,"expert")
             
             camo[:] = []
-            camo.append(xygrille)
-            clic0(xygrille)            
-            decou(camo)
-            xygrille_liste[0]=xygrille #assigne a la variable xygrille_liste la case cliqué
-            gagne_ou_perdu() #on effectue le test pour savoir si le joueur a gagné ou perdu
-            if statut_partie()=="Perdue" or statut_partie()=="Gagnée":
-                fenetre_grille.destroy()
-                print("fenetre détruite")
+            if dans_la_liste(xygrille)==True: #si la case est dans la liste alors exécute le reste de la fonction                
+                camo.append(xygrille)
+                clic0(xygrille)            
+                decou(camo)
+                xygrille_liste[0]=xygrille #assigne a la variable xygrille_liste la case cliqué
+                gagne_ou_perdu() #on effectue le test pour savoir si le joueur a gagné ou perdu
+                if statut_partie()=="Perdue" or statut_partie()=="Gagnée":
+                    fenetre_grille.destroy()
+                    print("fenetre détruite")
             
         def pointeurD(event):
             """ fonction qui est appellé lorsque qu'il y a un clic droit dans le canvas_grille """
@@ -248,14 +252,15 @@ def graph_fenetre(fonction):
             
             if xybombe[0]==30:
                 xygrille=coord(event.x,event.y,"expert")
-            clic1(xygrille)
-            print("Clic droit sur la case "+xygrille)
-            xygrille_liste[0]=xygrille
-            case_visuel(xygrille,"droit")
-            gagne_ou_perdu()
-            if statut_partie()=="Perdue" or statut_partie()=="Gagnée":
-                fenetre_grille.destroy()
-                print("fenetre détruite")
+            if dans_la_liste(xygrille)==True: #si la case est dans la liste alors exécute le reste de la fonction 
+                clic1(xygrille)
+                print("Clic droit sur la case "+xygrille)
+                xygrille_liste[0]=xygrille
+                case_visuel(xygrille,"droit")
+                gagne_ou_perdu()
+                if statut_partie()=="Perdue" or statut_partie()=="Gagnée":
+                    fenetre_grille.destroy()
+                    print("fenetre détruite")
                 
         def coordonne_case(xygrille):
             """ renvoi sous forme d'un dictionnaire les coordonnées aux extrémités d'une case donnée (xygrille) """
