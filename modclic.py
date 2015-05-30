@@ -94,7 +94,10 @@ def clic0(caseclic):
     clic0 est une fonction qui modifie les propriétés d'une case sur laquelle
     on fait un clic gauche ou qui est à côté d'une case vide qui vient d'être 
     découverte.
-    clic0 va découvrir la case puis si elle est vide ()
+    clic0 va vérifier si la case n'a pas un drapeau dans quel cas elle ne fera 
+    rien, sinon elle découvrir la case, puis si elle est vide (ni bombe, ni 
+    chiffre) elle va découvrir les cases adjacentes en appellant la fonction 
+     boucle. Si une de c'est case adjacente est vide boucle va appellé clic0.
     caseclic: clé de la case dont on souhaite modifier les propriétées
     """    
     
@@ -106,84 +109,91 @@ def clic0(caseclic):
         
     case[3]=6 #rend la case visible
     print("case "+caseclic+" est découverte")
-    #ajout de la case découverte à la liste des cases découverte (liste_cases_visibles)
-    #on vérifie que la case n'est pas déja dans la liste
-    if caseclic in liste_cases_visibles :
+
+    #ajout de la case découverte à la liste des cases découverte (liste_cases_visibles)    
+    if caseclic in liste_cases_visibles :#on vérifie que la case n'est pas déja dans la liste
         remarque=""
     else: #si n'est pas dans la liste
         liste_cases_visibles.append(caseclic)
     
-    x=ext_xy(caseclic,"x")
-    y=ext_xy(caseclic,'y')
+    x=ext_xy(caseclic,"x") #on à besoin de connaitre la valeur X et Y des coordonnés
+    y=ext_xy(caseclic,'y') #de la case sur la grille, on les extraits donc de la clé
+    # x et y font nous permettrent de calculer les coordonnées des cases adjacentes.
 
-    xgrille=xybombe[0]
+    xgrille=xybombe[0] #on extrait de la liste xybombe la longueur et la largeur de la grille
     ygrille=xybombe[1]
 
     if case[4]==-1:  #si la case est un 0 on va regarder toutes les cases autours pour les découvrirs
-        casereg=str(x-1)+"x"+str(y)
-        if x-1!=0:
+        
+        casereg=str(x-1)+"x"+str(y) # coordonnées de la case à droite
+        if x-1!=0:                  #on vérifie avec ce texte que cette case existe
            visi=grille[casereg]
-           if visi[3]!=6:
+           if visi[3]!=6:  #on vérifie que la case n'est pas déjà découverte pour éviter de créer une boucle infinie
                boucle(casereg)
        
-        casereg=str(x+1)+"x"+str(y) 
-        if x+1!=(int(xgrille)+1):
+        casereg=str(x+1)+"x"+str(y) # coordonnées de la case à gauche
+        if x+1!=(int(xgrille)+1):  #on vérifie avec ce texte que cette case existe 
            visi=grille[casereg]
-           if visi[3]!=6:
+           if visi[3]!=6:   #on vérifie que la case n'est pas déjà découverte pour éviter de créer une boucle infinie
                boucle(casereg)
         
         
-        casereg=str(x)+"x"+str(y+1) 
-        if y+1!=(int(ygrille)+1):
+        casereg=str(x)+"x"+str(y+1) # coordonnées de la case au dessous
+        if y+1!=(int(ygrille)+1):   #on vérifie avec ce texte que cette case existe
            visi=grille[casereg]
-           if visi[3]!=6:
+           if visi[3]!=6:   #on vérifie que la case n'est pas déjà découverte pour éviter de créer une boucle infinie
                boucle(casereg)
               
           
-        casereg=str(x)+"x"+str(y-1) 
-        if y-1!=0:
+        casereg=str(x)+"x"+str(y-1) # coordonnées de la case au dessus
+        if y-1!=0:      #on vérifie avec ce texte que cette case existe
            visi=grille[casereg]
-           if visi[3]!=6:
+           if visi[3]!=6:   #on vérifie que la case n'est pas déjà découverte pour éviter de créer une boucle infinie
                boucle(casereg)
             
-        casereg=str(x-1)+"x"+str(y-1) 
-        if y-1!=0 and x-1!=0:
+        casereg=str(x-1)+"x"+str(y-1) # coordonnées de la case en haut à gauche
+        if y-1!=0 and x-1!=0:   #on vérifie avec ce texte que cette case existe
            visi=grille[casereg]
-           if visi[3]!=6:
+           if visi[3]!=6:   #on vérifie que la case n'est pas déjà découverte pour éviter de créer une boucle infinie
                boucle(casereg)
         
-        casereg=str(x+1)+"x"+str(y+1) 
-        if y+1!=(int(ygrille)+1) and x+1!=(int(xgrille)+1):
+        casereg=str(x+1)+"x"+str(y+1) # coordonnées de la case en bas à droite
+        if y+1!=(int(ygrille)+1) and x+1!=(int(xgrille)+1): #on vérifie avec ce texte que cette case existe
            visi=grille[casereg]
-           if visi[3]!=6:
+           if visi[3]!=6:   #on vérifie que la case n'est pas déjà découverte pour éviter de créer une boucle infinie
                boucle(casereg)
           
-        casereg=str(x+1)+"x"+str(y-1) 
-        if y-1!=0 and x+1!=(int(xgrille)+1):
+        casereg=str(x+1)+"x"+str(y-1) # coordonnées de la case en haut à doite
+        if y-1!=0 and x+1!=(int(xgrille)+1):    #on vérifie avec ce texte que cette case existe
            visi=grille[casereg]
-           if visi[3]!=6:              
+           if visi[3]!=6:  #on vérifie que la case n'est pas déjà découverte pour éviter de créer une boucle infinie            
                boucle(casereg)
                
-        casereg=str(x-1)+"x"+str(y+1) 
-        if y+1!=(int(ygrille)+1) and x-1!=0:
+        casereg=str(x-1)+"x"+str(y+1) # coordonnées de la case en bas à gauche
+        if y+1!=(int(ygrille)+1) and x-1!=0:    #on vérifie avec ce texte que cette case existe
            visi=grille[casereg]
-           if visi[3]!=6:
+           if visi[3]!=6:   #on vérifie que la case n'est pas déjà découverte pour éviter de créer une boucle infinie
                boucle(casereg)
                
 def clic1(caseclic): #clic droit
+    """
+    clic1 est une fonction qui modifie les propriétés d'une case lors d'un clic
+    droit de souris.
+    caseclic: clé de la case sur laquelle on a fait un clic droit
+    """
     case=grille[caseclic]
-    if case[3]==6:
+    if case[3]==6: #si la case est découverte on  ne change aucune propriété
         return()
     
     if case[2]==4: #si il y a un ? sur la case
-        case[2]=5
+        case[2]=5 #on l'enléve (la case est donc à son statue d'origine)
         print("il n'y plus rien sur la case")
     elif case[1]==2: #si il y a un drapeau sur la case
-        case[2]=4
-        case[1]=3
+        case[2]=4   #on l'enléve 
+        case[1]=3  #puis on met un ?
         print("il y a un ? sur la case")
     elif case[1]==3: #si il n'y a pas de drapeau sur la case
-        case[1]=2
+        case[1]=2   #on en met 1
         print("il y a un drapeau sur la case")
         
 
