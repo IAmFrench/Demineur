@@ -23,6 +23,7 @@ liste_cases_visibles=[] #liste des cases visibles
 show=[0] #fonction show_all_bbs pas encore demandé
 version="1.0.0" #version en cours du démineur
 p_couleur="defaut"
+px_case=[0]
 def dans_la_liste(xygrille):
     """ permet de vérifier si une case (xygrille) se trouve dans la liste """
     if xygrille in grille.keys(): #dans la liste, pas de problème
@@ -190,11 +191,14 @@ def graph_fenetre(fonction):
         ygrille=xybombe[1] #nombre de cases verticalement (y)
         L_H_case_px=xybombe[3] #bord d'une case en px
         fenetre_taille=str(15+(xgrille*L_H_case_px))+"x"+str(ygrille*L_H_case_px+15) #renvoi du texte ex: "300x800"
-        
         #########
         #Fenêtre#
         #########
         fenetre_grille = Tk() #création de la fenetre
+        
+        taille_x_ecran=fenetre_grille.winfo_screenwidth() #Taille horizontale de l'écran
+        taille_y_ecran=fenetre_grille.winfo_screenheight() #Taille verticale de l'écran
+        
         fenetre_grille.title(fenetre_titre) #assignation du titre de la fenetre
         fenetre_grille.geometry(fenetre_taille) #défini la taille en px de la fenetre
         
@@ -302,15 +306,60 @@ def graph_fenetre(fonction):
             
         def plein_ecran_F11():
             """ Active le plein écran """
+            global xybombe
+            global px_case
             if statut_plein_ecran[0]==True: #plein écran déjà activé
                 fenetre_grille.attributes("-fullscreen", 0) #donc on supprime le plein écran
                 statut_plein_ecran[0]=False
+                canvas_grille.delete(ALL) #réinitialise le canvas (le contenu)
+                canvas_grille.config(width=xgrille*L_H_case_px-1, height=ygrille*L_H_case_px-1) #on lui redonne sa taille initiale
+                xybombe[3]=px_case[0]
+                m_canvas_grille() #on réaffiche la grille
                 print("Mode plein écran désactivé")
             else :
                 fenetre_grille.attributes("-fullscreen", 1)
-                statut_plein_ecran[0]=True
+                statut_plein_ecran[0]=True #on indique a la variable que le mode plein ecran est activé
+                canvas_grille.delete(ALL) #réinitialise le canvas (le contenu)
+                tailles=taille_px_canvas_plein_ecran() #on importe les tailles
+                taille_canvas_x=tailles["x"]
+                taille_canvas_y=tailles["y"]
+                espace_canvas_fenetre_x=tailles["espace_x"] #c'est l'espace qui sépare le canvas de la fenetre à gauche et à droite
+                espace_canvas_fenetre_x=tailles["espace_y"] #c'est l'espace qui sépare le canvas de la fenetre en haut et en bas
+                
+                canvas_grille.config(width=taille_canvas_x, height=taille_canvas_y)
+                m_canvas_grille() #on réaffiche la grille
+                
                 print("Mode plein écran activé")
-        
+                
+        def taille_px_canvas_plein_ecran():
+            """ Renvoi un dictionnaire avec 4 éléments tailles en px:
+            - la taille du canvas x (horizontale) -> x
+            - la taille du canvas y (vertical) -> y
+            - l'écart x entre le canvas et la fenetre -> espace_x
+            - l'écart y entre le canvas et la fenetre -> espace_y"""
+            #taille_x_ecran=taille_x_ecran #taille x en px de l'écran ex:1920
+            #taille_y_ecran=taille_y_ecran #taille y en px de l'écran ex:1080
+            global xybombe
+            global px_case
+            
+            rx=taille_x_ecran/xybombe[0]
+            ry=taille_y_ecran/xybombe[1]
+            if rx>ry:
+                r=int(ry)-5
+            else :
+                r=int(rx)-5
+            px_case[0]=xybombe[3]
+            xybombe[3]=r
+            
+            dico_tailles={}
+            
+            dico_tailles["x"]=r*xybombe[0] #multiplie la taille en px d'une case par le nombre de cases
+            dico_tailles["y"]=r*xybombe[1]
+            dico_tailles["espace_x"]=int((taille_x_ecran-dico_tailles["x"])/2) #divise la taille de l'écran par la taille du canvas le tout divisé par 2
+            dico_tailles["espace_y"]=int((taille_y_ecran-dico_tailles["y"])/2)
+            
+            return(dico_tailles)
+            
         ###########
         #FrameMenu#
         ###########
@@ -467,24 +516,29 @@ def graph_fenetre(fonction):
             """ lance la fonction plein ecran si la touche F11 est enfoncé """
             plein_ecran_F11()
             
+        def m_canvas_grille() :
+            for h_ligne in range (ygrille+1): #Creation des lignes horizontales        
+                x_debut=0 #coordonné x du point de départ
+                x_fin=xybombe[3]*xgrille #coordonné x du point d'arrivé
+                y_debut=y_fin=h_ligne*xybombe[3] #coordonné y du point de départ et d'arrivé (égaux car c'est une droite horizontale)
+                canvas_grille.create_line(x_debut,y_debut,x_fin,y_fin,fill=couleur(p_couleur,"r1")) #crée la ligne du point de départ au point d'arrivé
+            
+            for v_ligne in range(xgrille+1): #creation des lignes verticales    
+                x_debut=x_fin=v_ligne*xybombe[3]
+                y_debut=0
+                y_fin=xybombe[3]*ygrille
+            
+                canvas_grille.create_line(x_debut,y_debut,x_fin,y_fin,fill=couleur(p_couleur,"r1")) #crée la ligne
+            
+            canvas_grille.create_line(0,2,L_H_case_px*xgrille,2,fill=couleur(p_couleur,"r1")) #ligne horizontale haut
+            canvas_grille.create_line(2,0,2,L_H_case_px*ygrille,fill=couleur(p_couleur,"r1")) #ligne verticale gauche
+            
+            for cases in grille.keys():
+                decou(cases.split())
         #################
         #Création Grille#
         #################
-        for h_ligne in range (ygrille+1): #Creation des lignes horizontales        
-            x_debut=0 #coordonné x du point de départ
-            x_fin=L_H_case_px*xgrille #coordonné x du point d'arrivé
-            y_debut=y_fin=h_ligne*L_H_case_px #coordonné y du point de départ et d'arrivé (égaux car c'est une droite horizontale)
-            canvas_grille.create_line(x_debut,y_debut,x_fin,y_fin,fill=couleur(p_couleur,"r1")) #crée la ligne du point de départ au point d'arrivé
-            
-        for v_ligne in range(xgrille+1): #creation des lignes verticales    
-            x_debut=x_fin=v_ligne*L_H_case_px
-            y_debut=0
-            y_fin=L_H_case_px*ygrille
-        
-            canvas_grille.create_line(x_debut,y_debut,x_fin,y_fin,fill=couleur(p_couleur,"r1")) #crée la ligne
-        
-        canvas_grille.create_line(0,2,L_H_case_px*xgrille,2,fill=couleur(p_couleur,"r1")) #ligne horizontale haut
-        canvas_grille.create_line(2,0,2,L_H_case_px*ygrille,fill=couleur(p_couleur,"r1")) #ligne verticale gauche
+        m_canvas_grille() #remplie la grille
         
         frame_grille.pack(side=TOP,padx=5,pady=5) #(5px de côté)
         
