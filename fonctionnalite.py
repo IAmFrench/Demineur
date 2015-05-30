@@ -3,7 +3,7 @@
 Created on Sat May 30 17:25:19 2015
 
 @author: Alexandre
-Bouts de code non utilisé, mais utliles pour toute amélioration du programme
+Bouts de code non utilisés, mais utiles pour toute amélioration du programme
 """
 
 def taille_cases_plein_ecran(taille_x_ecran,taille_y_ecran):
@@ -14,7 +14,7 @@ def taille_cases_plein_ecran(taille_x_ecran,taille_y_ecran):
     ###########################
     #Importation des variables#
     ###########################
-    global xybombe #Nécéssaire pour savoir le nombre de case en fonction de la difficulté choisie
+    global xybombe #Nécéssaire pour savoir le nombre de cases en fonction de la difficulté choisie
     
     ##############
     #Test logique#
