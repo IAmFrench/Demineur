@@ -76,7 +76,11 @@ def ie_docu():
 def ie_tuto():
     """ ouvre la page de tuto """
     ie("https://github.com/IAmFrench/Demineur/wiki")
-
+    
+def ie_authors():
+    """ ouvre la page des auteurs """
+    ie("https://github.com/IAmFrench/Demineur/blob/master/CONTRIBUTORS.md")
+    
 def a_propos():
     """ ouvre une fenetre graphique a propos du programme """
     global version #pour le n° de version
@@ -317,7 +321,8 @@ def graph_fenetre(fonction):
         menu_aide.add_command(label="Documentation du demineur    F1", command=ie_docu)
         menu_aide.add_command(label="Tutoriel du démineur", command=ie_tuto)
         menu_aide.add_separator()
-        menu_aide.add_command(label="A propos",command=a_propos)        
+        menu_aide.add_command(label="A propos",command=a_propos) 
+        menu_aide.add_command(label="Qui m'a fait ?",command=ie_authors)
         
         bar_menu.add_cascade(label="Aide", menu=menu_aide) # ajout de menu
         fenetre_grille.config(menu=bar_menu)
