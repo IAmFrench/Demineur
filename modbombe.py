@@ -14,7 +14,7 @@ from modcases import * # pour la fonction gr()
 #fonctionnalitées du module du module
 ###############################################################################
 
-def bombplace(xybombe):
+def bombplace(xybombe): #appellé dans core
     """xybombe: liste contenant la taille de la grille et le nombre de bombe
     Place les bombes de façon aléatoire dans la bibliothéque"""
     xgrille=xybombe[0] #extraction des différentes données de xybombe
@@ -32,7 +32,7 @@ def bombplace(xybombe):
     
             
 
-def num(grillereg,xyg): 
+def num(grillereg,xyg):  #appellée dans bombchiffre
     """xyg: case dont on vérifie le voisinage pour modifier son chiffre
     grillereg: case voisine dont regarde les propriétés pour voir si on doit ajouter 1 a xyg
     Ajoute 1 à la case xyg si il y a une bombe dans la case grillereg"""
@@ -50,7 +50,7 @@ def num(grillereg,xyg):
            defi=grille[xyg]
            defi[4]=-2
 
-def bombchiffre():
+def bombchiffre(): #appellée dans core
     """Cette fonction va regarder les cases adjacentes à chaques clé"""
 
     xgrille=xybombe[0]

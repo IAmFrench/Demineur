@@ -210,8 +210,6 @@ def graph_fenetre(fonction):
             if xybombe[4]=="expert":
                 xygrille=coord(event.x,event.y,"expert")
             
-            #print("Clic gauche sur la case "+xygrille)
-            
             camo[:] = []
             camo.append(xygrille)
             clic0(xygrille)            
