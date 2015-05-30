@@ -299,6 +299,17 @@ def graph_fenetre(fonction):
                 a=1
                 
             return(dico_coord) #Retourne le dico
+            
+        def plein_ecran_F11():
+            """ Active le plein écran """
+            if statut_plein_ecran[0]==True: #plein écran déjà activé
+                fenetre_grille.attributes("-fullscreen", 0) #donc on supprime le plein écran
+                statut_plein_ecran[0]=False
+                print("Mode plein écran désactivé")
+            else :
+                fenetre_grille.attributes("-fullscreen", 1)
+                statut_plein_ecran[0]=True
+                print("Mode plein écran activé")
         
         ###########
         #FrameMenu#
@@ -315,7 +326,7 @@ def graph_fenetre(fonction):
         bar_menu.add_cascade(label="Fichier", menu=menu_fichier) # ajout du menu
         
         menu_affichage=Menu(bar_menu, tearoff=0)
-        menu_affichage.add_command(label="Mode plein écran    F11") #, command=plein_ecran_F11
+        menu_affichage.add_command(label="Mode plein écran    F11", command=plein_ecran_F11)
         
         #Groupe 2
         #menu_choix_couleur=Menu(menu_affichage, tearoff=0)
@@ -323,7 +334,7 @@ def graph_fenetre(fonction):
         #menu_choix_couleur.add_command(label="DarkBlue Red")
         #menu_choix_couleur.add_command(label="Flat design colors")
         #menu_affichage.add_cascade(label="Choix couleur", menu=menu_choix_couleur, underline=0) #sous-menu, surligné quand sélectionné
-        #bar_menu.add_cascade(label="Affichage", menu=menu_affichage)
+        bar_menu.add_cascade(label="Affichage", menu=menu_affichage)
         
         #Groupe 3
         menu_aide=Menu(bar_menu, tearoff=0)
@@ -438,6 +449,7 @@ def graph_fenetre(fonction):
                     rectangle_dapeau=canvas_grille.create_rectangle(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,fill=couleur(p_couleur,"r2"),outline=couleur(p_couleur,"r2"))
             
             ligne_a_faire(xygrille) #Trace ou non les lignes h et v
+            
         def l_h_et_l_v():
             """ Créé une ligne horizontale en haut du canvas et une ligne verticale à gauche """
             canvas_grille.create_line(0,2,L_H_case_px*xgrille,2,fill=couleur(p_couleur,"r1")) #ligne horizontale haut
@@ -450,7 +462,11 @@ def graph_fenetre(fonction):
             
             if xcase or ycase =="1": #Test logique
                 l_h_et_l_v()
-                
+            
+        def f11(event):
+            """ lance la fonction plein ecran si la touche F11 est enfoncé """
+            plein_ecran_F11()
+            
         #################
         #Création Grille#
         #################
@@ -478,7 +494,7 @@ def graph_fenetre(fonction):
         canvas_grille.bind("<Button-1>",pointeurG) #Si clic gauche(.bind("<Button-1>")) alors exécute la fonction pointeurG
         canvas_grille.bind("<Button-3>",pointeurD) #Si clic droit alors exécute la fonction pointeurG
         fenetre_grille.bind("<F1>",f1_ie_docu) #evenement placé sour la fenetre principale car c'est sur elle qu'est enregistré la touche F1
-                
+        fenetre_grille.bind("<F11>",f11) #Active/désactive le plein écran
         fenetre_grille.mainloop() # boucle de la fenêtre
         
     def interface_graph_resultat():

@@ -15,7 +15,7 @@ grille={}
 #difficulte=""
 nbbombe=-1
 xybombe=[]
-statut_plein_ecran=False #Plein ecran désactivé par défaut
+statut_plein_ecran=[False] #Plein ecran désactivé par défaut
 mode_presentation=False #Active le mode de présentation
 #####################
 #Couleurs par défaut#
