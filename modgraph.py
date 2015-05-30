@@ -22,7 +22,7 @@ case_dec=["0"]
 liste_bombes=[] #liste de toutes les cases qui contiennent une bombe
 liste_cases_visibles=[] #liste des cases visibles
 show=[0] #fonction show_all_bbs pas encore demandé
-version="1.0.0-beta" #version en cours du démineur
+version="1.0.0" #version en cours du démineur
 
 def statut_partie():
     """ renvoi le statut de la partie\n 3 possibilités :\n-Gagnée,\n-Perdue,\n-En cours. """
