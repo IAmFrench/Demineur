@@ -4,13 +4,12 @@
 #Module Cases
 #Usage dictionnaire :
 #http://openclassrooms.com/courses/apprenez-a-programmer-en-python/les-dictionnaires-2
-#Explication détaillé du modulen :
+#Explication détaillé du module :
 #https://github.com/IAmFrench/Demineur/wiki/Fonction-modcases
 
 ###############################################################################
 #Importation des modules
 ###############################################################################
-#f.rom modgrille import * #besoin du dico grille+tailles
 from prop import *
 
 ###############################################################################
@@ -24,43 +23,21 @@ def cases(xgrille,ygrille):
             grille[ncase]=[1,3,5,7,-1]#ni bombe,ni drapeau, ni ? et ni dévoilée
     print("Grille créé")
 
-"""
->>
-    Rappels
->>
-"""
-"""
-liste des diff. prop :
-    -bombe
-    -drapeau
-    -interrogation
-    -visible
-    -chiffre
-Rappel (o=oui/n=non):
-    obombe=0
-    nbombe=1
-    odrapeau=2
-    ndrapeau=3
-    ointerro=4
-    ninterro=5
-    ovisible=6
-    nvisible=7
-    chiffre=un entier entre -1 et 7 (nb de bombe-1) ou -2 si il y a une bombe.
-Statuts :
-    true
-    False
-    Statut
-    (ou chiffre pour chiffre)
-"""
-
-
-
-"""
->>
-    Fonction gr
->>
-"""
 def gr(xygrille,prop,statut):
+    """ Fonction qui modifie les valeurs/propriétés des cases de la grille """
+    """ Liste des propriétés:
+        -bombe
+        -drapeau
+        -interrogation
+        -visible
+        -chiffre
+    
+        Liste des statuts :
+        - True -> bool
+        - False -> bool
+        - Statut -> str
+        - (ou chiffre pour chiffre) -> int
+    """
     definition=grille[xygrille] #charge les propriété de la clé demandé
     ###################
     ###Les variables###
@@ -118,7 +95,6 @@ def gr(xygrille,prop,statut):
         elif prop=='chiffre':
             return(definition[4]) #ENTIER
     
-    
     """
     >>
         Modifie le statut d'une case (non->oui)
@@ -145,7 +121,6 @@ def gr(xygrille,prop,statut):
                     if a==7:
                         propriete[3]=6
         grille[xygrille]=propriete #met à jours la définition de la clef
-
     
     """
     >>

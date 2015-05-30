@@ -26,7 +26,7 @@ def bombplace(xybombe): #appellé dans core
         gr(al,'bombe',True) #Modifie les propriétés de la clé choisie 
         gr(al,'chiffre',-2) #Modifie les propriétés de la clé choisie
         from modgraph import liste_bombes
-        liste_bombes.append(al) #ajoute la clé ou on vient de mettre une bombe à la liste des clé contenant une bombe
+        liste_bombes.append(al) #ajoute la clé ou on vient de mettre une bombe à la liste des clés contenant une bombe
     print("Bombes placées")
 
 def num(grillereg,xyg):  #appellée dans bombchiffre
