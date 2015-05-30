@@ -73,7 +73,24 @@ def gagne_ou_perdu():
     if texte_msg!="defaut": #si le joueur a gagné ou perdu alors:
         #On va créer une boite de dialogue qui affiche le texte_msg et un bouton pour quitter
         showinfo("Partie "+statut,texte_msg) #voilà c'est tout !
-        
+
+def f1_ie_docu(event): #nécéssaire de créer cette focntion car ie_docu ne prend pas en argument un évement
+    """ si touche F1 enfoncé ouvre lapage d'aide (documentation) """
+    ie_docu()
+    
+def ie(url):
+    """ ouvre une page web (donnée en argument) """
+    import webbrowser
+    webbrowser.open(url) #mieux car permet d'ouvrir avec le navigateur par défaut
+    
+def ie_docu():
+    """ ouvre la page d'aide """
+    ie("https://github.com/IAmFrench/Demineur/wiki")
+
+def ie_tuto():
+    """ ouvre la page de tuto """
+    ie("https://github.com/IAmFrench/Demineur/wiki")
+
 def graph_fenetre(fonction):
     """
     liste des valeur pour fonction :
@@ -267,19 +284,6 @@ def graph_fenetre(fonction):
                 #print(xycoord)
             return(dico_coord) #Retourne le dico
         
-        def ie(url):
-            """ ouvre une page web (donnée en argument) """
-            import webbrowser
-            webbrowser.open(url) #mieux car permet d'ouvrir avec le navigateur par défaut
-            
-        def ie_docu():
-            """ ouvre la page d'aide """
-            ie("https://github.com/IAmFrench/Demineur/wiki")
-        
-        def ie_tuto():
-            """ ouvre la page de tuto """
-            ie("https://github.com/IAmFrench/Demineur/wiki")
-        
         def a_propos():
             global version #pour le n° de version
             fenetre_a_propos=Tk()
@@ -455,6 +459,7 @@ def graph_fenetre(fonction):
         ##############
         canvas_grille.bind("<Button-1>",pointeurG) #Si clic gauche(.bind("<Button-1>")) alors exécute la fonction pointeurG
         canvas_grille.bind("<Button-3>",pointeurD) #Si clic droit alors exécute la fonction pointeurG
+        fenetre_grille.bind("<F1>",f1_ie_docu) #evenement placé sour la fenetre principale car c'est sur elle qu'est enregistré la touche F1
         fenetre_grille.mainloop() # boucle de la fenêtre
         
     def interface_graph_resultat():
