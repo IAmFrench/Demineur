@@ -6,8 +6,7 @@
 ###############################################################################
 #Importation des modules
 ###############################################################################
-#from prop import *
-import random
+import random #pour générer un nb aléatoire lors du placement des bombes
 from modcases import * # pour la fonction gr()
 
 ###############################################################################
@@ -29,8 +28,6 @@ def bombplace(xybombe): #appellé dans core
         from modgraph import liste_bombes
         liste_bombes.append(al) #ajoute la clé ou on vient de mettre une bombe à la liste des clé contenant une bombe
     print("Bombes placées")
-    
-            
 
 def num(grillereg,xyg):  #appellée dans bombchiffre
     """xyg: case dont on vérifie le voisinage pour modifier son chiffre
@@ -91,5 +88,3 @@ def bombchiffre(): #appellée dans core
             if y+1!=(int(ygrille)+1) and x-1!=0:
                 num(grillereg,xyg)
     print('chiffres placés')
-            
-    #return(grille)

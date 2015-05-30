@@ -6,7 +6,7 @@
 #    Raphaël Guerin
 #    Alexandre Quintais
 #
-#Dernières version disponible sur le repo Github:
+#Dernière version disponible sur le repo Github:
 #https://github.com/IAmFrench/Demineur
 #
 #sous Licence CC BY-NC-ND 3.0:

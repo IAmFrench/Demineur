@@ -23,23 +23,9 @@ liste_bombes=[] #liste de toutes les cases qui contiennent une bombe
 liste_cases_visibles=[] #liste des cases visibles
 show=[0] #fonction show_all_bbs pas encore demandé
 version="1.0.0-beta" #version en cours du démineur
-def taille_cases_plein_ecran(taille_x_ecran,taille_y_ecran):
-    """ calcule la taille des cases en fonction de la taille de l'écran de l'utilisateur """
-    #taille_x_ecran=taille_x_ecran #Taille horizontale en px de l'écran (ex:1920)
-    #taille_y_ecran=taille_y_ecran #Taille verticale en px de l'écran (ex:1080)
-    
-    ###########################
-    #Importation des variables#
-    ###########################
-    global xybombe #Nécéssaire pour savoir le nombre de case en fonction de la difficulté choisie
-    
-    ##############
-    #Test logique#
-    ##############
-    #print(xybombe)    
 
 def statut_partie():
-    """ renvoi le statut de la partie\n 3 possibilitées :\n-Gagnée,\n-Perdue,\n-En cours. """
+    """ renvoi le statut de la partie\n 3 possibilités :\n-Gagnée,\n-Perdue,\n-En cours. """
     global liste_bombes #case qui contiennent des bombes
     global liste_cases_visibles #les cases dévoilées depuis le début
     global xybombe #pour le nombre de cases et le bombre de bombes bref pour tout
@@ -91,52 +77,81 @@ def ie_tuto():
     """ ouvre la page de tuto """
     ie("https://github.com/IAmFrench/Demineur/wiki")
 
+def a_propos():
+    """ ouvre une fenetre graphique a propos du programme """
+    global version #pour le n° de version
+    fenetre_a_propos=Tk()
+    frame_haut=Frame(fenetre_a_propos)
+    frame_haut.pack()
+    frame_bas=Frame(fenetre_a_propos)
+    frame_bas.pack()
+    
+    titre=Label(frame_haut,text="Demineur")
+    titre.pack()
+    ss_titre=Label(frame_haut,text="Un démineur codé en python\n")
+    ss_titre.pack()
+    description=Label(frame_haut,text="Copyright © 2015\nAlexandre Parès,\nRaphaël Gurerin et\nAlexandre Quintais\n")
+    description.pack()
+    licence=Label(frame_haut,text="Sous licence CC BY-NC-ND 3.0\n")
+    licence.pack()
+    version2=Label(frame_haut,text="Vous utilisez la version "+version+" du démineur\n")
+    version2.pack()
+    button=Button(frame_bas,text="Fermer",command=fenetre_a_propos.destroy)
+    button.pack()
+    fenetre_a_propos.mainloop()
+
 def graph_fenetre(fonction):
+    """ Ouvre la fenetre graphique qui correspond a la fonction donnée en argument """
     """
     liste des valeur pour fonction :
     - choix_difficulte
     - grille
     - resultat
     """
-    """
-    >>
-        Creation fenetre choix difficulté
-    >>
-    """
+    
+    ###########################################################################
+    #Creation fenetre choix difficulté (#1)
+    ###########################################################################
     def interface_graph_difficulte():
-        fenetre_titre="Choix Difficulté"    
+        """ Ouvre la fenetre du choix de difficulté """
+        fenetre_titre="Choix Difficulté" #titre de la fenetre (seulement une variable)
         
-        fenetre_choix_difficulte = Tk() #création de la fenetre
+        fenetre_choix_difficulte = Tk() #création de la fenetre        
+        fenetre_choix_difficulte.title(fenetre_titre) #assignation du titre de la fenetre
         
         ################
         #actions bouton#
         ################
         def difficulte_facile():
+            """ attribue les caractéristiques d'une grille de niveau facile """
             xybombe.extend((9,9,10,40,"facile")) #grille 9x9, 10bombes, 40px de coté (case)
             print("fonction difficulté -> facile")
             fenetre_choix_difficulte.destroy() #détruit la fenetre pour executer le code qui suit
-            #print("fenetre détruite") 
+            print("fenêtre choix détruite") 
             
         def difficulte_inter():
+            """ attribue les caractéristiques d'une grille de niveau intermediaire """
             global xybombe
             xybombe.extend((16,16,40,35,"intermediaire"))
             print("fonction difficulté -> inter")
             fenetre_choix_difficulte.destroy()
-            #print("fenetre détruite")
+            print("fenêtre choix détruite")
             
         def difficulte_expert():
+            """ attribue les caractéristiques d'une grille de niveau expert """
             global xybombe
             xybombe.extend((30,16,99,25,"expert"))
             print("fonction difficulté -> expert")
             fenetre_choix_difficulte.destroy()
-            #print("fenetre détruite")
+            print("fenêtre choix détruite")
             
+
         
-        fenetre_choix_difficulte.title(fenetre_titre) #titre fenetre
         ########
         #Frames#
         ########
         frame_haut=Frame(fenetre_choix_difficulte) #cadre du haut
+        frame_haut.pack(side=TOP,padx=5, pady=5) #affichage du cadre(haut)
         
         #########
         #Boutons#
@@ -150,72 +165,54 @@ def graph_fenetre(fonction):
         bouton_expert=Button(frame_haut,text='Expert',width=15,height=3,command=difficulte_expert)
         bouton_expert.pack(side=LEFT,padx=5,pady=5)
         
-        frame_haut.pack(side=TOP,padx=5, pady=5) #affichage du cadre(haut)  
         fenetre_choix_difficulte.mainloop() #boucle infinie fenetre       
-        
+
+    ###########################################################################
+    #Creation fenetre grille demineur (#2)
+    ###########################################################################        
     def interface_graph_grille():
-        fenetre_titre="Grille demineur"  
+        fenetre_titre="Grille demineur"
         
         ###########
         #Variables#
         ###########
         global xybombe
-        xgrille=xybombe[0]
-        ygrille=xybombe[1]
-        L_H_case_px=xybombe[3] #bord d'une case 
-        fenetre_taille=str(15+(xgrille*L_H_case_px))+"x"+str(ygrille*L_H_case_px+15) # renvoi du texte ex: "300x800"
+        xgrille=xybombe[0] #nombre de cases horizontalement (x)
+        ygrille=xybombe[1] #nombre de cases verticalement (y)
+        L_H_case_px=xybombe[3] #bord d'une case en px
+        fenetre_taille=str(15+(xgrille*L_H_case_px))+"x"+str(ygrille*L_H_case_px+15) #renvoi du texte ex: "300x800"
         
         #########
         #Fenêtre#
         #########
         fenetre_grille = Tk() #création de la fenetre
-        fenetre_grille.title(fenetre_titre) #titre fenetre
+        fenetre_grille.title(fenetre_titre) #assignation du titre de la fenetre
         fenetre_grille.geometry(fenetre_taille) #défini la taille en px de la fenetre
         
         #######
         #Frame#
         #######
         frame_grille=Frame(fenetre_grille) #créer le cadre qui contiendra la grille (canvas)
-        #frame_bas=Frame(fenetre_grille)
         
         
         ###########
         #Fonctions#
         ###########
-        def aff_nb_bombe(xgrille,ygrille):
-            """ Renvoi le nombre de bombe pour la case sélecionnée """
-        remarque="a faire"
+        """
+        Les fonctions qui se trouve ci-dessous sont définis ici car elle
+        contiennent des variables qui ne sont pas définis en dehors de la
+        fonction interface_graph_grille, tels que la variable de la fenetre
+        graphique (fenetre_grille) ou le nom de la frame qui contient la grille
+        (frame_grille)
+        """
         
-        def plein_ecran_F11():
-            global statut_plein_ecran #savoir le statut en cours (True/False)
-            taille_x_ecran=fenetre_grille.winfo_screenwidth() #Taille horizontale de l'écran
-            taille_y_ecran=fenetre_grille.winfo_screenheight() #Taille verticale de l'écran
-            fenetre_taille_plein_ecran=str(taille_x_ecran)+"x"+str(taille_y_ecran) #+"+0+0" #Taille de la fenetre en plein ecran, résultat sous forme de chaine de caractère, (ex:1920x180)
-            
-            ##############
-            #Test logique#
-            ##############
-            if statut_plein_ecran==False: #Alors activé le plein ecran
-                for compteur in range(0,2):
-                    print(compteur)                
-                    fenetre_grille.geometry(fenetre_taille_plein_ecran) #Modifie la taille de la fenetre
-                    taille_cases_plein_ecran(taille_x_ecran,taille_y_ecran) #modifie la taille des cases
-                fenetre_grille.overrideredirect(TRUE) #Supprime la bar de titre
-            elif statut_plein_ecran==True: #Désactiver le plein ecran
-                fenetre_grille.geometry(fenetre_taille)
-            else:
-                print("Erreur Fonction Plein Ecran")
-            fenetre_taille_plein_ecran=str(taille_x_ecran)+"x"+str(taille_y_ecran) #+"+0+0" #Taille de la fenetre en plein ecran, résultat sous forme de chaine de caractère, (ex:1920x180)
-            fenetre_grille.geometry(fenetre_taille_plein_ecran) #Modifie la taille de la fenetre
-            fenetre_grille.overrideredirect(TRUE) #Supprime la bar de titre
-            taille_cases_plein_ecran(taille_x_ecran,taille_y_ecran) #modifie la taille des cases
-            remarque="a finir"
-            
         def decou(liste):
+            """ explication fonction """
             for cle in liste:
                 case_visuel(cle,"gauche")
     
         def pointeurG(event):
+            """ fonction qui est appellé lorsque qu'il y a un clic gauche dans le canvas_grille """
             global cases_modif
             
             if xybombe[4]=="facile":
@@ -238,6 +235,7 @@ def graph_fenetre(fonction):
                 print("fenetre détruite")
             
         def pointeurD(event):
+            """ fonction qui est appellé lorsque qu'il y a un clic droit dans le canvas_grille """
             if xybombe[0]==9:
                 xygrille=coord(event.x,event.y,"facile")
             
@@ -256,7 +254,9 @@ def graph_fenetre(fonction):
                 print("fenetre détruite")
                 
         def coordonne_case(xygrille):
+            """ renvoi sous forme d'un dictionnaire les coordonnées aux extrémités d'une case donnée (xygrille) """
             global xybombe
+            
             #############
             #Explication#
             #############
@@ -265,9 +265,11 @@ def graph_fenetre(fonction):
             dico_coord={} #Création du dico vide
             points=['haut_gauche','bas_droite']
             a=0
+            
             for point in points: #parcours les elements de la liste des points
                 xgrille=ext_xy(xygrille,"x") #Extraction coordonnée x de la case (ex:8x12 -> 8)
-                ygrille=ext_xy(xygrille,'y') #Extraction coordonnée y de la case (ex:8x12 -> 12)        
+                ygrille=ext_xy(xygrille,'y') #Extraction coordonnée y de la case (ex:8x12 -> 12)  
+                
                 if a==0: #fait dans un premier temps x/y haut_gauche
                     xgrille=xgrille-1
                     ygrille=ygrille-1
@@ -275,36 +277,15 @@ def graph_fenetre(fonction):
                     y=xybombe[3]*ygrille #Calcul
                     xycoord=[x+1,y+1] #Assemblage
                     dico_coord[point]=xycoord #Intégration dans le dico
+                    
                 if a==1:
                     x=xybombe[3]*xgrille #Calcul
                     y=xybombe[3]*ygrille #Calcul
                     xycoord=[x-1,y-1] #Assemblage
                     dico_coord[point]=xycoord #Intégration dans le dico
                 a=1
-                #print(xycoord)
+                
             return(dico_coord) #Retourne le dico
-        
-        def a_propos():
-            global version #pour le n° de version
-            fenetre_a_propos=Tk()
-            frame_haut=Frame(fenetre_a_propos)
-            frame_haut.pack()
-            frame_bas=Frame(fenetre_a_propos)
-            frame_bas.pack()
-            
-            titre=Label(frame_haut,text="Demineur")
-            titre.pack()
-            ss_titre=Label(frame_haut,text="Un démineur codé en python\n")
-            ss_titre.pack()
-            description=Label(frame_haut,text="Copyright © 2015\nAlexandre Parès,\nRaphaël Gurerin et\nAlexandre Quintais\n")
-            description.pack()
-            licence=Label(frame_haut,text="Sous licence CC BY-NC-ND 3.0\n")
-            licence.pack()
-            version2=Label(frame_haut,text="Vous utilisez la version "+version+" du démineur\n")
-            version2.pack()
-            button=Button(frame_bas,text="Fermer",command=fenetre_a_propos.destroy)
-            button.pack()
-            fenetre_a_propos.mainloop()
         
         ###########
         #FrameMenu#
@@ -389,6 +370,7 @@ def graph_fenetre(fonction):
             #decou(liste_bombes)
         
         def case_visuel(xygrille,clic):
+            """ permet de modifier visuellement les caractéristiques d'une cases """
             #############
             #Explication#
             #############
@@ -397,15 +379,18 @@ def graph_fenetre(fonction):
             #PointeurG ou PointeurD            
             #xygrille=xygrille #la case cliqué
             global show #nécéssaire pour éviter de faire une boucle infinie
+            
             #################################
             #Lire les coordonnées de la case#
             #################################
             coordcase=coordonne_case(xygrille) #charge les coordonnées des 2 points aux extrémités de la case (haut_gauche et bas_droite)
             prop_case=statut_case_texte(xygrille) #charge les propriétés de la case en question -> dico
+            
             ############################    
             #Applique les modifications#
             ############################
             prop_possibles=["bombe","drapeau","interrogation","visible","chiffre"]
+            
             for propri in prop_possibles:
                 #print(prop_case[propri])
                 haut_gauche=coordcase["haut_gauche"] #retourne une liste, (ex:[177, 107])
@@ -414,11 +399,12 @@ def graph_fenetre(fonction):
                 bas_droite=coordcase["bas_droite"] #idem que pour haut_gauche
                 x_bas_droite=bas_droite[0]
                 y_bas_droite=bas_droite[1]
+                
                 if prop_case[propri]==True or type(prop_case[propri])==int: #si vrai ou si un chiffre
-                    #print(propri)
                     
                     if propri=="drapeau" or clic=="gauche" or propri=="interrogation":
                         rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,propri,xygrille) #Fonction qui crée le canvas
+                    
                     if propri=="chiffre" and clic=="gauche":
                         if prop_case[propri]>-1:
                             rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,propri,xygrille)
@@ -426,14 +412,17 @@ def graph_fenetre(fonction):
                                 remarque=""
                             else:                                
                                 liste_cases_visibles.append(xygrille)
+                                
                     if propri=="visible" and prop_case["bombe"]==True: #si case visible et il y a une bombe alors le joueur a perdu donc case en rouge et pas encore demandé
                         if show[0]==0:
                             #fonction qui révèle toutes les bombes
                             show_all_bbs()
                             show[0]=1
                         rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,"perdu",xygrille)
+                        
                 if prop_case["drapeau"]==False and prop_case["visible"]==False and prop_case["interrogation"]==False:
                     rectangle_dapeau=canvas_grille.create_rectangle(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,fill=couleur("defaut","r2"),outline=couleur("defaut","r2"))
+        
         #################
         #Création Grille#
         #################
@@ -454,9 +443,9 @@ def graph_fenetre(fonction):
         canvas_grille.create_line(2,0,2,L_H_case_px*ygrille,fill=couleur("defaut","r1")) #ligne verticale gauche
         frame_grille.pack(side=TOP,padx=5,pady=5) #(5px de côté)
         
-        ##############
-        #Clics souris#
-        ##############
+        ############
+        #Evénements#
+        ############
         canvas_grille.bind("<Button-1>",pointeurG) #Si clic gauche(.bind("<Button-1>")) alors exécute la fonction pointeurG
         canvas_grille.bind("<Button-3>",pointeurD) #Si clic droit alors exécute la fonction pointeurG
         fenetre_grille.bind("<F1>",f1_ie_docu) #evenement placé sour la fenetre principale car c'est sur elle qu'est enregistré la touche F1
