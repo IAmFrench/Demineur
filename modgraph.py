@@ -22,6 +22,7 @@ liste_bombes=[] #liste de toutes les cases qui contiennent une bombe
 liste_cases_visibles=[] #liste des cases visibles
 show=[0] #fonction show_all_bbs pas encore demandé
 version="1.0.0" #version en cours du démineur
+p_couleur="defaut"
 def dans_la_liste(xygrille):
     """ permet de vérifier si une case (xygrille) se trouve dans la liste """
     if xygrille in grille.keys(): #dans la liste, pas de problème
@@ -109,7 +110,7 @@ def a_propos():
     button=Button(frame_bas,text="Fermer",command=fenetre_a_propos.destroy)
     button.pack()
     fenetre_a_propos.mainloop()
-
+    
 def graph_fenetre(fonction):
     """ Ouvre la fenetre graphique qui correspond a la fonction donnée en argument """
     """
@@ -237,6 +238,7 @@ def graph_fenetre(fonction):
                 clic0(xygrille)            
                 decou(camo)
                 xygrille_liste[0]=xygrille #assigne a la variable xygrille_liste la case cliqué
+                
                 gagne_ou_perdu() #on effectue le test pour savoir si le joueur a gagné ou perdu
                 if statut_partie()=="Perdue" or statut_partie()=="Gagnée":
                     fenetre_grille.destroy()
@@ -244,19 +246,21 @@ def graph_fenetre(fonction):
             
         def pointeurD(event):
             """ fonction qui est appellé lorsque qu'il y a un clic droit dans le canvas_grille """
-            if xybombe[0]==9:
-                xygrille=coord(event.x,event.y,"facile")
+            if xybombe[4]=="facile":
+                xygrille=coord(event.x,event.y,"facile") #les coordonnées en pixels sont convertie en coordonné de case par coord
             
-            if xybombe[0]==16:
-                xygrille=coord(event.x,event.y,"intermediaire")
-            
-            if xybombe[0]==30:
+            if xybombe[4]=="intermediaire":
+                xygrille=coord(event.x,event.y,"intermediaire")  
+        
+            if xybombe[4]=="expert":
                 xygrille=coord(event.x,event.y,"expert")
+                
             if dans_la_liste(xygrille)==True: #si la case est dans la liste alors exécute le reste de la fonction 
                 clic1(xygrille)
                 print("Clic droit sur la case "+xygrille)
                 xygrille_liste[0]=xygrille
                 case_visuel(xygrille,"droit")
+                
                 gagne_ou_perdu()
                 if statut_partie()=="Perdue" or statut_partie()=="Gagnée":
                     fenetre_grille.destroy()
@@ -335,7 +339,7 @@ def graph_fenetre(fonction):
         ########################
         #Affichage de la grille#
         ########################
-        canvas_grille=Canvas(frame_grille,width=xgrille*L_H_case_px-1, height=ygrille*L_H_case_px-1,background=couleur("defaut","r2"))
+        canvas_grille=Canvas(frame_grille,width=xgrille*L_H_case_px-1, height=ygrille*L_H_case_px-1,background=couleur(p_couleur,"r2"))
         canvas_grille.pack(side=TOP) #Affiche le canvas (5px de côté)
         
         #######################
@@ -350,21 +354,21 @@ def graph_fenetre(fonction):
             else :
                 ajustementy=(1/4)*xybombe[3]
             if propri == "perdu":
-                rectangle_bombe_perdu=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r3"),outline=couleur("defaut","r3"))
+                rectangle_bombe_perdu=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur(p_couleur,"r3"),outline=couleur(p_couleur,"r3"))
             elif propri=="drapeau":
-                rectangle_dapeau=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r5"),outline=couleur("defaut","r5"))
+                rectangle_dapeau=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur(p_couleur,"r5"),outline=couleur(p_couleur,"r5"))
                 canvas_id = canvas_grille.create_text(x0+ajustementx, y0+ajustementy, anchor="nw")
 
                 canvas_grille.itemconfig(canvas_id, text="|*")
                             
             elif propri=="interrogation":
-                rectangle_dapeau=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r5"),outline=couleur("defaut","r5"))
+                rectangle_dapeau=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur(p_couleur,"r5"),outline=couleur(p_couleur,"r5"))
                 canvas_id = canvas_grille.create_text(x0+ajustementx, y0+ajustementy, anchor="nw")
 
                 canvas_grille.itemconfig(canvas_id, text="?")
                 
             elif propri=="visible":
-                rectangle_visible=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur("defaut","r4"),outline=couleur("defaut","r4")) #fill = couleur du rectangle(intérieur), outline = couleur de la bordure du rectangle
+                rectangle_visible=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur(p_couleur,"r4"),outline=couleur(p_couleur,"r4")) #fill = couleur du rectangle(intérieur), outline = couleur de la bordure du rectangle
             elif propri=="chiffre":
                 case=grille[xygrille]
                 if case[4]<=-1:
@@ -431,8 +435,22 @@ def graph_fenetre(fonction):
                         rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,"perdu",xygrille)
                         
                 if prop_case["drapeau"]==False and prop_case["visible"]==False and prop_case["interrogation"]==False:
-                    rectangle_dapeau=canvas_grille.create_rectangle(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,fill=couleur("defaut","r2"),outline=couleur("defaut","r2"))
-        
+                    rectangle_dapeau=canvas_grille.create_rectangle(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,fill=couleur(p_couleur,"r2"),outline=couleur(p_couleur,"r2"))
+            
+            ligne_a_faire(xygrille) #Trace ou non les lignes h et v
+        def l_h_et_l_v():
+            """ Créé une ligne horizontale en haut du canvas et une ligne verticale à gauche """
+            canvas_grille.create_line(0,2,L_H_case_px*xgrille,2,fill=couleur(p_couleur,"r1")) #ligne horizontale haut
+            canvas_grille.create_line(2,0,2,L_H_case_px*ygrille,fill=couleur(p_couleur,"r1")) #ligne verticale gauche
+            
+        def ligne_a_faire(xygrille):
+            """ Exécute la fonction l_h_et_l_v si la case xygrille se trouve sur la première ligne horizontale ou verticale """
+            xcase=ext_xy(xygrille,"x") #extrait le x de la case
+            ycase=ext_xy(xygrille,"y") #extrait le x de la case
+            
+            if xcase or ycase =="1": #Test logique
+                l_h_et_l_v()
+                
         #################
         #Création Grille#
         #################
@@ -440,17 +458,18 @@ def graph_fenetre(fonction):
             x_debut=0 #coordonné x du point de départ
             x_fin=L_H_case_px*xgrille #coordonné x du point d'arrivé
             y_debut=y_fin=h_ligne*L_H_case_px #coordonné y du point de départ et d'arrivé (égaux car c'est une droite horizontale)
-            canvas_grille.create_line(x_debut,y_debut,x_fin,y_fin,fill=couleur("defaut","r1")) #crée la ligne du point de départ au point d'arrivé
+            canvas_grille.create_line(x_debut,y_debut,x_fin,y_fin,fill=couleur(p_couleur,"r1")) #crée la ligne du point de départ au point d'arrivé
             
         for v_ligne in range(xgrille+1): #creation des lignes verticales    
             x_debut=x_fin=v_ligne*L_H_case_px
             y_debut=0
             y_fin=L_H_case_px*ygrille
         
-            canvas_grille.create_line(x_debut,y_debut,x_fin,y_fin,fill=couleur("defaut","r1")) #crée la ligne
+            canvas_grille.create_line(x_debut,y_debut,x_fin,y_fin,fill=couleur(p_couleur,"r1")) #crée la ligne
         
-        canvas_grille.create_line(0,2,L_H_case_px*xgrille,2,fill=couleur("defaut","r1")) #ligne horizontale haut
-        canvas_grille.create_line(2,0,2,L_H_case_px*ygrille,fill=couleur("defaut","r1")) #ligne verticale gauche
+        canvas_grille.create_line(0,2,L_H_case_px*xgrille,2,fill=couleur(p_couleur,"r1")) #ligne horizontale haut
+        canvas_grille.create_line(2,0,2,L_H_case_px*ygrille,fill=couleur(p_couleur,"r1")) #ligne verticale gauche
+        
         frame_grille.pack(side=TOP,padx=5,pady=5) #(5px de côté)
         
         ############
@@ -459,6 +478,7 @@ def graph_fenetre(fonction):
         canvas_grille.bind("<Button-1>",pointeurG) #Si clic gauche(.bind("<Button-1>")) alors exécute la fonction pointeurG
         canvas_grille.bind("<Button-3>",pointeurD) #Si clic droit alors exécute la fonction pointeurG
         fenetre_grille.bind("<F1>",f1_ie_docu) #evenement placé sour la fenetre principale car c'est sur elle qu'est enregistré la touche F1
+                
         fenetre_grille.mainloop() # boucle de la fenêtre
         
     def interface_graph_resultat():
