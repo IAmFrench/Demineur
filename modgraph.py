@@ -158,7 +158,8 @@ def fenetre_options():
         global p_couleur
         p_couleur[0]=palette
     def quitter():
-        Mafenetre.eval('::ttk::CancelRepeat')
+        """ Permet de fermer la fenetre en cours """
+        Mafenetre.eval('::ttk::CancelRepeat') #quitte la boucle ttk
         Mafenetre.destroy()
         
     affiche_palette(p_couleur[0]) #permet d'afficher la palette par défaut
