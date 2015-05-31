@@ -227,20 +227,20 @@ def graph_fenetre(fonction):
             """ fonction qui est appellé lorsque qu'il y a un clic gauche dans le canvas_grille """
             global cases_modif
             
-
-            xygrille=coord(event.x,event.y)
             
-            camo[:] = []
-            if dans_la_liste(xygrille)==True: #si la case est dans la liste alors exécute le reste de la fonction                
-                camo.append(xygrille)
-                clic0(xygrille)            
-                decou(camo)
-                xygrille_liste[0]=xygrille #assigne a la variable xygrille_liste la case cliqué
+            xygrille=coord(event.x,event.y)
+            if gr(xygrille,"drapeau",'statut')!=True:
+                camo[:] = []
+                if dans_la_liste(xygrille)==True: #si la case est dans la liste alors exécute le reste de la fonction                
+                    camo.append(xygrille)
+                    clic0(xygrille)            
+                    decou(camo)
+                    xygrille_liste[0]=xygrille #assigne a la variable xygrille_liste la case cliqué
                 
-                gagne_ou_perdu() #on effectue le test pour savoir si le joueur a gagné ou perdu
-                if statut_partie()=="Perdue" or statut_partie()=="Gagnée":
-                    fenetre_grille.destroy()
-                    print("fenetre détruite")
+                    gagne_ou_perdu() #on effectue le test pour savoir si le joueur a gagné ou perdu
+                    if statut_partie()=="Perdue" or statut_partie()=="Gagnée":
+                        fenetre_grille.destroy()
+                        print("fenetre détruite")
             
         def pointeurD(event):
             """ fonction qui est appellé lorsque qu'il y a un clic droit dans le canvas_grille """
