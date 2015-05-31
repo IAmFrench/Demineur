@@ -93,6 +93,7 @@ def a_propos():
     """ ouvre une fenetre graphique a propos du programme """
     global version #pour le n° de version
     fenetre_a_propos=Tk()
+    fenetre_a_propos.title("À propos")
     frame_haut=Frame(fenetre_a_propos)
     frame_haut.pack()
     frame_bas=Frame(fenetre_a_propos)
@@ -119,6 +120,7 @@ def fenetre_options():
     lst=["DarkBlue Red","Flat design","Ice Cream","Alaska sunset","Flood"]    
     
     Mafenetre= Tk()
+    Mafenetre.title("Options")
     
     cadre_haut=Frame(Mafenetre)
     cadre_gauche=Frame(cadre_haut)
@@ -155,12 +157,15 @@ def fenetre_options():
         affiche_palette(palette)
         global p_couleur
         p_couleur[0]=palette
-    
+    def quitter():
+        Mafenetre.eval('::ttk::CancelRepeat')
+        Mafenetre.destroy()
+        
     affiche_palette(p_couleur[0]) #permet d'afficher la palette par défaut
     
     canvas_previsualisation.pack()
     
-    bouton_q=Button(cadre_bas, text="Fermer", command=Mafenetre.destroy)    
+    bouton_q=Button(cadre_bas, text="Fermer", command=quitter)    
     bouton_q.pack()
     
     
