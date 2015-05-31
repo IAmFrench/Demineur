@@ -14,7 +14,7 @@ ygrille=-1
 grille={}
 #difficulte=""
 nbbombe=-1
-xybombe=[0,0,0,0,0]
+xybombe=[]
 statut_plein_ecran=[False] #Plein ecran désactivé par défaut
 mode_presentation=False #Active le mode de présentation
 #####################
@@ -30,11 +30,11 @@ def couleur(style,r):
     """ Contient les palettes de couleur """
     #Bordure, case par défaut, Bombe, Case visible, Drapeau
     keys=["r1","r2","r3","r4","r5"]
-    DarkBlue_Red=["1A2530","2C3E50","34495E","E74C3C","FFFFFF"] #https://color.adobe.com/fr/DarkBlue-Red-color-theme-4053531/
-    Flat_design_colors=["334D5C","45B29D","EFC94C","E27A3F","DF5A49"] #https://color.adobe.com/fr/Copie-de-Flat-design-colors-1-color-theme-4079805/
-    Ice_Cream=["113F59","19BEC0","20D6C7","F3EDD3","D54F58",] #https://color.adobe.com/fr/Ice-Cream-color-theme-4185778
+    DarkBlue_Red=["1A2530","2C3E50","E74C3C","597DA1","E2FFB2"] #https://color.adobe.com/fr/DarkBlue-Red-color-theme-4053531/
+    Flat_design_colors=["334D5C","EFC94C","DF5A49","E27A3F","45B29D"] #https://color.adobe.com/fr/Copie-de-Flat-design-colors-1-color-theme-4079805/
+    Ice_Cream=["113F59","19BEC0","D54F58","159FA1","F3EDD3"] #https://color.adobe.com/fr/Ice-Cream-color-theme-4185778
     Alaska_sunset=["BF4E6C","F2676B","F5CC70","5992C7","325982"] #https://color.adobe.com/fr/Alaska-sunset-color-theme-3121915
-    Flood=["005572","006573","008B8D","81BEAA","F4D4AD"] #https://color.adobe.com/fr/Flood-color-theme-4203435/
+    Flood=["005572","006573","F4D4AD","81BEAA","008B8D"] #https://color.adobe.com/fr/Flood-color-theme-4203435/
     dico={}
     styles={"nom a afficher":"nom variable",
             "DarkBlue Red":"DarkBlue_Red",
