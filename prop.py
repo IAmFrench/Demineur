@@ -46,8 +46,11 @@ def couleur(style,r):
             "r4":"DFE5E6",
             "r5":"4ECCC3",            
             }
-    if style==DarkBlue_Red:
+    if style=="DarkBlue_Red":
         return("#"+DarkBlue_Red[r])
+    elif style=="Flat_design_colors":
+        return("#"+Flat_design_colors[r])
+        
     else:
         return("#"+defaut[r])
 

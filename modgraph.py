@@ -22,7 +22,7 @@ liste_bombes=[] #liste de toutes les cases qui contiennent une bombe
 liste_cases_visibles=[] #liste des cases visibles
 show=[0] #fonction show_all_bbs pas encore demandé
 version="1.0.0" #version en cours du démineur
-p_couleur="defaut"
+p_couleur=["defaut"]
 px_case=[0]
 def dans_la_liste(xygrille):
     """ permet de vérifier si une case (xygrille) se trouve dans la liste """
@@ -111,7 +111,67 @@ def a_propos():
     button=Button(frame_bas,text="Fermer",command=fenetre_a_propos.destroy)
     button.pack()
     fenetre_a_propos.mainloop()
+
+def fenetre_options(): 
+    """ ouvre la fenetre pour configurer les options du programme """ 
+    from tkinter.ttk import Combobox #pour la liste en menue déroulant
     
+    liste_titre={"Défaut-DarkBlue Red":"defaut",
+                 "Flat design":"Flat_design_colors"}
+                 
+    lst=["Défaut-DarkBlue Red","Flat design"]    
+    
+    Mafenetre= Tk()
+    
+    cadre_haut=Frame(Mafenetre)
+    cadre_gauche=Frame(cadre_haut)
+    cadre_droite=Frame(cadre_haut)
+    cadre_bas=Frame(Mafenetre)
+    
+    cadre_haut.pack(side=TOP, pady=5) 
+    cadre_gauche.pack(side=LEFT, padx=5)
+    cadre_droite.pack(side=RIGHT, padx=5)
+    cadre_bas.pack(side=BOTTOM, padx=5, pady=5)
+    
+    
+    liste_choix=Combobox(cadre_gauche, values=lst, state='readonly')
+    liste_choix.set(lst[0]) #permet de choisir la première valeur -> defaut
+    liste_choix.pack()
+    
+    canvas_previsualisation=Canvas(cadre_droite,width=150, height=20)
+    
+    def affiche_palette(palette):
+        """ fonction qui dessine la palette dans le canvas """
+        px_nv=30
+        print(palette)
+        canvas_previsualisation.delete(ALL)
+        for nv in range(1,6):
+            x0=(nv-1)*30
+            y0=0
+            x1=(nv)*30
+            y1=30
+            color=couleur(palette,("r"+str(nv)))
+            print(color)
+            canvas_previsualisation.create_rectangle(x0,y0,x1,y1,fill=color,outline=color)
+            
+    def affiche_palette_event(event):
+        """ Apelle la fonction qui dessine la palette dans le canvas """
+        palette=liste_titre[liste_choix.get()] #.get = renvoi la valeur séléctionné
+        affiche_palette(palette)
+        global p_couleur
+        p_couleur[0]=palette
+    
+    affiche_palette("defaut") #permet d'afficher la palette par défaut
+    
+    canvas_previsualisation.pack()
+    
+    bouton_q=Button(cadre_bas, text="Fermer", command=Mafenetre.destroy)    
+    bouton_q.pack()
+    
+    
+    liste_choix.bind('<<ComboboxSelected>>', affiche_palette_event)
+    Mafenetre.mainloop()
+
 def graph_fenetre(fonction):
     """ Ouvre la fenetre graphique qui correspond a la fonction donnée en argument """
     """
@@ -161,8 +221,8 @@ def graph_fenetre(fonction):
         #Frames#
         ########
         frame_haut=Frame(fenetre_choix_difficulte) #cadre du haut
-        frame_haut.pack(side=TOP,padx=5, pady=5) #affichage du cadre(haut)
         
+        frame_bas=Frame(fenetre_choix_difficulte)
         #########
         #Boutons#
         #########
@@ -174,6 +234,15 @@ def graph_fenetre(fonction):
         
         bouton_expert=Button(frame_haut,text='Expert',width=15,height=3,command=difficulte_expert)
         bouton_expert.pack(side=LEFT,padx=5,pady=5)
+        
+        
+        frame_haut.pack(side=TOP,padx=5, pady=5) #affichage du cadre(haut)
+        
+        bouton_options=Button(frame_bas, text='Options', command=fenetre_options)
+        bouton_options.pack()        
+        
+        frame_bas.pack(side=BOTTOM, padx=5, pady=5)
+        
         
         fenetre_choix_difficulte.mainloop() #boucle infinie fenetre       
 
@@ -187,6 +256,7 @@ def graph_fenetre(fonction):
         #Variables#
         ###########
         global xybombe
+        global p_couleur
         xgrille=xybombe[0] #nombre de cases horizontalement (x)
         ygrille=xybombe[1] #nombre de cases verticalement (y)
         L_H_case_px=xybombe[3] #bord d'une case en px
@@ -387,7 +457,7 @@ def graph_fenetre(fonction):
         ########################
         #Affichage de la grille#
         ########################
-        canvas_grille=Canvas(frame_grille,width=xgrille*L_H_case_px-1, height=ygrille*L_H_case_px-1,background=couleur(p_couleur,"r2"))
+        canvas_grille=Canvas(frame_grille,width=xgrille*L_H_case_px-1, height=ygrille*L_H_case_px-1,background=couleur(p_couleur[0],"r2"))
         canvas_grille.pack(side=TOP) #Affiche le canvas (5px de côté)
         
         #######################
@@ -396,27 +466,28 @@ def graph_fenetre(fonction):
         def rectangle_canvas(x0,y0,x1,y1,propri,xygrille):
             """ Crée le canvas rectangle """
             global xybombe
+            global p_couleur
             ajustementx=(2/5)*xybombe[3]
             if xybombe[4]=="expert":
                 ajustementy=(1/11)*xybombe[3]
             else :
                 ajustementy=(1/4)*xybombe[3]
             if propri == "perdu":
-                rectangle_bombe_perdu=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur(p_couleur,"r3"),outline=couleur(p_couleur,"r3"))
+                rectangle_bombe_perdu=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur(p_couleur[0],"r3"),outline=couleur(p_couleur[0],"r3"))
             elif propri=="drapeau":
-                rectangle_dapeau=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur(p_couleur,"r5"),outline=couleur(p_couleur,"r5"))
+                rectangle_dapeau=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur(p_couleur[0],"r5"),outline=couleur(p_couleur[0],"r5"))
                 canvas_id = canvas_grille.create_text(x0+ajustementx, y0+ajustementy, anchor="nw")
 
                 canvas_grille.itemconfig(canvas_id, text="|*")
                             
             elif propri=="interrogation":
-                rectangle_dapeau=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur(p_couleur,"r5"),outline=couleur(p_couleur,"r5"))
+                rectangle_dapeau=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur(p_couleur[0],"r5"),outline=couleur(p_couleur[0],"r5"))
                 canvas_id = canvas_grille.create_text(x0+ajustementx, y0+ajustementy, anchor="nw")
 
                 canvas_grille.itemconfig(canvas_id, text="?")
                 
             elif propri=="visible":
-                rectangle_visible=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur(p_couleur,"r4"),outline=couleur(p_couleur,"r4")) #fill = couleur du rectangle(intérieur), outline = couleur de la bordure du rectangle
+                rectangle_visible=canvas_grille.create_rectangle(x0,y0,x1,y1,fill=couleur(p_couleur[0],"r4"),outline=couleur(p_couleur[0],"r4")) #fill = couleur du rectangle(intérieur), outline = couleur de la bordure du rectangle
             elif propri=="chiffre":
                 case=grille[xygrille]
                 if case[4]<=-1:
@@ -484,14 +555,15 @@ def graph_fenetre(fonction):
                         rectangle_canvas(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,"perdu",xygrille)
                         
                 if prop_case["drapeau"]==False and prop_case["visible"]==False and prop_case["interrogation"]==False:
-                    rectangle_dapeau=canvas_grille.create_rectangle(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,fill=couleur(p_couleur,"r2"),outline=couleur(p_couleur,"r2"))
+                    rectangle_dapeau=canvas_grille.create_rectangle(x_haut_gauche,y_haut_gauche,x_bas_droite,y_bas_droite,fill=couleur(p_couleur[0],"r2"),outline=couleur(p_couleur[0],"r2"))
             
             ligne_a_faire(xygrille) #Trace ou non les lignes h et v
             
         def l_h_et_l_v():
             """ Créé une ligne horizontale en haut du canvas et une ligne verticale à gauche """
-            canvas_grille.create_line(0,2,xybombe[3]*xgrille,2,fill=couleur(p_couleur,"r1")) #ligne horizontale haut
-            canvas_grille.create_line(2,0,2,xybombe[3]*ygrille,fill=couleur(p_couleur,"r1")) #ligne verticale gauche
+            global p_couleur
+            canvas_grille.create_line(0,2,xybombe[3]*xgrille,2,fill=couleur(p_couleur[0],"r1")) #ligne horizontale haut
+            canvas_grille.create_line(2,0,2,xybombe[3]*ygrille,fill=couleur(p_couleur[0],"r1")) #ligne verticale gauche
             
         def ligne_a_faire(xygrille):
             """ Exécute la fonction l_h_et_l_v si la case xygrille se trouve sur la première ligne horizontale ou verticale """
@@ -506,21 +578,22 @@ def graph_fenetre(fonction):
             plein_ecran_F11()
             
         def m_canvas_grille() :
+            global p_couleur
             for h_ligne in range (ygrille+1): #Creation des lignes horizontales        
                 x_debut=0 #coordonné x du point de départ
                 x_fin=xybombe[3]*xgrille #coordonné x du point d'arrivé
                 y_debut=y_fin=h_ligne*xybombe[3] #coordonné y du point de départ et d'arrivé (égaux car c'est une droite horizontale)
-                canvas_grille.create_line(x_debut,y_debut,x_fin,y_fin,fill=couleur(p_couleur,"r1")) #crée la ligne du point de départ au point d'arrivé
+                canvas_grille.create_line(x_debut,y_debut,x_fin,y_fin,fill=couleur(p_couleur[0],"r1")) #crée la ligne du point de départ au point d'arrivé
             
             for v_ligne in range(xgrille+1): #creation des lignes verticales    
                 x_debut=x_fin=v_ligne*xybombe[3]
                 y_debut=0
                 y_fin=xybombe[3]*ygrille
             
-                canvas_grille.create_line(x_debut,y_debut,x_fin,y_fin,fill=couleur(p_couleur,"r1")) #crée la ligne
+                canvas_grille.create_line(x_debut,y_debut,x_fin,y_fin,fill=couleur(p_couleur[0],"r1")) #crée la ligne
             
-            canvas_grille.create_line(0,2,L_H_case_px*xgrille,2,fill=couleur(p_couleur,"r1")) #ligne horizontale haut
-            canvas_grille.create_line(2,0,2,L_H_case_px*ygrille,fill=couleur(p_couleur,"r1")) #ligne verticale gauche
+            canvas_grille.create_line(0,2,L_H_case_px*xgrille,2,fill=couleur(p_couleur[0],"r1")) #ligne horizontale haut
+            canvas_grille.create_line(2,0,2,L_H_case_px*ygrille,fill=couleur(p_couleur[0],"r1")) #ligne verticale gauche
             
             for cases in liste_cases_visibles:
                 decou(cases.split()) #redecouvre les cases, .split renvoi une liste
