@@ -22,7 +22,7 @@ liste_bombes=[] #liste de toutes les cases qui contiennent une bombe
 liste_cases_visibles=[] #liste des cases visibles
 show=[0] #fonction show_all_bbs pas encore demandé
 version="1.0.0" #version en cours du démineur
-p_couleur=["defaut"]
+p_couleur=["DarkBlue Red"]
 px_case=[0]
 def dans_la_liste(xygrille):
     """ permet de vérifier si une case (xygrille) se trouve dans la liste """
@@ -115,11 +115,8 @@ def a_propos():
 def fenetre_options(): 
     """ ouvre la fenetre pour configurer les options du programme """ 
     from tkinter.ttk import Combobox #pour la liste en menue déroulant
-    
-    liste_titre={"Défaut-DarkBlue Red":"defaut",
-                 "Flat design":"Flat_design_colors"}
-                 
-    lst=["Défaut-DarkBlue Red","Flat design"]    
+    global p_couleur                 
+    lst=["DarkBlue Red","Flat design","Ice_Cream","Alaska sunset"]    
     
     Mafenetre= Tk()
     
@@ -135,7 +132,7 @@ def fenetre_options():
     
     
     liste_choix=Combobox(cadre_gauche, values=lst, state='readonly')
-    liste_choix.set(lst[0]) #permet de choisir la première valeur -> defaut
+    liste_choix.set(p_couleur[0]) #permet de choisir la valeur contenue dans la variable p_couleur
     liste_choix.pack()
     
     canvas_previsualisation=Canvas(cadre_droite,width=150, height=20)
@@ -156,12 +153,12 @@ def fenetre_options():
             
     def affiche_palette_event(event):
         """ Apelle la fonction qui dessine la palette dans le canvas """
-        palette=liste_titre[liste_choix.get()] #.get = renvoi la valeur séléctionné
+        palette=liste_choix.get() #.get = renvoi la valeur séléctionné
         affiche_palette(palette)
         global p_couleur
         p_couleur[0]=palette
     
-    affiche_palette("defaut") #permet d'afficher la palette par défaut
+    affiche_palette(p_couleur[0]) #permet d'afficher la palette par défaut
     
     canvas_previsualisation.pack()
     
