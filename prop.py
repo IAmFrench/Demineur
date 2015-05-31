@@ -14,7 +14,7 @@ ygrille=-1
 grille={}
 #difficulte=""
 nbbombe=-1
-xybombe=[]
+xybombe=[0,0,0,0,0]
 statut_plein_ecran=[False] #Plein ecran désactivé par défaut
 mode_presentation=False #Active le mode de présentation
 #####################

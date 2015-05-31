@@ -614,11 +614,14 @@ def graph_fenetre(fonction):
         fenetre_grille.bind("<F11>",f11) #Active/désactive le plein écran
         fenetre_grille.mainloop() # boucle de la fenêtre
         
+    ###########################################################################
+    #Creation fenetre résultat (#3)
+    ###########################################################################  
     def interface_graph_resultat():
         """ fenetre résumé des scores, de la partie etc... """
         fenetre_score=Tk()
-
-        remarque="a remplir"        
+        fenetre_score.title("Résultats")
+        remarque="a remplir"
         
         fenetre_score.mainloop()
         

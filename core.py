@@ -33,18 +33,21 @@ graph_fenetre("choix_difficulte") #Ouverture fenetre graphique
 ###############################################################################
 #Étape 2 : Creation de la grille + création des cases
 ###############################################################################
-cases(xybombe[0],xybombe[1]) #Remplissage de la grille en fonction du nombre de case horizontale: (xybombe[0]) et verticale:(xybombe[1])
+if xybombe[0]!=0: #évite de générer des erreurs si le programme est fermé
+    cases(xybombe[0],xybombe[1]) #Remplissage de la grille en fonction du nombre de case horizontale: (xybombe[0]) et verticale:(xybombe[1])
  
 ###############################################################################
 #Étape 3 : Remplissage de la grille de bombes + remplissage des cases de chiffre
 ###############################################################################
-bombplace(xybombe) #Placement des bombes
-bombchiffre() #Calcul du nombre de bombes autour de chaque cases
+if xybombe[0]!=0:
+    bombplace(xybombe) #Placement des bombes
+    bombchiffre() #Calcul du nombre de bombes autour de chaque cases
 
 ###############################################################################
 #Étape 4 : Affichage de la grille
 ###############################################################################
-graph_fenetre("grille") #ouverture fenetre graphique
+if xybombe[0]!=0:
+    graph_fenetre("grille") #ouverture fenetre graphique
 
 ###############################################################################
 #Étape 5 : Affichage de la fenetre en fonction du resultat du joueur
