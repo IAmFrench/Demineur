@@ -501,8 +501,8 @@ def graph_fenetre(fonction):
             
         def l_h_et_l_v():
             """ Créé une ligne horizontale en haut du canvas et une ligne verticale à gauche """
-            canvas_grille.create_line(0,2,L_H_case_px*xgrille,2,fill=couleur(p_couleur,"r1")) #ligne horizontale haut
-            canvas_grille.create_line(2,0,2,L_H_case_px*ygrille,fill=couleur(p_couleur,"r1")) #ligne verticale gauche
+            canvas_grille.create_line(0,2,xybombe[3]*xgrille,2,fill=couleur(p_couleur,"r1")) #ligne horizontale haut
+            canvas_grille.create_line(2,0,2,xybombe[3]*ygrille,fill=couleur(p_couleur,"r1")) #ligne verticale gauche
             
         def ligne_a_faire(xygrille):
             """ Exécute la fonction l_h_et_l_v si la case xygrille se trouve sur la première ligne horizontale ou verticale """
@@ -534,7 +534,7 @@ def graph_fenetre(fonction):
             canvas_grille.create_line(2,0,2,L_H_case_px*ygrille,fill=couleur(p_couleur,"r1")) #ligne verticale gauche
             
             for cases in grille.keys():
-                decou(cases.split())
+                decou(cases.split()) #redecouvre les cases, .split renvoi une liste
         #################
         #Création Grille#
         #################
