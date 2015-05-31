@@ -140,7 +140,6 @@ def fenetre_options():
     def affiche_palette(palette):
         """ fonction qui dessine la palette dans le canvas """
         px_nv=30
-        print(palette)
         canvas_previsualisation.delete(ALL)
         for nv in range(1,6):
             x0=(nv-1)*30
@@ -148,7 +147,6 @@ def fenetre_options():
             x1=(nv)*30
             y1=30
             color=couleur(palette,("r"+str(nv)))
-            print(color)
             canvas_previsualisation.create_rectangle(x0,y0,x1,y1,fill=color,outline=color)
             
     def affiche_palette_event(event):
