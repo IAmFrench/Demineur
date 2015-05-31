@@ -422,8 +422,9 @@ def graph_fenetre(fonction):
                 if case[4]<=-1:
                     a="coucou" #NE SERT STRICTEMENT A RIEN
                 else :
+                    chiffre=str(case[4]+1)
                     canvas_id = canvas_grille.create_text(x0, y0, anchor="nw")
-                    canvas_grille.itemconfig(canvas_id, text=str(case[4]+1))
+                    canvas_grille.itemconfig(canvas_id, text=chiffre, font=("Helvetica",int(1/3*xybombe[3])), fill=couleur_chiffre(chiffre))
 
         def show_all_bbs():
             """ dévoile toute les bombes de la grille """

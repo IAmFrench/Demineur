@@ -27,6 +27,7 @@ mode_presentation=False #Active le mode de présentation
 #Etc...
 #Voir les palettes sur https://color.adobe.com/
 def couleur(style,r):
+    """ Contient les palettes de couleur """
     DarkBlue_Red={"r1":"1A2530", #bordures
                   "r2":"2C3E50", #Case par défaut
                   "r3":"34495E", #Bombe
@@ -49,3 +50,15 @@ def couleur(style,r):
         return("#"+DarkBlue_Red[r])
     else:
         return("#"+defaut[r])
+
+def couleur_chiffre(chiffre):
+    """ contient les code hexa de chaque niveau de couleur pour les chiffres """
+    dico_couleur={"1":"#414FBD", #bleu clair
+                  "2":"#216700", #vert foncé
+                  "3":"#AD0501", #rouge clair
+                  "4":"#020084", #vrai démineur (bleu foncé)
+                  "5":"#83181A", #rouge
+                  "6":"#037882", #ciant
+                  "7":"#AF0606", #rouge
+                  "8":"#AD040D"} #rouge foncé
+    return(dico_couleur[chiffre])
