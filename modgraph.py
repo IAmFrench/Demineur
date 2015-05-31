@@ -521,7 +521,7 @@ def graph_fenetre(fonction):
             canvas_grille.create_line(0,2,L_H_case_px*xgrille,2,fill=couleur(p_couleur,"r1")) #ligne horizontale haut
             canvas_grille.create_line(2,0,2,L_H_case_px*ygrille,fill=couleur(p_couleur,"r1")) #ligne verticale gauche
             
-            for cases in grille.keys():
+            for cases in liste_cases_visibles:
                 decou(cases.split()) #redecouvre les cases, .split renvoi une liste
         #################
         #Création Grille#
