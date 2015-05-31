@@ -29,7 +29,7 @@ mode_presentation=False #Active le mode de présentation
 def couleur(style,r):
     """ Contient les palettes de couleur """
     #Bordure, case par défaut, Bombe, Case visible, Drapeau
-    keys=["r1","r2","r3","r4"]
+    keys=["r1","r2","r3","r4","r5"]
     DarkBlue_Red=["1A2530","2C3E50","34495E","E74C3C","FFFFFF"]
     Flat_design_colors=["334D5C","45B29D","EFC94C","E27A3F","DF5A49"]
     Ice_Cream=["113F59","19BEC0","20D6C7","F3EDD3","D54F58",] #https://color.adobe.com/fr/Ice-Cream-color-theme-4185778
