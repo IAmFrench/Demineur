@@ -13,37 +13,17 @@ from modgraph import *
 camo=["-1x-1"] #Liste des cases qui ont été modifiées par une action de l'utilisateur
 
 
-def coord(x,y,difficulty):
+def coord(x,y):
    """
    Coord est une fonction qui permet de convertir les coordonnées en pixels d'un 
    clic en coordonnées de la case sur laquelle on à cliqué.
    x: coordonnées x en pixels du clic sur le canvas
    y: coordonnées y en pixels du clic sur le canvas
-   difficulty: difficulté, nécessaire pour diviser le nombre de pixels correctement 
    """
-   
-   
-   if difficulty=="facile":
-        x=ceil(x/40) #divise le nombre de pixel par le nombre de pixel d'une case.
-        y=ceil(y/40)
-        #print(x)
-        #print(y)
-        xy=str(x)+"x"+str(y) #la clé de la case 
-    
-   if difficulty=="intermediaire":
-        x=ceil(x/35)
-        y=ceil(y/35)
-        #print(x)
-        #print(y)
-        xy=str(x)+"x"+str(y) #la clé de la case
 
-   if difficulty=="expert":
-        x=ceil(x/25)
-        y=ceil(y/25)
-        #print(x)
-        #print(y)
-        xy=str(x)+"x"+str(y) #la clé de la case  
-
+   x=ceil(x/xybombe[3]) #divise le nombre de pixel par le nombre de pixel d'une case.
+   y=ceil(y/xybombe[3])
+   xy=str(x)+"x"+str(y) #la clé de la case 
    return(xy)
     
 

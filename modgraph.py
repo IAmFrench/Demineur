@@ -227,14 +227,8 @@ def graph_fenetre(fonction):
             """ fonction qui est appellé lorsque qu'il y a un clic gauche dans le canvas_grille """
             global cases_modif
             
-            if xybombe[4]=="facile":
-                xygrille=coord(event.x,event.y,"facile") #les coordonnées en pixels sont convertie en coordonné de case par coord
-            
-            if xybombe[4]=="intermediaire":
-                xygrille=coord(event.x,event.y,"intermediaire")  
-        
-            if xybombe[4]=="expert":
-                xygrille=coord(event.x,event.y,"expert")
+
+            xygrille=coord(event.x,event.y)
             
             camo[:] = []
             if dans_la_liste(xygrille)==True: #si la case est dans la liste alors exécute le reste de la fonction                
@@ -250,14 +244,8 @@ def graph_fenetre(fonction):
             
         def pointeurD(event):
             """ fonction qui est appellé lorsque qu'il y a un clic droit dans le canvas_grille """
-            if xybombe[4]=="facile":
-                xygrille=coord(event.x,event.y,"facile") #les coordonnées en pixels sont convertie en coordonné de case par coord
-            
-            if xybombe[4]=="intermediaire":
-                xygrille=coord(event.x,event.y,"intermediaire")  
-        
-            if xybombe[4]=="expert":
-                xygrille=coord(event.x,event.y,"expert")
+
+            xygrille=coord(event.x,event.y)
                 
             if dans_la_liste(xygrille)==True: #si la case est dans la liste alors exécute le reste de la fonction 
                 clic1(xygrille)
