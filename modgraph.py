@@ -116,7 +116,7 @@ def fenetre_options():
     """ ouvre la fenetre pour configurer les options du programme """ 
     from tkinter.ttk import Combobox #pour la liste en menue déroulant
     global p_couleur                 
-    lst=["DarkBlue Red","Flat design","Ice Cream","Alaska sunset"]    
+    lst=["DarkBlue Red","Flat design","Ice Cream","Alaska sunset","Flood"]    
     
     Mafenetre= Tk()
     
