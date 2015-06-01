@@ -127,6 +127,10 @@ def centrerfenetre(fenetre):
     l,h,x,y=geo(fenetre.geometry()) #on déterine ou se trouve la fenetre
     fenetre.geometry("%dx%d%+d%+d" % (l,h,(fenetre.winfo_screenwidth()-l)//2,(fenetre.winfo_screenheight()-h)//2)) #on redéfini la position
 
+def interdit_quitter():
+    """ capture l'évenement clic sur la croix pour quitter la fenetre """
+    print("Vous n'avez pas le droit de quitter la fenetre en cours")
+
 def fenetre_options(): 
     """ ouvre la fenetre pour configurer les options du programme """ 
     from tkinter.ttk import Combobox #pour la liste en menue déroulant
@@ -188,6 +192,7 @@ def fenetre_options():
     
     
     liste_choix.bind('<<ComboboxSelected>>', affiche_palette_event)
+    Mafenetre.protocol("WM_DELETE_WINDOW", interdit_quitter)
     Mafenetre.mainloop()
 
 def graph_fenetre(fonction):
@@ -264,7 +269,7 @@ def graph_fenetre(fonction):
         
         frame_bas.pack(side=BOTTOM, padx=5, pady=5)
         
-        
+        fenetre_choix_difficulte.protocol("WM_DELETE_WINDOW", interdit_quitter) #http://python.developpez.com/faq/?page=Fenetre#Comment-intercepter-la-fermeture-d-une-fenetre
         fenetre_choix_difficulte.mainloop() #boucle infinie fenetre       
 
     ###########################################################################
