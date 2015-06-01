@@ -95,6 +95,8 @@ def a_propos():
     fenetre_a_propos=Tk()
     fenetre_a_propos.title("À propos")
     fenetre_a_propos.resizable(width=False, height=False) #interdit le redimentionnement
+    centrerfenetre(fenetre_a_propos)
+    fenetre_a_propos.geometry("224x263")
     frame_haut=Frame(fenetre_a_propos)
     frame_haut.pack()
     frame_bas=Frame(fenetre_a_propos)
@@ -114,6 +116,17 @@ def a_propos():
     button.pack()
     fenetre_a_propos.mainloop()
 
+def geo(g):
+    """ permet d'extraire les valeurs retounées par la fonction .geometry() appliqué à une fenetre """
+    r=[i for i in range(0,len(g)) if not g[i].isdigit()]
+    return [int(g[0:r[0]]),int(g[r[0]+1:r[1]]),int(g[r[1]+1:r[2]]),int(g[r[2]+1:])]
+
+def centrerfenetre(fenetre):
+    """ permet de centrer une fenetre au milieu de l'écran """
+    fenetre.update_idletasks() # on demande d'actualiser les propriétés de la fenetre
+    l,h,x,y=geo(fenetre.geometry()) #on déterine ou se trouve la fenetre
+    fenetre.geometry("%dx%d%+d%+d" % (l,h,(fenetre.winfo_screenwidth()-l)//2,(fenetre.winfo_screenheight()-h)//2)) #on redéfini la position
+
 def fenetre_options(): 
     """ ouvre la fenetre pour configurer les options du programme """ 
     from tkinter.ttk import Combobox #pour la liste en menue déroulant
@@ -123,6 +136,9 @@ def fenetre_options():
     Mafenetre= Tk()
     Mafenetre.title("Options")
     Mafenetre.resizable(width=False, height=False) #interdit le redimentionnement
+    Mafenetre.geometry("319x97")
+    centrerfenetre(Mafenetre)
+    
     cadre_haut=Frame(Mafenetre)
     cadre_gauche=Frame(cadre_haut)
     cadre_droite=Frame(cadre_haut)
@@ -194,6 +210,8 @@ def graph_fenetre(fonction):
         fenetre_choix_difficulte.title(fenetre_titre) #assignation du titre de la fenetre
         fenetre_choix_difficulte.resizable(width=False, height=False) #interdit le redimentionnement
         
+        fenetre_choix_difficulte.geometry("387x139")
+        centrerfenetre(fenetre_choix_difficulte)
         ################
         #actions bouton#
         ################
@@ -269,6 +287,7 @@ def graph_fenetre(fonction):
         #########
         fenetre_grille = Tk() #création de la fenetre
         
+        centrerfenetre(fenetre_grille) #on centre la fenetre
         fenetre_grille.resizable(width=False, height=False) #interdit le redimentionnement
         taille_x_ecran=fenetre_grille.winfo_screenwidth() #Taille horizontale de l'écran
         taille_y_ecran=fenetre_grille.winfo_screenheight() #Taille verticale de l'écran
