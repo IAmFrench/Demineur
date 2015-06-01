@@ -21,7 +21,7 @@ case_dec=["0"]
 liste_bombes=[] #liste de toutes les cases qui contiennent une bombe
 liste_cases_visibles=[] #liste des cases visibles
 show=[0] #fonction show_all_bbs pas encore demandé
-version="1.0.0" #version en cours du démineur
+version="1.0.1" #version en cours du démineur
 p_couleur=["Défaut"]
 px_case=[0]
 def dans_la_liste(xygrille):
