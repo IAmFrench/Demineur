@@ -35,18 +35,21 @@ def couleur(style,r):
     Ice_Cream=["113F59","19BEC0","D54F58","159FA1","F3EDD3"] #https://color.adobe.com/fr/Ice-Cream-color-theme-4185778
     Alaska_sunset=["BF4E6C","F2676B","F5CC70","5992C7","325982"] #https://color.adobe.com/fr/Alaska-sunset-color-theme-3121915
     Flood=["005572","006573","F4D4AD","81BEAA","008B8D"] #https://color.adobe.com/fr/Flood-color-theme-4203435/
+    defaut=["1A2732","51626F","D3222A","DFE5E6","4ECCC3"]
     dico={}
     styles={"nom a afficher":"nom variable",
             "DarkBlue Red":"DarkBlue_Red",
             "Flat design":"Flat_design_colors",
             "Ice Cream":"Ice_Cream",
             "Alaska sunset":"Alaska_sunset",
-            "Flood":"Flood"}
+            "Flood":"Flood",
+            "Défaut":"defaut"}
             
     style=styles[style] #Cherche le nom de la variable
     r=keys.index(r) #prend la position de l'élément
-    
-    if style=="DarkBlue_Red":
+    if style=="defaut":
+        resultat=defaut[r]
+    elif style=="DarkBlue_Red":
         resultat=DarkBlue_Red[r]
     elif style=="Flat_design_colors":
         resultat=Flat_design_colors[r]

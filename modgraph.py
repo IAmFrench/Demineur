@@ -22,7 +22,7 @@ liste_bombes=[] #liste de toutes les cases qui contiennent une bombe
 liste_cases_visibles=[] #liste des cases visibles
 show=[0] #fonction show_all_bbs pas encore demandé
 version="1.0.0" #version en cours du démineur
-p_couleur=["DarkBlue Red"]
+p_couleur=["Défaut"]
 px_case=[0]
 def dans_la_liste(xygrille):
     """ permet de vérifier si une case (xygrille) se trouve dans la liste """
@@ -117,7 +117,7 @@ def fenetre_options():
     """ ouvre la fenetre pour configurer les options du programme """ 
     from tkinter.ttk import Combobox #pour la liste en menue déroulant
     global p_couleur                 
-    lst=["DarkBlue Red","Flat design","Ice Cream","Alaska sunset","Flood"]    
+    lst=["Défaut","DarkBlue Red","Flat design","Ice Cream","Alaska sunset","Flood"]    
     
     Mafenetre= Tk()
     Mafenetre.title("Options")
