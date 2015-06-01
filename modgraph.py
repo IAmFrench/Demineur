@@ -94,6 +94,7 @@ def a_propos():
     global version #pour le n° de version
     fenetre_a_propos=Tk()
     fenetre_a_propos.title("À propos")
+    fenetre_a_propos.resizable(width=False, height=False) #interdit le redimentionnement
     frame_haut=Frame(fenetre_a_propos)
     frame_haut.pack()
     frame_bas=Frame(fenetre_a_propos)
@@ -121,7 +122,7 @@ def fenetre_options():
     
     Mafenetre= Tk()
     Mafenetre.title("Options")
-    
+    Mafenetre.resizable(width=False, height=False) #interdit le redimentionnement
     cadre_haut=Frame(Mafenetre)
     cadre_gauche=Frame(cadre_haut)
     cadre_droite=Frame(cadre_haut)
@@ -191,6 +192,7 @@ def graph_fenetre(fonction):
         
         fenetre_choix_difficulte = Tk() #création de la fenetre        
         fenetre_choix_difficulte.title(fenetre_titre) #assignation du titre de la fenetre
+        fenetre_choix_difficulte.resizable(width=False, height=False) #interdit le redimentionnement
         
         ################
         #actions bouton#
@@ -267,6 +269,7 @@ def graph_fenetre(fonction):
         #########
         fenetre_grille = Tk() #création de la fenetre
         
+        fenetre_grille.resizable(width=False, height=False) #interdit le redimentionnement
         taille_x_ecran=fenetre_grille.winfo_screenwidth() #Taille horizontale de l'écran
         taille_y_ecran=fenetre_grille.winfo_screenheight() #Taille verticale de l'écran
         
