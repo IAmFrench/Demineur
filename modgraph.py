@@ -24,6 +24,22 @@ show=[0] #fonction show_all_bbs pas encore demandé
 version="1.0.1" #version en cours du démineur
 p_couleur=["Défaut"]
 px_case=[0]
+statut_fenetre_options=[False]
+
+def chx_difficulte(niveau,fenetre):
+    """ fonction qui permet de fixer le niveau de difficulte tout en fermant la fenetre """
+    global xybombe
+    if statut_fenetre_options[0]==False: #on vérifie que la fenetre option est fermée
+        if niveau=="facile":                    
+            xybombe.extend((9,9,10,40,"facile")) #grille 9x9, 10bombes, 40px de coté (case)
+        elif niveau=="intermediaire":
+            xybombe.extend((16,16,40,35,"intermediaire"))   
+        elif niveau=="expert":
+            xybombe.extend((30,16,99,25,"expert"))        
+        print("fonction difficulté ->"+niveau)
+        fenetre.destroy()
+        print("fenêtre choix détruite")
+        
 def dans_la_liste(xygrille):
     """ permet de vérifier si une case (xygrille) se trouve dans la liste """
     if xygrille in grille.keys(): #dans la liste, pas de problème
@@ -135,9 +151,12 @@ def fenetre_options():
     """ ouvre la fenetre pour configurer les options du programme """ 
     from tkinter.ttk import Combobox #pour la liste en menue déroulant
     global p_couleur                 
+    global statut_fenetre_options
     lst=["Défaut","DarkBlue Red","Flat design","Ice Cream","Alaska sunset","Flood"]    
+    statut_fenetre_options[0]=True #on indique que la fenetre est ouverte
     
     Mafenetre= Tk()
+    
     Mafenetre.title("Options")
     Mafenetre.resizable(width=False, height=False) #interdit le redimentionnement
     Mafenetre.geometry("319x97")
@@ -182,6 +201,7 @@ def fenetre_options():
         """ Permet de fermer la fenetre en cours """
         Mafenetre.eval('::ttk::CancelRepeat') #quitte la boucle ttk
         Mafenetre.destroy()
+        statut_fenetre_options[0]=False #on indique que la fenetre est fermée
         
     affiche_palette(p_couleur[0]) #permet d'afficher la palette par défaut
     
@@ -220,28 +240,18 @@ def graph_fenetre(fonction):
         ################
         #actions bouton#
         ################
+
         def difficulte_facile():
             """ attribue les caractéristiques d'une grille de niveau facile """
-            xybombe.extend((9,9,10,40,"facile")) #grille 9x9, 10bombes, 40px de coté (case)
-            print("fonction difficulté -> facile")
-            fenetre_choix_difficulte.destroy() #détruit la fenetre pour executer le code qui suit
-            print("fenêtre choix détruite") 
+            chx_difficulte("facile",fenetre_choix_difficulte)
             
         def difficulte_inter():
             """ attribue les caractéristiques d'une grille de niveau intermediaire """
-            global xybombe
-            xybombe.extend((16,16,40,35,"intermediaire"))
-            print("fonction difficulté -> inter")
-            fenetre_choix_difficulte.destroy()
-            print("fenêtre choix détruite")
+            chx_difficulte("intermediaire",fenetre_choix_difficulte)
             
         def difficulte_expert():
             """ attribue les caractéristiques d'une grille de niveau expert """
-            global xybombe
-            xybombe.extend((30,16,99,25,"expert"))
-            print("fonction difficulté -> expert")
-            fenetre_choix_difficulte.destroy()
-            print("fenêtre choix détruite")
+            chx_difficulte("expert",fenetre_choix_difficulte)
         
         ########
         #Frames#
@@ -286,7 +296,7 @@ def graph_fenetre(fonction):
         xgrille=xybombe[0] #nombre de cases horizontalement (x)
         ygrille=xybombe[1] #nombre de cases verticalement (y)
         L_H_case_px=xybombe[3] #bord d'une case en px
-        fenetre_taille=str(15+(xgrille*L_H_case_px))+"x"+str(ygrille*L_H_case_px+15) #renvoi du texte ex: "300x800"
+        fenetre_taille=str(15+(xgrille*L_H_case_px))+"x"+str(ygrille*L_H_case_px+35) #renvoi du texte ex: "300x800"
         #########
         #Fenêtre#
         #########
